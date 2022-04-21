@@ -11,7 +11,7 @@ Class {
 DLPosterTest >> testData [
 	| dataLayout data  |
 	dataLayout := DLPoster new.
-	data := Collection new.
+	data := { 12. 20. 30}.
 	dataLayout data: data.
 	self assert: dataLayout data equals: data
 	

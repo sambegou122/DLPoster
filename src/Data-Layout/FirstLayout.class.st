@@ -85,5 +85,6 @@ FirstLayout >> show [
 	self canvas nodes @ self interaction.
 	self layout on: self shape.
 	self canvas zoomToFit.
+	self canvas @ RSCanvasController.
 	^ self canvas
 ]
