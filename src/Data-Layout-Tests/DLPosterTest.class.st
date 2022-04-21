@@ -8,10 +8,47 @@ Class {
 }
 
 { #category : #tests }
-DLPosterTest >> testBasic [
-	| data shape |
-	data := DLPoster new.
+DLPosterTest >> testData [
+	| dataLayout data  |
+	dataLayout := DLPoster new.
+	data := Collection new.
+	dataLayout data: data.
+	self assert: dataLayout data equals: data
+	
+]
+
+{ #category : #tests }
+DLPosterTest >> testEvent [
+	| dataLayout event  |
+	dataLayout := DLPoster new.
+	event := RSMouseClick new.
+	dataLayout event: event.
+	self assert: dataLayout event equals: event
+]
+
+{ #category : #tests }
+DLPosterTest >> testLayout [
+	| dataLayout layout |
+	dataLayout := DLPoster new.
+	layout := RSTreeLayout new.
+	dataLayout layout: layout.
+	self assert: dataLayout layout equals: layout
+]
+
+{ #category : #tests }
+DLPosterTest >> testLineBuilder [
+	| dataLayout lineBuilder |
+	dataLayout := DLPoster new.
+	lineBuilder := RSLineBuilder line.
+	dataLayout lineBuilder: lineBuilder.
+	self assert: dataLayout lineBuilder equals: lineBuilder
+]
+
+{ #category : #tests }
+DLPosterTest >> testShape [
+	| dataLayout shape |
+	dataLayout := DLPoster new.
 	shape := RSBox new.
-	data shape: shape.
-	self assert: data shape equals: shape
+	dataLayout shape: shape.
+	self assert: dataLayout shape equals: shape
 ]

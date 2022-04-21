@@ -27,8 +27,18 @@ DLPoster >> event [
 ]
 
 { #category : #accessing }
+DLPoster >> event: anEvent [
+	event := anEvent.
+]
+
+{ #category : #accessing }
 DLPoster >> layout [
 ^layout 
+]
+
+{ #category : #accessing }
+DLPoster >> layout: aLayout [
+	layout := aLayout 
 ]
 
 { #category : #accessing }
