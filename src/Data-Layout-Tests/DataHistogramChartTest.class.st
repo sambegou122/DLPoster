@@ -8,6 +8,17 @@ Class {
 }
 
 { #category : #tests }
+DataHistogramChartTest >> testAddAll [
+	| data barChart |
+	data := { #(17 23 25 14 16 20). { 12. 13. 45. 60. 30. 50} .#(1 3 25 1 6 20) . #(7 21 53 41 7 0). #(1 2 3 23 16 20) }.
+	barChart := DataHistogramChart new.
+	barChart  addAll: data.
+	self assert: barChart chart plots class equals: OrderedCollection.
+	barChart chart plots do: [ :each| self assert: each class equals: RSHistogramPlot ].
+
+]
+
+{ #category : #tests }
 DataHistogramChartTest >> testAddData [
 	| aDictionary barChart |
 	aDictionary := (Dictionary new ).
