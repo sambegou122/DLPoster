@@ -5,25 +5,30 @@ Class {
 		'data',
 		'chart',
 		'color',
-		'dataSet'
+		'dataSet',
+		'decoration'
 	],
 	#category : #'Data-Layout'
 }
 
 { #category : #initialization }
 DataChart >> addAll: aCollection [
+
 	self addInDataSet: aCollection.
-	self dataSet do: [ :each| self addData:each]
+	self dataSet do: [ :each | self addData: each ].
+	
 ]
 
-{ #category : #showing }
+{ #category : #'adding-plots' }
 DataChart >> addData: aDictionnary [
+
 	| x y |
 	self data: aDictionnary.
-	y := self data at: 2 ifAbsent:[ self data at: 1 ].
+	y := self data at: 2 ifAbsent: [ self data at: 1 ].
 	x := self data at: 1.
-	x = y ifTrue: [ self chart addPlot: (self yourPlot y:x) ] 
-			ifFalse:[ self chart addPlot: (self yourPlot x: x y:y) ] 
+	x = y
+		ifTrue: [ self chart addPlot: (self yourPlot y: x) ]
+		ifFalse: [ self chart addPlot: (self yourPlot x: x y: y) ].
 ]
 
 { #category : #initialization }
@@ -84,6 +89,7 @@ DataChart >> initialize [
 
 { #category : #showing }
 DataChart >> show [
+
 	^ self chart
 ]
 

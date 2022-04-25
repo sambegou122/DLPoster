@@ -15,8 +15,6 @@ DataBoxChartTest >> testAddData [
 	barChart := DataBoxChart new addData: aDictionary.
 	self assert: barChart data equals: aDictionary.
 	barChart chart plots do: [ :each| self assert: each class equals: RSBoxPlot ].
-	barChart chart plots do: [ :each| self assert: each xValues equals: #(#(17 23 25 14 16 20))].
-	barChart chart plots do: [ :each| self assert: each yValues equals: #(#(12 13 45 60 30 50))]
 ]
 
 { #category : #tests }
