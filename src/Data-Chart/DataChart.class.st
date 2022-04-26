@@ -8,8 +8,21 @@ Class {
 		'dataSet',
 		'decoration'
 	],
-	#category : #'Data-Layout'
+	#category : #'Data-Chart-Kind'
 }
+
+{ #category : #'instance creation' }
+DataChart class >> from: aString [ 
+	self withAllSubclassesDo: [ :cls |
+		cls kind = aString ifTrue: [ ^ cls new ]
+		 ].
+	^ nil
+]
+
+{ #category : #accessing }
+DataChart class >> kind [
+	^ ''
+]
 
 { #category : #initialization }
 DataChart >> addAll: aCollection [
@@ -39,6 +52,11 @@ DataChart >> addInDataSet: aCollection [
 							self cutTwoByTwo: aCollection with:(size -1). 
 								self dataSet add: ({ 1->last} asDictionary)] 
 				ifFalse: [ self cutTwoByTwo: aCollection ]
+]
+
+{ #category : #accessing }
+DataChart >> canvas [
+	^ self chart canvas
 ]
 
 { #category : #'accessing - attributes' }
@@ -90,7 +108,7 @@ DataChart >> initialize [
 { #category : #showing }
 DataChart >> show [
 
-	^ self chart
+	^ self chart open
 ]
 
 { #category : #showing }

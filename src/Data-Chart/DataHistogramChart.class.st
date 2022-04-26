@@ -1,7 +1,7 @@
 Class {
 	#name : #DataHistogramChart,
 	#superclass : #DataChart,
-	#category : #'Data-Layout'
+	#category : #'Data-Chart-Kind'
 }
 
 { #category : #'adding-plots' }
@@ -13,7 +13,7 @@ DataHistogramChart >> addData: aDictionnary [
 	myData do: [ :each| self chart addPlot: (self yourPlot x: each)]
 ]
 
-{ #category : #adding }
+{ #category : #showing }
 DataHistogramChart >> yourPlot [
 	^ RSHistogramPlot new.
 ]
