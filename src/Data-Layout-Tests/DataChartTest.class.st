@@ -22,3 +22,14 @@ DataChartTest >> testData [
 	dataChart data: data.
 	self assert: dataChart data equals:data 
 ]
+
+{ #category : #tests }
+DataChartTest >> testKind [
+	| instance |
+	instance := DataChart from: 'scatter'.
+	self assert: instance class equals: DataScatterChart.
+	instance := DataChart from: 'foo'.
+	self assert: instance isNil.
+	
+	
+]

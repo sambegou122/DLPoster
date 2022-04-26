@@ -1,7 +1,7 @@
 Class {
 	#name : #DataBoxChart,
 	#superclass : #DataChart,
-	#category : #'Data-Layout'
+	#category : #'Data-Chart-Kind'
 }
 
 { #category : #'adding-plots' }
@@ -14,7 +14,7 @@ DataBoxChart >> addData: aDictionnary [
 	self chart addPlot: (self yourPlot y: sortedData)
 ]
 
-{ #category : #adding }
+{ #category : #showing }
 DataBoxChart >> yourPlot [
 	^ RSBoxPlot new.
 ]

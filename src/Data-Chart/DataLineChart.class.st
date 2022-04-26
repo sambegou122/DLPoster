@@ -1,7 +1,7 @@
 Class {
 	#name : #DataLineChart,
 	#superclass : #DataChart,
-	#category : #'Data-Layout'
+	#category : #'Data-Chart-Kind'
 }
 
 { #category : #adding }

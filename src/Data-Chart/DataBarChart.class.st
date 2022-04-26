@@ -1,10 +1,10 @@
 Class {
 	#name : #DataBarChart,
 	#superclass : #DataChart,
-	#category : #'Data-Layout'
+	#category : #'Data-Chart-Kind'
 }
 
-{ #category : #adding }
+{ #category : #showing }
 DataBarChart >> yourPlot [
 	^ RSBarPlot new.
 ]
