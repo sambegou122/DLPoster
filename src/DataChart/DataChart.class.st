@@ -6,7 +6,12 @@ Class {
 		'chart',
 		'color',
 		'dataSet',
-		'decorations'
+		'decorations',
+		'padding',
+		'labels',
+		'xlabel',
+		'ylabel',
+		'title'
 	],
 	#category : #'DataChart-Kind'
 }
@@ -113,6 +118,16 @@ DataChart >> defaultDecorations [
 	^ { RSVerticalTick new. RSHorizontalTick new }
 ]
 
+{ #category : #initialization }
+DataChart >> defaultLabels [
+	^ { RSXLabelDecoration new. RSYLabelDecoration new }
+]
+
+{ #category : #initialization }
+DataChart >> defaultTitle [
+	^ RSChartTitleDecoration new.
+]
+
 { #category : #accessing }
 DataChart >> extent [
 	^ self chart extent
@@ -129,6 +144,28 @@ DataChart >> initialize [
 	self chart: RSChart new.
 	dataSet := OrderedCollection new.
 	decorations := self defaultDecorations.
+	labels:= self defaultLabels.
+	title := self defaultTitle.
+	
+	
+	
+]
+
+{ #category : #showing }
+DataChart >> labels [
+	
+	^ labels .
+]
+
+{ #category : #accessing }
+DataChart >> padding [
+	^ padding
+]
+
+{ #category : #accessing }
+DataChart >> padding: anObject [
+	 padding := anObject.
+	self chart padding: self padding
 ]
 
 { #category : #showing }
@@ -136,8 +173,44 @@ DataChart >> show [
 	self chart plots last color: color.
 	self decorations do: [ :decoration | 
 		self chart addDecoration: decoration ].
+	self labels do: [ :label | 
+		self chart addDecoration: label].
+	self chart addDecoration: title.
 	
-	^ self chart openOnce.
+	^ self chart open.
+]
+
+{ #category : #accessing }
+DataChart >> title [
+	^ title title
+]
+
+{ #category : #accessing }
+DataChart >> title: aString [ 
+	title title: aString.
+	title label ifNotNil: [ :label | label text: aString ].
+]
+
+{ #category : #accessing }
+DataChart >> xlabel [
+	^ xlabel
+]
+
+{ #category : #accessing }
+DataChart >> xlabel: aString [ 
+	(self labels at:1 ) title:aString.
+	xlabel := aString 
+]
+
+{ #category : #accessing }
+DataChart >> ylabel [
+	^ ylabel
+]
+
+{ #category : #accessing }
+DataChart >> ylabel: aString [ 
+	(self labels at:2 )title:aString.
+	ylabel := aString. 
 ]
 
 { #category : #showing }

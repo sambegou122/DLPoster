@@ -31,6 +31,7 @@ DataFrameChartDescription >> extratData: aString [
 { #category : #accessing }
 DataFrameChartDescription >> x: aString [ 
 	super x: (self extratData:aString).
+	self xtitle: aString.
 	
 	
 	
@@ -38,6 +39,6 @@ DataFrameChartDescription >> x: aString [
 
 { #category : #accessing }
 DataFrameChartDescription >> y: aString [ 
-	super y: (self extratData:aString)
-	
+	super y: (self extratData:aString).
+	self ytitle: aString.
 ]

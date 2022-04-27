@@ -7,7 +7,9 @@ Class {
 		'color',
 		'x',
 		'y',
-		'extent'
+		'extent',
+		'title',
+		'padding'
 	],
 	#category : #'DataChart-Description'
 }
@@ -43,6 +45,22 @@ DataChartDescription >> defaultKind [
 ]
 
 { #category : #accessing }
+DataChartDescription >> defaultPadding [
+	^ 10@10.
+]
+
+{ #category : #initialization }
+DataChartDescription >> defaultTitle [
+	| vs dfTitte |
+	vs := ' vs '.
+	dfTitte := self xtitle, vs , self ytitle.
+	^ dfTitte.
+	
+	
+		
+]
+
+{ #category : #accessing }
 DataChartDescription >> extent [
 	^ extent
 ]
@@ -57,7 +75,8 @@ DataChartDescription >> initialize [
 	super initialize.
 	self 
 		kind: self defaultKind;
-		extent: self defaultExtent
+		extent: self defaultExtent;
+		padding: self defaultPadding.
 ]
 
 { #category : #accessing }
@@ -72,16 +91,40 @@ DataChartDescription >> kind: aString [
 	dataChart extent: self extent.
 ]
 
+{ #category : #accessing }
+DataChartDescription >> padding [
+	^ padding
+]
+
+{ #category : #accessing }
+DataChartDescription >> padding: aPoint [
+	padding := aPoint
+]
+
 { #category : #showing }
 DataChartDescription >> show [
 	self dataChart
 		addAll: { self x . self y };
 		color: self color;
-		extent: self extent.
+		extent: self extent;
+		padding: self padding;
+		xlabel: self xtitle;
+		ylabel: self ytitle;
+		title: self title.
 	^ self dataChart show
 		setLabel: 'Data Chart'
 		yourself.
 	
+]
+
+{ #category : #accessing }
+DataChartDescription >> title [
+	^ self dataChart title ifNil: [ self defaultTitle ]
+]
+
+{ #category : #accessing }
+DataChartDescription >> title: aString [
+	self dataChart title: aString.
 ]
 
 { #category : #accessing }
@@ -99,6 +142,16 @@ DataChartDescription >> x: aCollection [
 ]
 
 { #category : #accessing }
+DataChartDescription >> xtitle [
+	^ self dataChart xlabel.
+]
+
+{ #category : #accessing }
+DataChartDescription >> xtitle:aString [
+	self dataChart xlabel: aString.
+]
+
+{ #category : #accessing }
 DataChartDescription >> y [
 	^ y
 ]
@@ -108,4 +161,14 @@ DataChartDescription >> y: aCollection [
 	y := aCollection
 	
 	
+]
+
+{ #category : #accessing }
+DataChartDescription >> ytitle [
+	^ self dataChart ylabel.
+]
+
+{ #category : #accessing }
+DataChartDescription >> ytitle:aString [
+	 self dataChart ylabel: aString.
 ]

@@ -103,11 +103,12 @@ DataFrameExtentionTest >> testTitle [
 		x: 'num_children';
 		y: 'num_pets';
 		yourself.
-	window := chart show.
 	self assert: chart xtitle equals: 'num_children'.
 	self assert: chart ytitle equals: 'num_pets'.
 	self assert: chart title equals: 'num_children vs num_pets'.
-	title := 'Simple Chart'
+	window := chart show.
+
+	title := 'Simple Chart'.
 	chart title: title.
 	self assert: chart title equals: title.
 	labels := chart canvas shapes select: #isLabel.
