@@ -108,7 +108,7 @@ DataChart >> initialize [
 { #category : #showing }
 DataChart >> show [
 
-	^ self chart open
+	^ self chart openOnce.
 ]
 
 { #category : #showing }

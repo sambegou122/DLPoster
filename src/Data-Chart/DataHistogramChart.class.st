@@ -4,6 +4,11 @@ Class {
 	#category : #'Data-Chart-Kind'
 }
 
+{ #category : #accessing }
+DataHistogramChart class >> kind [
+	^ 'histogram'
+]
+
 { #category : #'adding-plots' }
 DataHistogramChart >> addData: aDictionnary [
 

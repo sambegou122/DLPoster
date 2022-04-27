@@ -33,10 +33,3 @@ DataChartDescription >> kind: aString [
 	kind := aString.
 	dataChart := DataChart from: kind.
 ]
-
-{ #category : #showing }
-DataChartDescription >> show [
-	^ dataChart show
-		setLabel: 'Data Chart';
-		yourself
-]

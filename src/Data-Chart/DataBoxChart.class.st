@@ -4,6 +4,11 @@ Class {
 	#category : #'Data-Chart-Kind'
 }
 
+{ #category : #accessing }
+DataBoxChart class >> kind [
+	^ 'box'
+]
+
 { #category : #'adding-plots' }
 DataBoxChart >> addData: aDictionnary [
 

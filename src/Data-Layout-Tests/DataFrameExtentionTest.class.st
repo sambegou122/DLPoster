@@ -42,9 +42,30 @@ DataFrameExtentionTest >> testBasic [
 	self assert: chart kind equals: #scatter.
 	self assert: window isDisplayed.
 	self assert: window label equals: 'Data Chart'.
-	shapes := chart canvas shapes collect: [:shape | shape class = RSEllipse ].
+	shapes := chart canvas shapes select: [:shape | shape class = RSEllipse ].
 	
 	self assert: shapes size equals: (df column: 'num_children') size.
+	
+	
+]
+
+{ #category : #tests }
+DataFrameExtentionTest >> testBasicLine [
+	| chart shapes |
+	chart :=  df chart
+		kind: #line;
+		x: 'num_pets';
+		y: 'num_children';
+		color: 'red';
+		yourself.
+	self assert: chart dataChart notNil.
+	window := chart show.
+	self assert: chart kind equals: #line.
+	self assert: window isDisplayed.
+	self assert: window label equals: 'Data Chart'.
+	shapes := chart canvas shapes select: [:shape | shape class = RSPolyline ].
+	
+	self assert: shapes size equals: 1.
 	
 	
 ]
