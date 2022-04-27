@@ -6,9 +6,9 @@ Class {
 		'chart',
 		'color',
 		'dataSet',
-		'decoration'
+		'decorations'
 	],
-	#category : #'Data-Chart-Kind'
+	#category : #'DataChart-Kind'
 }
 
 { #category : #'instance creation' }
@@ -70,6 +70,11 @@ DataChart >> chart: aChart [
 	
 ]
 
+{ #category : #accessing }
+DataChart >> color: aColor [ 
+	color := aColor
+]
+
 { #category : #initialization }
 DataChart >> cutTwoByTwo:aCollection [
 	self cutTwoByTwo: aCollection  with: aCollection size
@@ -98,16 +103,40 @@ DataChart >> dataSet [
  ^ dataSet
 ]
 
+{ #category : #accessing }
+DataChart >> decorations [
+	^ decorations
+]
+
+{ #category : #initialization }
+DataChart >> defaultDecorations [
+	^ { RSVerticalTick new. RSHorizontalTick new }
+]
+
+{ #category : #accessing }
+DataChart >> extent [
+	^ self chart extent
+]
+
+{ #category : #accessing }
+DataChart >> extent: aPoint [ 
+	self chart extent: aPoint
+]
+
 { #category : #initialization }
 DataChart >> initialize [ 
 	super initialize.
 	self chart: RSChart new.
 	dataSet := OrderedCollection new.
+	decorations := self defaultDecorations.
 ]
 
 { #category : #showing }
 DataChart >> show [
-
+	self chart plots last color: color.
+	self decorations do: [ :decoration | 
+		self chart addDecoration: decoration ].
+	
 	^ self chart openOnce.
 ]
 

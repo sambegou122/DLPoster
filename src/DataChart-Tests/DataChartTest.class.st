@@ -4,7 +4,7 @@ A DataChartTest is a test class for testing the behavior of DataChart
 Class {
 	#name : #DataChartTest,
 	#superclass : #TestCase,
-	#category : #'Data-Layout-Tests-Data-Layout'
+	#category : #'DataChart-Tests-Kind'
 }
 
 { #category : #tests }

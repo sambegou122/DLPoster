@@ -1,6 +1,6 @@
 Extension { #name : #DataFrame }
 
-{ #category : #'*Data-Chart' }
+{ #category : #'*DataChart' }
 DataFrame >> chart [
 	^ DataFrameChartDescription new
 		dataFrame: self;

@@ -1,7 +1,7 @@
 Class {
 	#name : #DataBarChart,
 	#superclass : #DataChart,
-	#category : #'Data-Chart-Kind'
+	#category : #'DataChart-Kind'
 }
 
 { #category : #accessing }

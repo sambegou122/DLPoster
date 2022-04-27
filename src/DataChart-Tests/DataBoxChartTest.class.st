@@ -4,7 +4,7 @@ A DataBoxChartTest is a test class for testing the behavior of DataBoxChart
 Class {
 	#name : #DataBoxChartTest,
 	#superclass : #TestCase,
-	#category : #'Data-Layout-Tests-Data-Layout'
+	#category : #'DataChart-Tests-Kind'
 }
 
 { #category : #tests }

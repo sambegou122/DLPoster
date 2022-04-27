@@ -4,7 +4,7 @@ A DataHistogramChartTest is a test class for testing the behavior of DataHistogr
 Class {
 	#name : #DataHistogramChartTest,
 	#superclass : #TestCase,
-	#category : #'Data-Layout-Tests-Data-Layout'
+	#category : #'DataChart-Tests-Kind'
 }
 
 { #category : #tests }

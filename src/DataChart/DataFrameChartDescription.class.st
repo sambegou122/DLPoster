@@ -2,11 +2,9 @@ Class {
 	#name : #DataFrameChartDescription,
 	#superclass : #DataChartDescription,
 	#instVars : [
-		'dataFrame',
-		'x',
-		'y'
+		'dataFrame'
 	],
-	#category : #'Data-Chart-Description'
+	#category : #'DataChart-Description'
 }
 
 { #category : #accessing }
@@ -30,39 +28,16 @@ DataFrameChartDescription >> extratData: aString [
 	
 ]
 
-{ #category : #showing }
-DataFrameChartDescription >> show [
-	self dataChart addAll: { self x . self y }.
-	^ self dataChart show
-		setLabel: 'Data Chart'
-		yourself.
-	
-]
-
-{ #category : #accessing }
-DataFrameChartDescription >> x [
-	^x
-	
-	
-	
-]
-
 { #category : #accessing }
 DataFrameChartDescription >> x: aString [ 
-	x := self extratData:aString .
+	super x: (self extratData:aString).
 	
 	
-	
-]
-
-{ #category : #accessing }
-DataFrameChartDescription >> y [
-	^ y
 	
 ]
 
 { #category : #accessing }
 DataFrameChartDescription >> y: aString [ 
-	y := self extratData:aString.
+	super y: (self extratData:aString)
 	
 ]
