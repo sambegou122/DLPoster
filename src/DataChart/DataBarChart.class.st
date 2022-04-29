@@ -21,10 +21,6 @@ DataBarChart >> addData: aDictionnary [
 
 { #category : #showing }
 DataBarChart >> beforeShowing [
-	| deco |
-	self flag: 'TODO'.
-	deco := self decorations first.
-	deco fromNames: (self xlabel).
 ]
 
 { #category : #showing }
