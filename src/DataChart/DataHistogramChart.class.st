@@ -14,8 +14,21 @@ DataHistogramChart >> addData: aDictionnary [
 
 	|  myData |
 	self data: aDictionnary.
-	myData := aDictionnary asArray.
-	myData do: [ :each| self chart addPlot: (self yourPlot x: each)]
+	myData := aDictionnary at: 2.
+	self chart addPlot: (self yourPlot x:myData).
+]
+
+{ #category : #'adding-plots' }
+DataHistogramChart >> beforeShowing [
+
+]
+
+{ #category : #'adding-plots' }
+DataHistogramChart >> initialize [ 
+	| deco |
+	super initialize.
+	deco := self decorations at:1.
+	deco fromNames: self xlabel. 
 ]
 
 { #category : #showing }

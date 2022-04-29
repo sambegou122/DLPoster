@@ -10,6 +10,11 @@ DataLineChart class >> kind [
 ]
 
 { #category : #adding }
+DataLineChart >> beforeShowing [
+ 
+]
+
+{ #category : #adding }
 DataLineChart >> yourPlot [
 	^ RSLinePlot new. 
 ]

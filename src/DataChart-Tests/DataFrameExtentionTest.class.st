@@ -29,6 +29,27 @@ DataFrameExtentionTest >> tearDown [
 ]
 
 { #category : #tests }
+DataFrameExtentionTest >> testBasicBar [
+	| chart shapes shapes2 |
+	chart :=  df chart
+		kind: #bar;
+		x: 'num_pets';
+		y: 'num_children';
+		color: 'red';
+		yourself.
+	self assert: chart dataChart notNil.
+	window := chart show.
+	self assert: chart kind equals: #bar.
+	self assert: window isDisplayed.
+	self assert: window label equals: 'Data Chart'.
+	shapes := chart canvas shapes select: [:shape | shape class = RSBox ].
+	shapes2 := shapes select: [ :sh| sh model value isInteger].
+	self assert: shapes2 size equals: (df column: 'num_children') size.
+	
+	
+]
+
+{ #category : #tests }
 DataFrameExtentionTest >> testBasicDefault [
 	| chart labels |
 	chart :=  df chart

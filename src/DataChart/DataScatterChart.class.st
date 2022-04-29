@@ -10,6 +10,11 @@ DataScatterChart class >> kind [
 ]
 
 { #category : #adding }
+DataScatterChart >> beforeShowing [
+
+]
+
+{ #category : #adding }
 DataScatterChart >> yourPlot [
 
 	^ RSScatterPlot new.

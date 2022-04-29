@@ -19,6 +19,11 @@ DataBoxChart >> addData: aDictionnary [
 	self chart addPlot: (self yourPlot y: sortedData)
 ]
 
+{ #category : #'adding-plots' }
+DataBoxChart >> beforeShowing [
+
+]
+
 { #category : #showing }
 DataBoxChart >> yourPlot [
 	^ RSBoxPlot new.

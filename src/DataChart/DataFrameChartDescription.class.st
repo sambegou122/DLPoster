@@ -22,7 +22,7 @@ DataFrameChartDescription >> extratData: aString [
 	| symbol index data|	
 	symbol := aString asSymbol.
 	index := self dataFrame columnNames indexOf: symbol.
-	data := self dataFrame columnAt: index.
+	data := (self dataFrame columnAt: index) values .
 	^ data.
 	
 	

@@ -10,6 +10,24 @@ DataBarChart class >> kind [
 ]
 
 { #category : #showing }
+DataBarChart >> addData: aDictionnary [
+
+	
+	| y |
+	self data: aDictionnary.
+	y := self data at:2.
+	 self chart addPlot: (self yourPlot y: y).
+]
+
+{ #category : #showing }
+DataBarChart >> beforeShowing [
+	| deco |
+	self flag: 'TODO'.
+	deco := self decorations first.
+	deco fromNames: (self xlabel).
+]
+
+{ #category : #showing }
 DataBarChart >> yourPlot [
 	^ RSBarPlot new.
 ]

@@ -53,7 +53,10 @@ DataChartDescription >> defaultPadding [
 DataChartDescription >> defaultTitle [
 	| vs dfTitte |
 	vs := ' vs '.
-	dfTitte := self xtitle, vs , self ytitle.
+	self xtitle 
+		ifNil: [dfTitte := self ytitle] 
+		ifNotNil: [ dfTitte := self xtitle, vs , self ytitle ].
+	
 	^ dfTitte.
 	
 	

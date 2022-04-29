@@ -44,6 +44,8 @@ DataChart >> addData: aDictionnary [
 	self data: aDictionnary.
 	y := self data at: 2 ifAbsent: [ self data at: 1 ].
 	x := self data at: 1.
+
+	x ifNil: [ x := 1 to: y size ].
 	x = y
 		ifTrue: [ self chart addPlot: (self yourPlot y: x) ]
 		ifFalse: [ self chart addPlot: (self yourPlot x: x y: y) ].
@@ -57,6 +59,11 @@ DataChart >> addInDataSet: aCollection [
 							self cutTwoByTwo: aCollection with:(size -1). 
 								self dataSet add: ({ 1->last} asDictionary)] 
 				ifFalse: [ self cutTwoByTwo: aCollection ]
+]
+
+{ #category : #showing }
+DataChart >> beforeShowing [
+ self subclassResponsibility.
 ]
 
 { #category : #accessing }
@@ -176,6 +183,7 @@ DataChart >> show [
 	self labels do: [ :label | 
 		self chart addDecoration: label].
 	self chart addDecoration: title.
+	self beforeShowing.
 	
 	^ self chart open.
 ]
