@@ -171,7 +171,7 @@ DataChart >> padding [
 
 { #category : #accessing }
 DataChart >> padding: anObject [
-	 padding := anObject.
+	padding := anObject.
 	self chart padding: self padding
 ]
 

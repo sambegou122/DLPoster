@@ -29,16 +29,13 @@ DataFrameChartDescription >> extratData: aString [
 ]
 
 { #category : #accessing }
-DataFrameChartDescription >> x: aString [ 
-	super x: (self extratData:aString).
+DataFrameChartDescription >> xColumnName: aString [ 
+	self x: (self extratData:aString).
 	self xtitle: aString.
-	
-	
-	
 ]
 
 { #category : #accessing }
-DataFrameChartDescription >> y: aString [ 
-	super y: (self extratData:aString).
+DataFrameChartDescription >> yColumnName: aString [ 
+	self y: (self extratData:aString).
 	self ytitle: aString.
 ]

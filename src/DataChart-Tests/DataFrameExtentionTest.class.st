@@ -33,8 +33,8 @@ DataFrameExtentionTest >> testBasicBar [
 	| chart shapes shapes2 |
 	chart :=  df chart
 		kind: #bar;
-		x: 'num_pets';
-		y: 'num_children';
+		xColumnName: 'num_pets';
+		yColumnName: 'num_children';
 		color: 'red';
 		yourself.
 	self assert: chart dataChart notNil.
@@ -53,8 +53,8 @@ DataFrameExtentionTest >> testBasicBar [
 DataFrameExtentionTest >> testBasicDefault [
 	| chart labels |
 	chart :=  df chart
-		x: 'num_children';
-		y: 'num_pets';
+		xColumnName: 'num_children';
+		yColumnName: 'num_pets';
 		yourself.
 	window := chart show.
 	self assert: chart kind equals: #line.
@@ -78,8 +78,8 @@ DataFrameExtentionTest >> testBasicLine [
 	| chart shapes |
 	chart :=  df chart
 		kind: #line;
-		x: 'num_pets';
-		y: 'num_children';
+		xColumnName: 'num_pets';
+		yColumnName: 'num_children';
 		color: 'red';
 		yourself.
 	self assert: chart dataChart notNil.
@@ -99,8 +99,8 @@ DataFrameExtentionTest >> testBasicScatter [
 	| chart shapes |
 	chart :=  df chart
 		kind: #scatter;
-		x: 'num_children';
-		y: 'num_pets';
+		xColumnName: 'num_children';
+		yColumnName: 'num_pets';
 		color: 'red';
 		yourself.
 	self assert: chart dataChart notNil.
@@ -121,8 +121,9 @@ DataFrameExtentionTest >> testBasicScatter [
 DataFrameExtentionTest >> testTitle [
 	| chart title labels |
 	chart :=  df chart
-		x: 'num_children';
-		y: 'num_pets';
+		kind: #line;
+		xColumnName: 'num_children';
+		yColumnName: 'num_pets';
 		yourself.
 	self assert: chart xtitle equals: 'num_children'.
 	self assert: chart ytitle equals: 'num_pets'.
