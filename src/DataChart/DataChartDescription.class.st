@@ -20,6 +20,11 @@ DataChartDescription >> canvas [
 ]
 
 { #category : #accessing }
+DataChartDescription >> chart: aRSChart [ 
+	dataChart chart: aRSChart.
+]
+
+{ #category : #accessing }
 DataChartDescription >> color [
 	^ color
 ]
@@ -102,6 +107,12 @@ DataChartDescription >> padding [
 { #category : #accessing }
 DataChartDescription >> padding: aPoint [
 	padding := aPoint
+]
+
+{ #category : #showing }
+DataChartDescription >> plot [
+	^ self dataChart plots
+	
 ]
 
 { #category : #showing }

@@ -175,6 +175,11 @@ DataChart >> padding: anObject [
 	self chart padding: self padding
 ]
 
+{ #category : #accessing }
+DataChart >> plots [
+	^ self chart plots.
+]
+
 { #category : #showing }
 DataChart >> show [
 	self chart plots last color: color.
