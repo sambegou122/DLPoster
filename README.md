@@ -1,26 +1,26 @@
 # DLPoster
 
-DLPoster est un visualisateur de données sur pharo encours de codage 
-On est pour le moment q'au debut. Donc il se pourais que la structure change dans les prochains jours 
+DLPoster is a data viewer on pharo in progress coding
+We are for the moment only at the beginning. So it could be that the structure will change in the next few days
 
-### Utilisation:
-Pour une visualisation de données nous aurons besoin d'une bonne structure de données sur laquelle on pourais se baser.
-Pour cela on utulise la base DataFrame que vous pouvez trouver (SRC : https://github.com/PolyMathOrg/DataFrame#readme).
+### Use:
+For a data visualization we will need a good data structure to build on.
+For this we use the DataFrame database that you can find (SRC : https://github.com/PolyMathOrg/DataFrame#readme).
 	
-### Exemple:
-voici quelques exemples 
+### Example:
+here are some examples
 
 ![alt text](image/exemple.png)
 
-df est notre structure de données, à cette structure nous envoyons un message chart et ces argument
-on obtient:
+df is our data structure, to this structure we send a message chart and these arguments
+we obtain:
 
 
 ![alt text](image/exemple1.png)
 
-Pour l'instant nous avons que deux types d'affichage possible pour nos données: Barchart et Line
+For now we only have two possible display types for our data: Barchart and Line
 
-Autre exemple avec line:
+Another example with line:
 
 ![alt text](image/exemple3.png)
 
