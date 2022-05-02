@@ -22,6 +22,6 @@ Pour l'instant nous avons que deux types d'affichage possible pour nos données:
 
 Autre exemple avec line:
 
-![alt text](image/exemple2.png)
+![alt text](image/exemple3.png)
 
 ![alt text](image/exemple4.png)
