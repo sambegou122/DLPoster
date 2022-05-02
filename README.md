@@ -11,4 +11,7 @@ Pour cela on utulise la base DataFrame que vous pouvez trouver (SRC : https://gi
 voici quelques exemples 
 
 ![alt text](image/exemple.png)
-	
+
+df est notre structure de données, à cette structure nous envoyons un message chart et ces argument
+on obtient:
+![alt text](image/exemple1.png)
