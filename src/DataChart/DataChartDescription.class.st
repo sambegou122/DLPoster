@@ -14,6 +14,19 @@ Class {
 	#category : #'DataChart-Description'
 }
 
+{ #category : #building }
+DataChartDescription >> build [
+	self dataChart
+		addAll: { self x . self y };
+		color: self color;
+		extent: self extent;
+		padding: self padding;
+		xlabel: self xtitle;
+		ylabel: self ytitle;
+		title: self title.
+	self dataChart build.
+]
+
 { #category : #accessing }
 DataChartDescription >> canvas [
 	^ dataChart canvas
@@ -109,7 +122,7 @@ DataChartDescription >> padding: aPoint [
 	padding := aPoint
 ]
 
-{ #category : #showing }
+{ #category : #accessing }
 DataChartDescription >> plot [
 	^ self dataChart plots
 	
@@ -117,14 +130,7 @@ DataChartDescription >> plot [
 
 { #category : #showing }
 DataChartDescription >> show [
-	self dataChart
-		addAll: { self x . self y };
-		color: self color;
-		extent: self extent;
-		padding: self padding;
-		xlabel: self xtitle;
-		ylabel: self ytitle;
-		title: self title.
+	self build.
 	^ self dataChart show
 		setLabel: 'Data Chart'
 		yourself.
