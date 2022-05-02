@@ -10,5 +10,5 @@ Pour cela on utulise la base DataFrame que vous pouvez trouver (SRC : https://gi
 ### Exemple:
 voici quelques exemples 
 
-![alt text](image/example.png)
+![alt text](image/exemple.png)
 	
