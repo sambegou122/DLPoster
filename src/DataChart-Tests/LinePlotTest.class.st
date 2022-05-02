@@ -7,6 +7,12 @@ Class {
 	#category : #'DataChart-Tests-Plots'
 }
 
+{ #category : #running }
+LinePlotTest >> tearDown [
+	window ifNotNil: #delete.
+	super tearDown
+]
+
 { #category : #tests }
 LinePlotTest >> testAccessingShapes [
 	| x line1 shape |
