@@ -1,7 +1,7 @@
 # DLPoster
 
 DLPoster est un visualisateur de données sur pharo encours de codage 
-On est pour le moment q'au debut. Donc il se pourais que la structurer change dans les prochains jours 
+On est pour le moment q'au debut. Donc il se pourais que la structure change dans les prochains jours 
 
 ### Utilisation:
 Pour une visualisation de données nous aurons besoin d'une bonne structure de données sur laquelle on pourais se baser.
