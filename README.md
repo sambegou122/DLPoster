@@ -14,4 +14,14 @@ voici quelques exemples
 
 df est notre structure de données, à cette structure nous envoyons un message chart et ces argument
 on obtient:
+
+
 ![alt text](image/exemple1.png)
+
+Pour l'instant nous avons que deux types d'affichage possible pour nos données: Barchart et Line
+
+Autre exemple avec line:
+
+![alt text](image/exemple2.png)
+
+![alt text](image/exemple4.png)
