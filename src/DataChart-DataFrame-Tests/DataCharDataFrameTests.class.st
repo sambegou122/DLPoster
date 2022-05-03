@@ -27,10 +27,10 @@ DataCharDataFrameTests >> setUp [
 DataCharDataFrameTests >> testAddData [
 	| plot yIndex xIndex|
 	plot := DCLinePlot new
-	dataFrame: df;
-	xColumnName: 'num_pets';
-	yColumnName: 'num_children';
-	yourself.
+		dataFrame: df;
+		xColumnName: 'num_pets';
+		yColumnName: 'num_children';
+		yourself.
 	plot build. 
 	xIndex := df columnNames indexOf: #num_pets.
 	yIndex := df columnNames indexOf: #num_children.
