@@ -2,7 +2,8 @@ Class {
 	#name : #DCPlotSettings,
 	#superclass : #Object,
 	#instVars : [
-		'properties'
+		'properties',
+		'decorations'
 	],
 	#category : #'DataChart-Core'
 }
@@ -15,6 +16,22 @@ DCPlotSettings >> color [
 { #category : #accessing }
 DCPlotSettings >> color: aColor [
 	self propertyAt: #color put: aColor
+]
+
+{ #category : #accessing }
+DCPlotSettings >> dataFrame [
+	^ self propertyAt: #dataFrame ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+DCPlotSettings >> dataFrame: aDataFrame [
+	self propertyAt: #dataFrame put: aDataFrame
+	
+]
+
+{ #category : #accessing }
+DCPlotSettings >> decorations [
+	^ decorations ifNil: [ #() ]
 ]
 
 { #category : #defaults }

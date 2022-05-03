@@ -39,3 +39,11 @@ DCPlotSettingsTest >> testBasicSetter [
 	self assert: settings xlabel equals: 'X axis'.
 	self assert: settings ylabel equals: 'Y axis'.
 ]
+
+{ #category : #tests }
+DCPlotSettingsTest >> testDecorations [
+	| settings |
+	settings := DCPlotSettings new.
+	self assert: settings decorations isEmpty.
+
+]
