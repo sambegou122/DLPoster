@@ -53,6 +53,11 @@ DCPlot >> settings [
 	^ settings
 ]
 
+{ #category : #building }
+DCPlot >> show [
+	^ self chart canvas open.
+]
+
 { #category : #accessing }
 DCPlot >> x [
 	^ x

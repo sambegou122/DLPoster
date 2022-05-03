@@ -21,6 +21,20 @@ DCPlotSettingsTest >> testBasic [
 ]
 
 { #category : #tests }
+DCPlotSettingsTest >> testBasicDecorations [
+	| settings |
+	settings := DCPlotSettings new.
+	self assert: settings decorations class equals: Dictionary.
+	self assert: settings decorations isEmpty.
+	self assert: settings background equals: nil.
+	self assert: settings xtick isNil.
+	self assert: settings ytick isNil.
+	
+	
+
+]
+
+{ #category : #tests }
 DCPlotSettingsTest >> testBasicSetter [
 	| settings |
 	settings := DCPlotSettings new.
@@ -41,9 +55,18 @@ DCPlotSettingsTest >> testBasicSetter [
 ]
 
 { #category : #tests }
-DCPlotSettingsTest >> testDecorations [
+DCPlotSettingsTest >> testDecorationsSetter [
 	| settings |
 	settings := DCPlotSettings new.
-	self assert: settings decorations isEmpty.
+	settings
+		backgroud: RSChartSpineDecoration new;
+		xtick: RSVerticalTick new;
+		ytick:  RSHorizontalTick new.
+	
+	self assert: settings background class equals: RSChartSpineDecoration.
+	self assert: settings xtick class equals: RSVerticalTick.
+	self assert: settings ytick class equals: RSHorizontalTick.
+		
+		
 
 ]

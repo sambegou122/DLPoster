@@ -9,6 +9,16 @@ Class {
 }
 
 { #category : #accessing }
+DCPlotSettings >> backgroud: aRSChartDecoration [ 
+	self decorationsAt: #background put: aRSChartDecoration.
+]
+
+{ #category : #accessing }
+DCPlotSettings >> background [
+	^ self decorationsAt: #background
+]
+
+{ #category : #accessing }
 DCPlotSettings >> color [
 	^ self propertyAt: #color
 ]
@@ -31,7 +41,22 @@ DCPlotSettings >> dataFrame: aDataFrame [
 
 { #category : #accessing }
 DCPlotSettings >> decorations [
-	^ decorations ifNil: [ #() ]
+	^ decorations ifNil: [ decorations := Dictionary new ]
+]
+
+{ #category : #assecing }
+DCPlotSettings >> decorationsAt: aString [ 
+	^ self decorationsAt: aString ifAbsent: [ nil  ]
+]
+
+{ #category : #accessing }
+DCPlotSettings >> decorationsAt: aString ifAbsent: aFullBlockClosure [ 
+	^ self decorations at: aString ifAbsent: aFullBlockClosure
+]
+
+{ #category : #properties }
+DCPlotSettings >> decorationsAt: aString put: aPoint [ 
+	self decorations at: aString put: aPoint
 ]
 
 { #category : #defaults }
@@ -105,6 +130,16 @@ DCPlotSettings >> xlabel: aString [
 ]
 
 { #category : #accessing }
+DCPlotSettings >> xtick [
+	^ self decorationsAt: #xtick.
+]
+
+{ #category : #accessing }
+DCPlotSettings >> xtick: aRSVerticalTick [ 
+	self decorationsAt: #xtick put: aRSVerticalTick.
+]
+
+{ #category : #accessing }
 DCPlotSettings >> ylabel [
 	^ self propertyAt: #ylabel
 ]
@@ -112,4 +147,14 @@ DCPlotSettings >> ylabel [
 { #category : #accessing }
 DCPlotSettings >> ylabel: aString [
 	self propertyAt: #ylabel put: aString
+]
+
+{ #category : #accessing }
+DCPlotSettings >> ytick [
+	^ self decorationsAt: #ytick.
+]
+
+{ #category : #accessing }
+DCPlotSettings >> ytick: aRSHorizontalTick [ 
+	self decorationsAt: #ytick put: aRSHorizontalTick.
 ]

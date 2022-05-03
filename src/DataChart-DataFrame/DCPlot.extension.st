@@ -1,17 +1,17 @@
-Extension { #name : #DCLinePlot }
+Extension { #name : #DCPlot }
 
 { #category : #'*DataChart-DataFrame' }
-DCLinePlot >> dataFrame [
+DCPlot >> dataFrame [
 	^ self settings dataFrame
 ]
 
 { #category : #'*DataChart-DataFrame' }
-DCLinePlot >> dataFrame: aDataFrame [ 
+DCPlot >> dataFrame: aDataFrame [ 
 	self settings dataFrame: aDataFrame
 ]
 
 { #category : #'*DataChart-DataFrame' }
-DCLinePlot >> extratData: aString [ 
+DCPlot >> extratData: aString [ 
 	| symbol index dataFrame|	
 	symbol := aString asSymbol.
 	index := self dataFrame columnNames indexOf: symbol.
@@ -20,11 +20,11 @@ DCLinePlot >> extratData: aString [
 ]
 
 { #category : #'*DataChart-DataFrame' }
-DCLinePlot >> xColumnName: aString [ 
+DCPlot >> xColumnName: aString [ 
 	self x: (self extratData: aString).
 ]
 
 { #category : #'*DataChart-DataFrame' }
-DCLinePlot >> yColumnName: aString [ 
+DCPlot >> yColumnName: aString [ 
 	self y: (self extratData:aString).
 ]

@@ -19,3 +19,10 @@ DataFrame >> linePlot [
 		dataFrame: self;
 		yourself
 ]
+
+{ #category : #'*DataChart-DataFrame' }
+DataFrame >> scatterPlot [
+	^ DCScatterPlot new
+		dataFrame: self;
+		yourself
+]

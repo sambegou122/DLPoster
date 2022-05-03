@@ -57,3 +57,20 @@ DataCharDataFrameTests >> testLinePlot [
 	
 	
 ]
+
+{ #category : #tests }
+DataCharDataFrameTests >> testScatterPlot [
+	| plot yIndex xIndex|
+	plot := df scatterPlot
+		xColumnName: 'num_pets';
+		yColumnName: 'num_children';
+		yourself.
+	plot build. 
+	xIndex := df columnNames indexOf: #num_pets.
+	yIndex := df columnNames indexOf: #num_children.
+	self assert: plot x equals: (df columnAt: xIndex) values.
+	self assert: plot y equals: (df columnAt: yIndex) values.
+	
+	
+	
+]
