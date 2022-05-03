@@ -15,6 +15,7 @@ DataFrame >> chart [
 
 { #category : #'*DataChart' }
 DataFrame >> linePlot [
-	^ self chart 
-		kind:#line
+	^ DCLinePlot new
+		dataFrame: self;
+		yourself
 ]
