@@ -16,22 +16,22 @@ CombinedPlotTest >> testBasicCombinedPlot [
 
 	x := 0.0 to: 2 count: 100.
 
-	line1 := LinePlot new
+	line1 := DCLinePlot new
 		x: x;
 		y: (x raisedTo: 2);
 		yourself.
 
-	line2 := LinePlot new
+	line2 := DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
 		yourself.
 		
-	line3 := LinePlot new
+	line3 := DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
 		yourself.
 	self skip.
-	combined := CombinedPlot new withAll: { line1. line2. line3 }.
+	combined := DCCombinedPlot new withAll: { line1. line2. line3 }.
 	combined 
 		title: 'Hello world';
 		xtitle: 'X Axis';
