@@ -1,49 +1,46 @@
 Class {
-	#name : #CombinedPlot,
-	#superclass : #Object,
-	#instVars : [
-		'chart'
-	],
+	#name : #DCCombinedPlot,
+	#superclass : #DCPlot,
 	#classInstVars : [
 		'chart'
 	],
-	#category : #'DataChart-Plots'
+	#category : #'DataChart-Core'
 }
 
 { #category : #initialization }
-CombinedPlot >> chart [
+DCCombinedPlot >> chart [
 	^ chart.
 ]
 
 { #category : #initialization }
-CombinedPlot >> initialize [ 
+DCCombinedPlot >> initialize [ 
 	super initialize.
 	chart := RSChart new.
 ]
 
 { #category : #accessing }
-CombinedPlot >> show [
+DCCombinedPlot >> show [
 	
 	^ self chart open
 ]
 
 { #category : #accessing }
-CombinedPlot >> title: aString [ 
+DCCombinedPlot >> title: aString [ 
 	self chart title: aString.
 ]
 
 { #category : #accessing }
-CombinedPlot >> withAll: aCollectionOfPlots [
+DCCombinedPlot >> withAll: aCollectionOfPlots [
 
 	aCollectionOfPlots do:[ : each | self chart addPlot: each plot].
 ]
 
 { #category : #accessing }
-CombinedPlot >> xtitle: aString [ 
+DCCombinedPlot >> xtitle: aString [ 
 	self chart xlabel: aString.
 ]
 
 { #category : #accessing }
-CombinedPlot >> ytitle: aString [ 
+DCCombinedPlot >> ytitle: aString [ 
 	self chart ylabel: aString.
 ]
