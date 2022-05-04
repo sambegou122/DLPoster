@@ -11,6 +11,12 @@ Class {
 	#category : #'DataChart-Core'
 }
 
+{ #category : #accessing }
+DCPlot >> addPropreties: aDictionnaryOfPropreties [.
+	settings := 	DCPlotSettings new.
+	aDictionnaryOfPropreties keysAndValuesDo: [ :k :v | self settings propertyAt: k put:v ]
+]
+
 { #category : #building }
 DCPlot >> build [
 	self kind

@@ -110,6 +110,11 @@ DCPlotSettings >> propertyAt: aString put: aPoint [
 ]
 
 { #category : #accessing }
+DCPlotSettings >> propreties [
+	^ properties.
+]
+
+{ #category : #accessing }
 DCPlotSettings >> title [
 	^ self propertyAt: #title
 ]
