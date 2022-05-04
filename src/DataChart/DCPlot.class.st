@@ -19,12 +19,12 @@ DCPlot >> addPropreties: aDictionnaryOfPropreties [
 
 { #category : #building }
 DCPlot >> applyPropreties [
-	self chart xlabel: (self settings propertyAt: #xlabel);
-				ylabel: (self settings propertyAt: #ylabel);
-				title: (self settings propertyAt: #title);
-				padding: (self settings propertyAt: #padding);
-				extent:  (self settings propertyAt: #extent)
-				yourself.
+	self chart
+		xlabel: self settings xlabel;
+		ylabel: self settings ylabel;
+		title: self settings title;
+		padding: self settings padding;
+		extent: self settings extent.
 ]
 
 { #category : #building }
