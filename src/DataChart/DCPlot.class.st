@@ -12,9 +12,19 @@ Class {
 }
 
 { #category : #accessing }
-DCPlot >> addPropreties: aDictionnaryOfPropreties [.
+DCPlot >> addPropreties: aDictionnaryOfPropreties [
 	settings := 	DCPlotSettings new.
-	aDictionnaryOfPropreties keysAndValuesDo: [ :k :v | self settings propertyAt: k put:v ]
+	aDictionnaryOfPropreties keysAndValuesDo: [ :k :v | self settings propertyAt: k put:v ].
+]
+
+{ #category : #building }
+DCPlot >> applyPropreties [
+	self chart xlabel: (self settings propertyAt: #xlabel);
+				ylabel: (self settings propertyAt: #ylabel);
+				title: (self settings propertyAt: #title);
+				padding: (self settings propertyAt: #padding);
+				extent:  (self settings propertyAt: #extent)
+				yourself.
 ]
 
 { #category : #building }
@@ -22,8 +32,9 @@ DCPlot >> build [
 	self kind
 		x: self x y: self y.
 	self chart
-		addPlot: self kind;
-		build.
+		addPlot: self kind.
+	self applyPropreties.
+	self chart build.
 ]
 
 { #category : #accessing }

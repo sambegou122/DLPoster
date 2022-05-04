@@ -9,7 +9,7 @@ Class {
 
 { #category : #tests }
 DCLinePlotTest >> testAddPropreties [
-	| plot x y settings chart se |
+	| plot x y settings se |
 	x := 1 to: 100.
 	y := x raisedTo: 2.
 	plot := DCLinePlot new.
