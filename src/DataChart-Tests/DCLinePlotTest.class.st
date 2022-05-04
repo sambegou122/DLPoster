@@ -25,8 +25,9 @@ DCLinePlotTest >> testAddPropreties [
 		title: 'Hello World';
 		xlabel: 'X axis';
 		ylabel: 'Y axis'.
+	
+	plot addPropreties: settings properties.
 	plot build.
-	plot addPropreties: settings propreties.
 	se := plot settings .
 	self assert: se xlabel equals: settings xlabel.
 	self assert: se ylabel equals: settings ylabel.
@@ -61,6 +62,30 @@ DCLinePlotTest >> testBuild [
 		build.
 	self assert: plot mainShapes size equals: 1.
 	self assert: plot mainShapes first class equals: RSPolyline.
+	
+	
+]
+
+{ #category : #tests }
+DCLinePlotTest >> testSetter [
+	| plot x y title  ylabel xlabel settings |
+	title := 'DCLinePlot'.
+	xlabel := 'line x'.
+	ylabel := 'line y'.
+	x := 1 to: 100.
+	y := x raisedTo: 2.
+	plot := DCLinePlot new.
+	plot 
+		x: x;
+		y: y;
+		title: title;
+		xlabel: xlabel;
+		ylabel: ylabel;
+		build.
+	settings := plot settings.
+	self assert: settings xlabel equals: xlabel.
+	self assert: settings ylabel equals: ylabel.
+	self assert: settings title equals: title.
 	
 	
 ]

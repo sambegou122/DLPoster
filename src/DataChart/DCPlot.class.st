@@ -11,14 +11,20 @@ Class {
 	#category : #'DataChart-Core'
 }
 
-{ #category : #accessing }
+{ #category : #building }
+DCPlot >> addDecorations [
+	self chart 
+			addDecoration: self settings xtick;
+			addDecoration:	self settings ytick.
+]
+
+{ #category : #building }
 DCPlot >> addPropreties: aDictionnaryOfPropreties [
-	settings := 	DCPlotSettings new.
 	aDictionnaryOfPropreties keysAndValuesDo: [ :k :v | self settings propertyAt: k put:v ].
 ]
 
 { #category : #building }
-DCPlot >> applyPropreties [
+DCPlot >> applyProperties [
 	self chart
 		xlabel: self settings xlabel;
 		ylabel: self settings ylabel;
@@ -33,7 +39,11 @@ DCPlot >> build [
 		x: self x y: self y.
 	self chart
 		addPlot: self kind.
-	self applyPropreties.
+	self addDecorations.
+	self applyProperties.
+	
+	"self chart addDecoration: self settings xtick."
+	"self chart addDecoration: self settings ytick."
 	self chart build.
 ]
 
@@ -76,6 +86,11 @@ DCPlot >> show [
 ]
 
 { #category : #accessing }
+DCPlot >> title: aString [
+	self settings title: aString.
+]
+
+{ #category : #accessing }
 DCPlot >> x [
 	^ x
 ]
@@ -86,6 +101,11 @@ DCPlot >> x: aCollection [
 ]
 
 { #category : #accessing }
+DCPlot >> xlabel: aString [
+	self settings xlabel: aString.
+]
+
+{ #category : #accessing }
 DCPlot >> y [
 	^ y
 ]
@@ -93,4 +113,9 @@ DCPlot >> y [
 { #category : #accessing }
 DCPlot >> y: aCollection [ 
 	y := aCollection
+]
+
+{ #category : #accessing }
+DCPlot >> ylabel: aString [
+	self settings ylabel: aString.
 ]

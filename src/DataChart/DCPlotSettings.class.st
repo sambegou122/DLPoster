@@ -9,13 +9,13 @@ Class {
 }
 
 { #category : #accessing }
-DCPlotSettings >> backgroud: aRSChartDecoration [ 
-	self decorationsAt: #background put: aRSChartDecoration.
+DCPlotSettings >> background [
+	^ self decorationsAt: #background ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-DCPlotSettings >> background [
-	^ self decorationsAt: #background
+DCPlotSettings >> background: aRSChartDecoration [ 
+	self decorationsAt: #background put: aRSChartDecoration.
 ]
 
 { #category : #accessing }
@@ -69,6 +69,21 @@ DCPlotSettings >> defaultPadding [
 	^ 10 @ 10
 ]
 
+{ #category : #default }
+DCPlotSettings >> defaultTitle [
+	^ ' Title '
+]
+
+{ #category : #default }
+DCPlotSettings >> defaultXlabel [
+	^ ' xAxis '
+]
+
+{ #category : #default }
+DCPlotSettings >> defaultYlabel [
+	^ ' yAxis '
+]
+
 { #category : #accessing }
 DCPlotSettings >> extent [
 	^ self propertyAt: #extent ifAbsent: [ self defaultExtent ]
@@ -110,13 +125,8 @@ DCPlotSettings >> propertyAt: aString put: aPoint [
 ]
 
 { #category : #accessing }
-DCPlotSettings >> propreties [
-	^ properties.
-]
-
-{ #category : #accessing }
 DCPlotSettings >> title [
-	^ self propertyAt: #title
+	^ self propertyAt: #title ifAbsent: [ self defaultTitle ]
 ]
 
 { #category : #accessing }
@@ -126,7 +136,7 @@ DCPlotSettings >> title: aString [
 
 { #category : #accessing }
 DCPlotSettings >> xlabel [
-	^ self propertyAt: #xlabel
+	^ self propertyAt: #xlabel ifAbsent: [ self defaultXlabel ]
 ]
 
 { #category : #accessing }
@@ -136,7 +146,7 @@ DCPlotSettings >> xlabel: aString [
 
 { #category : #accessing }
 DCPlotSettings >> xtick [
-	^ self decorationsAt: #xtick.
+	^ self decorationsAt: #xtick ifAbsent: [ RSHorizontalTick new ].
 ]
 
 { #category : #accessing }
@@ -146,7 +156,7 @@ DCPlotSettings >> xtick: aRSVerticalTick [
 
 { #category : #accessing }
 DCPlotSettings >> ylabel [
-	^ self propertyAt: #ylabel
+	^ self propertyAt: #ylabel ifAbsent: [ self defaultYlabel ]
 ]
 
 { #category : #accessing }
@@ -156,7 +166,7 @@ DCPlotSettings >> ylabel: aString [
 
 { #category : #accessing }
 DCPlotSettings >> ytick [
-	^ self decorationsAt: #ytick.
+	^ self decorationsAt: #ytick ifAbsent: [ RSVerticalTick new ].
 ]
 
 { #category : #accessing }

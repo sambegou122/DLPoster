@@ -14,9 +14,9 @@ DCPlotSettingsTest >> testBasic [
 	self assert: settings extent equals: settings defaultExtent.
 	self assert: settings padding equals: settings defaultPadding.
 	self assert: settings color isNil.
-	self assert: settings title isNil.
-	self assert: settings xlabel isNil.
-	self assert: settings ylabel isNil.
+	self assert: settings title equals: settings defaultTitle. 
+	self assert: settings xlabel equals: settings defaultXlabel.
+	self assert: settings ylabel equals: settings defaultYlabel.
 
 ]
 
@@ -27,8 +27,8 @@ DCPlotSettingsTest >> testBasicDecorations [
 	self assert: settings decorations class equals: Dictionary.
 	self assert: settings decorations isEmpty.
 	self assert: settings background equals: nil.
-	self assert: settings xtick isNil.
-	self assert: settings ytick isNil.
+	self assert: settings xtick class equals: RSHorizontalTick.
+	self assert: settings ytick class equals: RSVerticalTick.
 	
 	
 
@@ -59,7 +59,7 @@ DCPlotSettingsTest >> testDecorationsSetter [
 	| settings |
 	settings := DCPlotSettings new.
 	settings
-		backgroud: RSChartSpineDecoration new;
+		background: RSChartSpineDecoration new;
 		xtick: RSVerticalTick new;
 		ytick:  RSHorizontalTick new.
 	
