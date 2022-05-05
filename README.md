@@ -1,14 +1,27 @@
 # DLPoster
 
 DLPoster is a data viewer on pharo in progress coding
-We are for the moment only at the beginning. So it could be that the structure will change in the next few days
+We are for the moment only at the beginning. So it could be that the structure will change in the next few days. Available from pharo9 and more
+
+### Installation
+
+Run this script on your pharo9 playground
+
+```st
+Metacello new
+    baseline: 'DataChart';
+    repository: 'github://sambegou122/DLPoster:main';
+    load.
+```
 
 ### Use:
+
 For a data visualization we will need a good data structure to build on.
 For this we use the DataFrame database that you can find (SRC : https://github.com/PolyMathOrg/DataFrame#readme).
 	
 ### Example:
-here are some examples
+
+Here are some examples
 
 ``` st
 	<script: 'self new exampleDCLine'>

@@ -66,6 +66,18 @@ DataChart >> beforeShowing [
  self subclassResponsibility.
 ]
 
+{ #category : #building }
+DataChart >> build [
+	self chart plots last color: color.
+	self decorations do: [ :decoration | 
+		self chart addDecoration: decoration ].
+	self labels do: [ :label | 
+		self chart addDecoration: label].
+	self chart addDecoration: title.
+	self beforeShowing.
+	self chart build.
+]
+
 { #category : #accessing }
 DataChart >> canvas [
 	^ self chart canvas
@@ -158,7 +170,7 @@ DataChart >> initialize [
 	
 ]
 
-{ #category : #showing }
+{ #category : #accessing }
 DataChart >> labels [
 	
 	^ labels .
@@ -171,20 +183,17 @@ DataChart >> padding [
 
 { #category : #accessing }
 DataChart >> padding: anObject [
-	 padding := anObject.
+	padding := anObject.
 	self chart padding: self padding
+]
+
+{ #category : #accessing }
+DataChart >> plots [
+	^ self chart plots.
 ]
 
 { #category : #showing }
 DataChart >> show [
-	self chart plots last color: color.
-	self decorations do: [ :decoration | 
-		self chart addDecoration: decoration ].
-	self labels do: [ :label | 
-		self chart addDecoration: label].
-	self chart addDecoration: title.
-	self beforeShowing.
-	
 	^ self chart open.
 ]
 
@@ -221,7 +230,7 @@ DataChart >> ylabel: aString [
 	ylabel := aString. 
 ]
 
-{ #category : #showing }
+{ #category : #accessing }
 DataChart >> yourPlot [ 
 	self subclassResponsibility
 ]
