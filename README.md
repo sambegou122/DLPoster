@@ -10,7 +10,19 @@ For this we use the DataFrame database that you can find (SRC : https://github.c
 ### Example:
 here are some examples
 
-![alt text](image/exemple.png)
+``` st
+	<script: 'self new exampleDCLine'>
+	| x |
+	x := 1 to: 100.
+	^ DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		title: 'DCLinePlot';
+		xlabel: ' line x';
+		ylabel: 'line y';
+		build;
+		show
+```
 
 df is our data structure, to this structure we send a message chart and these arguments
 we obtain:
