@@ -24,18 +24,10 @@ For this we use the DataFrame database that you can find (SRC : https://github.c
 Here are some examples
 
 ``` st
-	<script: 'self new exampleDCLine'>
-	| x |
-	x := 1 to: 100.
-	^ DCLinePlot new
-		x: x;
-		y: (x raisedTo: 3);
-		title: 'DCLinePlot';
-		xlabel: ' line x';
-		ylabel: 'line y';
-		build;
-		show
+	DCExamples new exampleDCLine open
 ```
+You will see
+
 
 df is our data structure, to this structure we send a message chart and these arguments
 we obtain:
