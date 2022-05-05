@@ -12,6 +12,12 @@ Class {
 }
 
 { #category : #building }
+DCPlot >> addAxis [
+	self kind
+		x: self x y: self y.
+]
+
+{ #category : #building }
 DCPlot >> addDecorations [
 	self chart 
 			addDecoration: self settings xtick;
@@ -35,8 +41,7 @@ DCPlot >> applyProperties [
 
 { #category : #building }
 DCPlot >> build [
-	self kind
-		x: self x y: self y.
+	self addAxis.
 	self chart
 		addPlot: self kind.
 	self addDecorations.
