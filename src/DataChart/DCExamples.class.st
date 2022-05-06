@@ -105,17 +105,16 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 { #category : #examples }
 DCExamples >> exampleDCScatter [
 	<script: 'self new exampleDCScatter'>
-		| x line1 |
+		| x |
 
 	x := 0.0 to: 2 count: 100.
 
-	line1 := DCScatterPlot new
+	^ DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 2); 
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		build;
-	   show;
-		yourself.
+		show.
 ]

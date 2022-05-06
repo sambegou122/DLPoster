@@ -18,9 +18,13 @@ DCVerticalLineDecorationTest >> testBasic [
 
 { #category : #tests }
 DCVerticalLineDecorationTest >> testSetter [
-	| line |
+	| line point xPoint yPoint |
+
 	line := DCVerticalLineDecoration new.
 	line x:100.
-	self assert: line shape startPoint equals: 100@0.
-	self assert: line shape endPoint equals: 100@100.
+	point := 100 *3.
+	xPoint := point@0.
+	yPoint := point@(-200).
+	self assert: line shape startPoint equals: yPoint.
+	self assert: line shape endPoint equals: xPoint.
 ]
