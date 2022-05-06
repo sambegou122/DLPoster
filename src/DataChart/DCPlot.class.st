@@ -12,26 +12,31 @@ Class {
 }
 
 { #category : #adding }
-DCPlot >> add: aDCVerticalLineDecoration [ 
-	self chart canvas add: aDCVerticalLineDecoration shape.
+DCPlot >> add: aDCObject [
+	"can be a plot or decoration"
+	aDCObject addIn: self
 ]
 
 { #category : #building }
 DCPlot >> addAxis [
-	self kind
-		x: self x y: self y.
+	self kind x: self x y: self y
+]
+
+{ #category : #adding }
+DCPlot >> addDecoration: aDCDecoration [
+	self chart canvas ifNotNil: [:canvas | canvas add: aDCDecoration shape ]
 ]
 
 { #category : #building }
 DCPlot >> addDecorations [
 	self chart 
-			addDecoration: self settings xtick;
-			addDecoration:	self settings ytick.
+		addDecoration: self settings xtick;
+		addDecoration:	self settings ytick.
 ]
 
-{ #category : #building }
-DCPlot >> addPropreties: aDictionnaryOfPropreties [
-	aDictionnaryOfPropreties keysAndValuesDo: [ :k :v | self settings propertyAt: k put:v ].
+{ #category : #adding }
+DCPlot >> addIn: aDCCombinePlot [ 
+	aDCCombinePlot addPlot: self
 ]
 
 { #category : #building }
@@ -51,9 +56,6 @@ DCPlot >> build [
 		addPlot: self kind.
 	self addDecorations.
 	self applyProperties.
-	
-	"self chart addDecoration: self settings xtick."
-	"self chart addDecoration: self settings ytick."
 	self chart build.
 ]
 
@@ -88,6 +90,11 @@ DCPlot >> mainShapes [
 { #category : #accessing }
 DCPlot >> settings [
 	^ settings
+]
+
+{ #category : #accessing }
+DCPlot >> settings: aDCPlotSettings [ 
+	settings := aDCPlotSettings
 ]
 
 { #category : #building }

@@ -21,13 +21,14 @@ DCExamples >> exampleDCCombinePlot [
 		y: (x raisedTo: 3);
 		yourself.
 	
+	combined := DCCombinePlot new withAll: { line1. line2.}.
+	
 	line3 := DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 4);
 		yourself.
-	
-	combined := DCCombinePlot new withAll: { line1. line2. line3}.
-	combined 
+	combined add: line3.
+	^ combined 
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
@@ -60,7 +61,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 		yourself.
 	
 	combined := DCCombinePlot new withAll: { line1. line2. line3}.
-	combined 
+	^ combined 
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
@@ -77,9 +78,8 @@ DCExamples >> exampleDCLine [
 	^ DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
-		title: 'DCLinePlot';
-		xlabel: ' line x';
-		ylabel: 'line y';
+		xlabel: 'Axis X';
+		ylabel: 'Axis y';
 		build;
 		show
 ]

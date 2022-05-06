@@ -8,37 +8,6 @@ Class {
 }
 
 { #category : #tests }
-DCLinePlotTest >> testAddPropreties [
-	| plot x y settings se |
-	x := 1 to: 100.
-	y := x raisedTo: 2.
-	plot := DCLinePlot new.
-	self assert: plot kind class equals: RSLinePlot.
-	plot 
-		x: x;
-		y: y.
-	settings := DCPlotSettings new.
-	settings
-		extent: 500@ 400;
-		padding: 30@30;
-		color: Color purple;
-		title: 'Hello World';
-		xlabel: 'X axis';
-		ylabel: 'Y axis'.
-	
-	plot addPropreties: settings properties.
-	plot build.
-	se := plot settings .
-	self assert: se xlabel equals: settings xlabel.
-	self assert: se ylabel equals: settings ylabel.
-	self assert: se padding equals: settings padding.
-	self assert: se extent equals: settings extent.
-	self assert: se title equals: settings title.
-	
-	
-]
-
-{ #category : #tests }
 DCLinePlotTest >> testBasic [
 	| plot |
 	plot := DCLinePlot new.
@@ -82,6 +51,37 @@ DCLinePlotTest >> testDCLineWithVerticalLineDecoration [
 		build;
 		yourself.
 		
+	
+]
+
+{ #category : #tests }
+DCLinePlotTest >> testSetSetting [
+	| plot x y settings se |
+	x := 1 to: 100.
+	y := x raisedTo: 2.
+	plot := DCLinePlot new.
+	self assert: plot kind class equals: RSLinePlot.
+	plot 
+		x: x;
+		y: y.
+	settings := DCPlotSettings new.
+	settings
+		extent: 500@ 400;
+		padding: 30@30;
+		color: Color purple;
+		title: 'Hello World';
+		xlabel: 'X axis';
+		ylabel: 'Y axis'.
+
+	plot settings: settings.
+	plot build.
+	se := plot settings.
+	self assert: se xlabel equals: settings xlabel.
+	self assert: se ylabel equals: settings ylabel.
+	self assert: se padding equals: settings padding.
+	self assert: se extent equals: settings extent.
+	self assert: se title equals: settings title.
+	
 	
 ]
 

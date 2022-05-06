@@ -7,9 +7,16 @@ Class {
 	#category : #'DataChart-Core'
 }
 
+{ #category : #adding }
+DCCombinePlot >> addPlot: aDCPlot [ 
+	plots add: aDCPlot.
+	self chart addPlot: aDCPlot kind.
+	aDCPlot kind chart: self chart.
+]
+
 { #category : #building }
 DCCombinePlot >> build [
-	self plots do:[ :plot| plot addAxis].
+	self plots do:[ :plot| plot addAxis ].
 	self addDecorations.
 	self applyProperties.
 	self chart build.
@@ -19,13 +26,13 @@ DCCombinePlot >> build [
 
 { #category : #default }
 DCCombinePlot >> defaultKind [
-	^ {  }
+	^ nil
 ]
 
-{ #category : #default }
+{ #category : #initialization }
 DCCombinePlot >> initialize [ 
 	super initialize.
-	plots := self defaultKind
+	plots := OrderedCollection new.
 	
 ]
 
@@ -37,7 +44,10 @@ DCCombinePlot >> plots [
 
 { #category : #'adding-plots' }
 DCCombinePlot >> withAll: aCollectionOfPlots [
-	plots := aCollectionOfPlots.
+	"plots := aCollectionOfPlots.
+	
 	self plots do: [ :plot| self chart addPlot: plot kind ].
-	self plots do: [ :plot| plot kind chart: self chart ]
+	self plots do: [ :plot| plot kind chart: self chart ]:"
+	aCollectionOfPlots do: [ :each | self add: each ].
+	
 ]

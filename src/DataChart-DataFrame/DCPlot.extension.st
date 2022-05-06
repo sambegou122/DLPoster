@@ -15,8 +15,8 @@ DCPlot >> extratData: aString [
 	| symbol index dataFrame|	
 	symbol := aString asSymbol.
 	index := self dataFrame columnNames indexOf: symbol.
-	dataFrame := (self dataFrame columnAt: index) values .
-	^ dataFrame.
+	dataFrame := (self dataFrame columnAt: index) values.
+	^ dataFrame
 ]
 
 { #category : #'*DataChart-DataFrame' }
