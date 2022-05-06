@@ -20,6 +20,7 @@ For a data visualization we will need a good data structure to build on.
 For this we use the DataFrame database that you can find (SRC : https://github.com/PolyMathOrg/DataFrame#readme).
 	
 ### Example:
+For now we only have two possible display types for our data: Scatter and Line charts
 
 Here are some examples
 
@@ -28,17 +29,20 @@ Here are some examples
 ```
 You will see
 
+![cap2](https://user-images.githubusercontent.com/98162905/167152735-1690964c-8042-4531-9722-346740b81cb5.png)
 
-df is our data structure, to this structure we send a message chart and these arguments
-we obtain:
+we have allso the examples for scatterplot
+
+``` st
+	DCExamples new  exampleDCScatter open
+```
+Result:
+
+![cap3](https://user-images.githubusercontent.com/98162905/167153485-bb0b9cf5-c229-41d7-9c5c-edd0d90d5909.png)
 
 
-![alt text](image/exemple1.png)
+### Adding a Decoration
 
-For now we only have two possible display types for our data: Barchart and Line
+For decoration line 
 
-Another example with line:
 
-![alt text](image/exemple3.png)
-
-![alt text](image/exemple4.png)
