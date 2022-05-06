@@ -7,7 +7,7 @@ Class {
 { #category : #examples }
 DCExamples >> exampleDCCombinePlot [
 	<script: 'self new exampleDCCombinePlot'>
-	| x line1 line2 line3 combined |
+	| x line1 line2 line3 combined  |
 
 	x := 0.0 to: 2 count: 100.
 
@@ -31,8 +31,42 @@ DCExamples >> exampleDCCombinePlot [
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-	build;
-	show.
+		build; 
+		show.
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
+	<script: 'self new exampleDCCombinePlotWithVerticalLineDecoration'>
+	| x line1 line2 line3 combined decoration |
+
+	x := 0.0 to: 2 count: 100.
+	decoration := DCVerticalLineDecoration new.
+	decoration x: 70.
+
+	line1 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		yourself.
+
+	line2 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		yourself.
+	
+	line3 := DCScatterPlot new
+		x: x;
+		y: (x raisedTo: 4);
+		yourself.
+	
+	combined := DCCombinePlot new withAll: { line1. line2. line3}.
+	combined 
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		add: decoration;
+		build; 
+		show.
 ]
 
 { #category : #examples }
@@ -51,32 +85,37 @@ DCExamples >> exampleDCLine [
 ]
 
 { #category : #examples }
+DCExamples >> exampleDCLineWithVerticalLineDecoration [
+	<script: 'self new exampleDCLineWithVerticalLineDecoration'>
+	| x decoration |
+	decoration := DCVerticalLineDecoration new.
+	decoration x: 70.
+	x := 1 to: 100.
+	^ DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		title: 'DCLinePlot';
+		xlabel: ' line x';
+		ylabel: 'line y';
+		add: decoration;
+		build;
+		show
+]
+
+{ #category : #examples }
 DCExamples >> exampleDCScatter [
 	<script: 'self new exampleDCScatter'>
-		| x line1 line2 line3 combined |
+		| x line1 |
 
 	x := 0.0 to: 2 count: 100.
 
-	line1 := DCLinePlot new
+	line1 := DCScatterPlot new
 		x: x;
-		y: (x raisedTo: 2);
-		yourself.
-
-	line2 := DCLinePlot new
-		x: x;
-		y: (x raisedTo: 3);
-		yourself.
-	
-	line3 := DCLinePlot new
-		x: x;
-		y: (x raisedTo: 3);
-		yourself.
-	
-	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
-	combined 
+		y: (x raisedTo: 2); 
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-	build;
-	show.
+		build;
+	   show;
+		yourself.
 ]

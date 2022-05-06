@@ -10,6 +10,7 @@ Class {
 { #category : #building }
 DCCombinePlot >> build [
 	self plots do:[ :plot| plot addAxis].
+	self addDecorations.
 	self applyProperties.
 	self chart build.
 

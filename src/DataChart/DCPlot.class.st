@@ -11,6 +11,11 @@ Class {
 	#category : #'DataChart-Core'
 }
 
+{ #category : #adding }
+DCPlot >> add: aDCVerticalLineDecoration [ 
+	self chart canvas add: aDCVerticalLineDecoration shape.
+]
+
 { #category : #building }
 DCPlot >> addAxis [
 	self kind
