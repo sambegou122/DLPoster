@@ -9,6 +9,11 @@ Class {
 	#category : #'DataChart-Decoration'
 }
 
+{ #category : #adding }
+DCDecoration >> addIn: aDCCombinePlot [ 
+	aDCCombinePlot addDecoration: self
+]
+
 { #category : #initialization }
 DCDecoration >> defaulShape [
  self subclassResponsibility
