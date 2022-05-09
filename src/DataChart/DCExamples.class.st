@@ -85,6 +85,26 @@ DCExamples >> exampleDCLine [
 ]
 
 { #category : #examples }
+DCExamples >> exampleDCLineWithLabelDecoration [
+	<script: 'self new exampleDCLineWithLabelDecoration'>
+	| x y decoration |
+	x := 1 to: 100.
+	y := x raisedTo: 3.
+	decoration := (DCLabelDecoration new
+		text: 'Foo bar';
+		x: 55.5;
+		y: (100 raisedTo: 2);
+    yourself ).
+
+	^ DCLinePlot new
+		x: x;
+		y: y;
+		add: decoration;
+		build;
+		show.
+]
+
+{ #category : #examples }
 DCExamples >> exampleDCLineWithVerticalLineDecoration [
 	<script: 'self new exampleDCLineWithVerticalLineDecoration'>
 	| x decoration |

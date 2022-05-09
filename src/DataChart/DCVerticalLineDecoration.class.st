@@ -4,6 +4,11 @@ Class {
 	#category : #'DataChart-Decoration'
 }
 
+{ #category : #adding }
+DCVerticalLineDecoration >> addIn: aDCCombinePlot [ 
+	aDCCombinePlot addDecoration: self
+]
+
 { #category : #initialization }
 DCVerticalLineDecoration >> defaulShape [ 
 	^ RSLine new color: 'red'.

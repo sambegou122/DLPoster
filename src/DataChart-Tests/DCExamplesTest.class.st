@@ -20,7 +20,7 @@ DCExamplesTest >> setUp [
 	examplesToRun := class methods select: [ :met | met selector beginsWith: 'example' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'basic tests' }
 DCExamplesTest >> testsCheckPargmaExamples [
 	|  violating |
 	violating := examplesToRun reject: [ :met | met hasPragmaNamed: 'script:' ].
@@ -28,7 +28,7 @@ DCExamplesTest >> testsCheckPargmaExamples [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'basic tests' }
 DCExamplesTest >> testsRunAllExamples [
 	| violating |
 	violating := OrderedCollection new.

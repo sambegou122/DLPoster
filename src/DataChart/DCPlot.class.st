@@ -39,6 +39,16 @@ DCPlot >> addIn: aDCCombinePlot [
 	aDCCombinePlot addPlot: self
 ]
 
+{ #category : #adding }
+DCPlot >> addLabel: aDCLabelObject [
+	| xPoint yPoint |
+	xPoint := aDCLabelObject x.
+	yPoint := aDCLabelObject y.
+	self addDecoration: aDCLabelObject.
+	aDCLabelObject shape translateMiddleRightTo: xPoint @ yPoint.
+	
+]
+
 { #category : #building }
 DCPlot >> applyProperties [
 	self chart

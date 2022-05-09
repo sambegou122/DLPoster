@@ -36,6 +36,26 @@ DCLinePlotTest >> testBuild [
 ]
 
 { #category : #tests }
+DCLinePlotTest >> testDCLineWithLabelDecoration [
+	| x y plot |
+	x := 1 to: 100.
+	y := x raisedTo: 3.
+	plot := DCLinePlot new.
+	plot x: x; y: y.
+
+	plot add: (DCLabelDecoration new
+		text: 'Foo bar';
+		x: 55.5;
+		y: (100 raisedTo: 2);
+    yourself ).
+
+	plot build.
+
+		
+	
+]
+
+{ #category : #tests }
 DCLinePlotTest >> testDCLineWithVerticalLineDecoration [
 	| x decoration line |
 	decoration := DCVerticalLineDecoration new.
