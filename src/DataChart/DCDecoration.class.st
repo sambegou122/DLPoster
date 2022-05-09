@@ -19,6 +19,11 @@ DCDecoration >> x [
 ]
 
 { #category : #accessing }
+DCDecoration >> x: arg1 [ 
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
 DCDecoration >> y [
 	^ y
 ]

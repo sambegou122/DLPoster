@@ -31,15 +31,3 @@ DCVerticalLineDecoration >> renderIn: canvas [
 		endPoint: p2.
 	canvas add: line
 ]
-
-{ #category : #accessing }
-DCVerticalLineDecoration >> x: anInteger [ 
-	| xPoint yPoint point |
-	point := anInteger *3.
-	xPoint := point@0.
-	yPoint := point@(-200).
-	self shape 
-				startPoint: yPoint;
-				endPoint: xPoint .
-				
-]
