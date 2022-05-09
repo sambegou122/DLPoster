@@ -1,33 +1,26 @@
 Class {
 	#name : #DCDecoration,
-	#superclass : #Object,
+	#superclass : #RSAbstractChartDecoration,
 	#instVars : [
-		'shape',
 		'x',
 		'y'
 	],
 	#category : #'DataChart-Decoration'
 }
 
-{ #category : #initialization }
-DCDecoration >> defaulShape [
- self subclassResponsibility
-]
-
-{ #category : #initialization }
-DCDecoration >> initialize [ 
-	super initialize.
-	shape := self defaulShape
-]
-
-{ #category : #accessing }
-DCDecoration >> shape [
-	^ shape
+{ #category : #adding }
+DCDecoration >> addIn: aDCCombinePlot [ 
+	aDCCombinePlot addDecoration: self
 ]
 
 { #category : #accessing }
 DCDecoration >> x [
 	^ x
+]
+
+{ #category : #accessing }
+DCDecoration >> x: arg1 [ 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }

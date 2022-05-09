@@ -112,10 +112,11 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 	decoration x: 70.
 	x := 1 to: 100.
 	^ DCLinePlot new
+		in: [ :plot | plot settings extent: 800@600 ];
 		x: x;
-		y: (x raisedTo: 3);
+		y: (x raisedTo: 2);
 		title: 'DCLinePlot';
-		xlabel: ' line x';
+		xlabel: 'line x';
 		ylabel: 'line y';
 		add: decoration;
 		build;

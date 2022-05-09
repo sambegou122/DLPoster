@@ -8,14 +8,19 @@ Class {
 	#category : #'DataChart-Core'
 }
 
-{ #category : #accessing }
-DCPlotSettings >> background [
-	^ self decorationsAt: #background ifAbsent: [ nil ]
+{ #category : #adding }
+DCPlotSettings >> addDecoration: aDCDecoration [ 
+	self decorations add: aDCDecoration
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
+DCPlotSettings >> background [
+	^ self propertyAt: #background ifAbsentPut: [ RSChartSpineDecoration new ]
+]
+
+{ #category : #'accessing - decorators' }
 DCPlotSettings >> background: aRSChartDecoration [ 
-	self decorationsAt: #background put: aRSChartDecoration.
+	self propertyAt: #background put: aRSChartDecoration
 ]
 
 { #category : #accessing }
@@ -41,22 +46,7 @@ DCPlotSettings >> dataFrame: aDataFrame [
 
 { #category : #accessing }
 DCPlotSettings >> decorations [
-	^ decorations ifNil: [ decorations := Dictionary new ]
-]
-
-{ #category : #assecing }
-DCPlotSettings >> decorationsAt: aString [ 
-	^ self decorationsAt: aString ifAbsent: [ nil  ]
-]
-
-{ #category : #accessing }
-DCPlotSettings >> decorationsAt: aString ifAbsent: aFullBlockClosure [ 
-	^ self decorations at: aString ifAbsent: aFullBlockClosure
-]
-
-{ #category : #properties }
-DCPlotSettings >> decorationsAt: aString put: aPoint [ 
-	self decorations at: aString put: aPoint
+	^ decorations ifNil: [ decorations := OrderedCollection new ]
 ]
 
 { #category : #defaults }
@@ -120,6 +110,11 @@ DCPlotSettings >> propertyAt: aString ifAbsent: aFullBlockClosure [
 ]
 
 { #category : #properties }
+DCPlotSettings >> propertyAt: aString ifAbsentPut: aFullBlockClosure [ 
+	^ self properties at: aString ifAbsentPut: aFullBlockClosure
+]
+
+{ #category : #properties }
 DCPlotSettings >> propertyAt: aString put: aPoint [ 
 	self properties at: aString put: aPoint
 ]
@@ -144,14 +139,14 @@ DCPlotSettings >> xlabel: aString [
 	self propertyAt: #xlabel put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
 DCPlotSettings >> xtick [
-	^ self decorationsAt: #xtick ifAbsent: [ RSHorizontalTick new ].
+	^ self propertyAt: #xtick ifAbsentPut: [ RSHorizontalTick new ]
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
 DCPlotSettings >> xtick: aRSVerticalTick [ 
-	self decorationsAt: #xtick put: aRSVerticalTick.
+	self propertyAt: #xtick put: aRSVerticalTick
 ]
 
 { #category : #accessing }
@@ -164,12 +159,12 @@ DCPlotSettings >> ylabel: aString [
 	self propertyAt: #ylabel put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
 DCPlotSettings >> ytick [
-	^ self decorationsAt: #ytick ifAbsent: [ RSVerticalTick new ].
+	^ self propertyAt: #ytick ifAbsentPut: [ RSVerticalTick new ]
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
 DCPlotSettings >> ytick: aRSHorizontalTick [ 
-	self decorationsAt: #ytick put: aRSHorizontalTick.
+	self propertyAt: #ytick put: aRSHorizontalTick
 ]
