@@ -1,18 +1,26 @@
 Class {
 	#name : #DCLabelDecoration,
 	#superclass : #DCDecoration,
+	#instVars : [
+		'label'
+	],
 	#category : #'DataChart-Decoration'
 }
 
 { #category : #accessing }
-DCLabelDecoration >> addIn: aDCObjet [
-	 aDCObjet addLabel: self.
+DCLabelDecoration >> createdShapes [
+	^ { label }
 ]
 
 { #category : #initialization }
-DCLabelDecoration >> defaulShape [ 
-	^ RSLabel new. 
-	
+DCLabelDecoration >> defaultShape [ 
+	^ RSLabel new
+]
+
+{ #category : #rendering }
+DCLabelDecoration >> renderIn: canvas [
+	label := self shape copy.
+	canvas add: label.
 ]
 
 { #category : #accessing }

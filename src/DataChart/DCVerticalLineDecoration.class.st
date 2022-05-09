@@ -1,26 +1,35 @@
 Class {
 	#name : #DCVerticalLineDecoration,
 	#superclass : #DCDecoration,
+	#instVars : [
+		'line'
+	],
 	#category : #'DataChart-Decoration'
 }
 
-{ #category : #adding }
-DCVerticalLineDecoration >> addIn: aDCCombinePlot [ 
-	aDCCombinePlot addDecoration: self
+{ #category : #accessing }
+DCVerticalLineDecoration >> createdShapes [
+	^ { line }
 ]
 
 { #category : #initialization }
-DCVerticalLineDecoration >> defaulShape [ 
-	^ RSLine new color: 'red'.
+DCVerticalLineDecoration >> defaultShape [ 
+	^ RSLine new color: 'red'
 ]
 
-{ #category : #initialization }
-DCVerticalLineDecoration >> initialize [ 
-	super initialize.
-	self shape 
-				startPoint: 0@0; 
-				endPoint: 0@100.
-	
+{ #category : #rendering }
+DCVerticalLineDecoration >> renderIn: canvas [
+	| p1 p2 plot padding point |
+	line := self shape copy.
+	plot := self chart plots first.
+	padding := self chart padding.
+	point := plot scalePoint: x @ 0.
+	p1 := point x @ 0.
+	p2 := point x @ self chart extent y negated.
+	line
+		startPoint: p1;
+		endPoint: p2.
+	canvas add: line
 ]
 
 { #category : #accessing }

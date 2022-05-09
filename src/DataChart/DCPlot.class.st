@@ -24,29 +24,23 @@ DCPlot >> addAxis [
 
 { #category : #adding }
 DCPlot >> addDecoration: aDCDecoration [
-	self chart canvas ifNotNil: [:canvas | canvas add: aDCDecoration shape ]
+	self settings addDecoration: aDCDecoration
 ]
 
 { #category : #building }
 DCPlot >> addDecorations [
-	self chart 
+	self chart decorations removeAll.
+	self chart
+		addDecoration: self settings background;
 		addDecoration: self settings xtick;
 		addDecoration:	self settings ytick.
+	self settings decorations do: [ :decoration | 
+		self chart addDecoration: decoration ]
 ]
 
 { #category : #adding }
 DCPlot >> addIn: aDCCombinePlot [ 
 	aDCCombinePlot addPlot: self
-]
-
-{ #category : #adding }
-DCPlot >> addLabel: aDCLabelObject [
-	| xPoint yPoint |
-	xPoint := aDCLabelObject x.
-	yPoint := aDCLabelObject y.
-	self addDecoration: aDCLabelObject.
-	aDCLabelObject shape translateMiddleRightTo: xPoint @ yPoint.
-	
 ]
 
 { #category : #building }
