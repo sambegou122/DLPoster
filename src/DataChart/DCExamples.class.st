@@ -43,7 +43,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 
 	x := 0.0 to: 2 count: 100.
 	decoration := DCVerticalLineDecoration new.
-	decoration x: 70.
+	decoration x: 1.
 
 	line1 := DCLinePlot new
 		x: x;
@@ -65,7 +65,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-		"add: decoration;"
+		add: decoration;
 		build;
 		show.
 ]

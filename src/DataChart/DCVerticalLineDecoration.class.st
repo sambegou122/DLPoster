@@ -27,6 +27,7 @@ DCVerticalLineDecoration >> renderIn: canvas [
 	point := plot scalePoint: x @ 0.
 	p1 := point x @ 0.
 	p2 := point x @ self chart extent y negated.
+	
 	line
 		startPoint: p1;
 		endPoint: p2.
