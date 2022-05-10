@@ -7,6 +7,18 @@ Class {
 	#category : #'DataChart-Core'
 }
 
+{ #category : #'instance creation' }
+DCCombinePlot class >> withAll: aCollection [ 
+	^ self new
+		addAll: aCollection;
+		yourself
+]
+
+{ #category : #adding }
+DCCombinePlot >> addAll: aCollection [ 
+	aCollection do: [ :each | self add: each ]
+]
+
 { #category : #adding }
 DCCombinePlot >> addPlot: aDCPlot [ 
 	self plots add: aDCPlot.
@@ -14,6 +26,7 @@ DCCombinePlot >> addPlot: aDCPlot [
 
 { #category : #building }
 DCCombinePlot >> build [
+	self plots ifEmpty: [ self error: 'You should to provide at least one plot' ].
 	self plots do:[ :plot| plot addAxis ].
 	self plots do: [ :plot| self chart addPlot: plot kind].
 	self plots do: [  :plot| plot kind chart: self chart].
