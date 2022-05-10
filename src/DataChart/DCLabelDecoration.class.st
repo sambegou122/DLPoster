@@ -14,12 +14,20 @@ DCLabelDecoration >> createdShapes [
 
 { #category : #initialization }
 DCLabelDecoration >> defaultShape [ 
-	^ RSLabel new
+	^ RSLabel new color: 'blue'.
 ]
 
 { #category : #rendering }
 DCLabelDecoration >> renderIn: canvas [
-	label := self shape copy.
+	
+	| plot padding point |
+	label := self shape copy.	
+	plot := self chart plots first.
+	self x ifNil: [ self error: ' yous need put a x abxis' ].
+	self y ifNil: [ self error: ' yous need put a y abxis' ].
+	padding := self chart padding.
+	point := plot scalePoint: x @ y.
+	label position: point + ( label extent /2).
 	canvas add: label.
 ]
 
@@ -31,14 +39,4 @@ DCLabelDecoration >> text [
 { #category : #accessing }
 DCLabelDecoration >> text: aString [ 
 	self shape text: aString.
-]
-
-{ #category : #accessing }
-DCLabelDecoration >> x: anInteger [ 
-	x := anInteger.
-]
-
-{ #category : #accessing }
-DCLabelDecoration >> y: anInteger [
-	y:= anInteger.
 ]

@@ -9,14 +9,14 @@ Class {
 
 { #category : #adding }
 DCCombinePlot >> addPlot: aDCPlot [ 
-	plots add: aDCPlot.
-	self chart addPlot: aDCPlot kind.
-	aDCPlot kind chart: self chart.
+	self plots add: aDCPlot.
 ]
 
 { #category : #building }
 DCCombinePlot >> build [
 	self plots do:[ :plot| plot addAxis ].
+	self plots do: [ :plot| self chart addPlot: plot kind].
+	self plots do: [  :plot| plot kind chart: self chart].
 	self addDecorations.
 	self applyProperties.
 	self chart build.

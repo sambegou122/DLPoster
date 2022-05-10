@@ -18,12 +18,17 @@ DCDecoration >> x [
 	^ x
 ]
 
-{ #category : #accessing }
-DCDecoration >> x: arg1 [ 
-	^ self subclassResponsibility
+{ #category : #initialization }
+DCDecoration >> x: anInteger [
+	x:= anInteger
 ]
 
 { #category : #accessing }
 DCDecoration >> y [
 	^ y
+]
+
+{ #category : #accessing }
+DCDecoration >> y: anInteger [
+	y:= anInteger.
 ]

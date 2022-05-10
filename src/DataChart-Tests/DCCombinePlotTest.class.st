@@ -50,6 +50,43 @@ DCCombinePlotTest >> testAddOneByOnePlot [
 ]
 
 { #category : #tests }
+DCCombinePlotTest >> testAddingDecoration [
+	| x line1 line2 line3 combined decoration deco |
+	decoration := DCVerticalLineDecoration new.
+	decoration x: 50.
+	x := 0.0 to: 2 count: 100.
+	line1 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		yourself.
+	
+	line2 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		yourself.
+	
+	line3 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		yourself.
+	
+	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
+	combined 
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		add: decoration;
+	build.
+	deco := combined settings decorations first.
+	self assert: deco class equals: DCVerticalLineDecoration.
+	self assert: deco chart equals: combined chart.
+	self assert: deco y
+	
+	
+	
+]
+
+{ #category : #tests }
 DCCombinePlotTest >> testAddingPlots [
 	| x line1 line2 line3 combined se |
 

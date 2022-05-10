@@ -15,6 +15,22 @@ DCVerticalLineDecorationTest >> testBasic [
 ]
 
 { #category : #tests }
+DCVerticalLineDecorationTest >> testError [
+	| x plot decoration |
+	decoration := DCVerticalLineDecoration new.
+	x := 1 to: 100.
+	plot := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		title: 'DCLinePlot';
+		xlabel: 'line x';
+		ylabel: 'line y';
+		yourself.
+	self should: [plot add: decoration; build ] raise:  Error.
+	
+]
+
+{ #category : #tests }
 DCVerticalLineDecorationTest >> testRenderIn [
 	| line x plot decoration |
 	decoration := DCVerticalLineDecoration new.

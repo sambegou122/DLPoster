@@ -60,13 +60,13 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 		y: (x raisedTo: 4);
 		yourself.
 	
-	combined := DCCombinePlot new withAll: { line1. line2. line3}.
+	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
 	^ combined 
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-		add: decoration;
-		build; 
+		"add: decoration;"
+		build;
 		show.
 ]
 
@@ -92,8 +92,8 @@ DCExamples >> exampleDCLineWithLabelDecoration [
 	y := x raisedTo: 3.
 	decoration := (DCLabelDecoration new
 		text: 'Foo bar';
-		x: 55.5;
-		y: (100 raisedTo: 2);
+		x: 50;
+		y: (50 raisedTo: 3);
     yourself ).
 
 	^ DCLinePlot new
@@ -112,7 +112,6 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 	decoration x: 70.
 	x := 1 to: 100.
 	^ DCLinePlot new
-		in: [ :plot | plot settings extent: 800@600 ];
 		x: x;
 		y: (x raisedTo: 2);
 		title: 'DCLinePlot';

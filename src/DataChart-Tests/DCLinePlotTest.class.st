@@ -37,7 +37,7 @@ DCLinePlotTest >> testBuild [
 
 { #category : #tests }
 DCLinePlotTest >> testDCLineWithLabelDecoration [
-	| x y plot |
+	| x y plot deco |
 	x := 1 to: 100.
 	y := x raisedTo: 3.
 	plot := DCLinePlot new.
@@ -50,6 +50,11 @@ DCLinePlotTest >> testDCLineWithLabelDecoration [
     yourself ).
 
 	plot build.
+	deco := plot settings decorations first.
+	self assert: deco class equals: DCLabelDecoration.
+	self assert: deco chart equals: plot chart.
+	self assert: deco x equals: 55.5.
+	self assert: deco y equals:(100 raisedTo: 2).
 
 		
 	
