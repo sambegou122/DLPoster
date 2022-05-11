@@ -41,9 +41,9 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 	<script: 'self new exampleDCCombinePlotWithVerticalLineDecoration'>
 	| x line1 line2 line3 combined decoration |
 
-	x := 0.0 to: 2 count: 100.
+	x := 0 to: 100.
 	decoration := DCVerticalLineDecoration new.
-	decoration x: 1.
+	decoration x: 70.
 
 	line1 := DCLinePlot new
 		x: x;
@@ -52,7 +52,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 
 	line2 := DCLinePlot new
 		x: x;
-		y: (x raisedTo: 3);
+		y: (x raisedTo: 3.8);
 		yourself.
 	
 	line3 := DCScatterPlot new

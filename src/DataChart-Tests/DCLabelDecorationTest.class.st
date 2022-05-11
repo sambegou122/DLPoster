@@ -28,7 +28,7 @@ DCLabelDecorationTest >> testError [
 		xlabel: 'line x';
 		ylabel: 'line y';
 		yourself.
-	self should: [plot add: decoration; build ] raise:  Error.
+	self should: [plot add: decoration; build ] raise: Error.
 ]
 
 { #category : #tests }
