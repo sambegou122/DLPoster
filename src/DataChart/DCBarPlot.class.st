@@ -8,3 +8,11 @@ Class {
 DCBarPlot >> defaultKind [
 	^ RSBarPlot new.
 ]
+
+{ #category : #accessing }
+DCBarPlot >> y: aCollection [
+	
+	self x ifNil: [ self x: (1 to: aCollection size) ].
+	super y: aCollection
+	
+]

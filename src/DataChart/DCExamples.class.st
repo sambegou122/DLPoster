@@ -138,3 +138,30 @@ DCExamples >> exampleDCScatter [
 		build;
 		show.
 ]
+
+{ #category : #examples }
+DCExamples >> exampleDCStackBarPlot [
+	<script: 'self new exampleDCStackBarPlot'>
+		| x y y2 plot1  plot2 y3 plot3 |
+
+	x := 0.0 to: 2 count: 10.
+	y := (x raisedTo: 2) +2.
+	y2 := (x raisedTo: 3) +2.
+	y3 := (x raisedTo: 4) + 2.
+	
+	plot1 := DCBarPlot new.
+	plot1 y: y.
+	plot2 := DCBarPlot new.
+	plot2 y: y2.
+	plot3 := DCBarPlot new y:y3.
+	
+"combined := DCCombinePlot new."
+
+	 ^ DCStackBarPlot new withAll: { plot1. plot2 };
+		add: plot3;
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		build;
+		show.
+]
