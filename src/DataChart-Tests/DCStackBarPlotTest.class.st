@@ -28,7 +28,7 @@ DCStackBarPlotTest >> testAddingAnotherPlot [
 	
 	| linePlot |
 	linePlot := DCLinePlot new x: x; y: y.	
-	self should: [combined add: linePlot ] raise:  Error.
+	self should: [ combined add: linePlot ] raise:  Error.
 	
 ]
 
