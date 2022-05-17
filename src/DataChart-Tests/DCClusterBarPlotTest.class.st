@@ -1,39 +1,37 @@
 "
-A DCStackBarPlotTest is a test class for testing the behavior of DCStackBarPlot
+A DCClusterBarPlotTest is a test class for testing the behavior of DCClusterBarPlot
 "
 Class {
-	#name : #DCStackBarPlotTest,
+	#name : #DCClusterBarPlotTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'plot',
+		'combined',
 		'x',
-		'y',
-		'combined'
+		'y'
 	],
 	#category : #'DataChart-Tests-Core'
 }
 
 { #category : #running }
-DCStackBarPlotTest >> setUp [
+DCClusterBarPlotTest >> setUp [
 	super setUp.
 	plot := DCBarPlot new.
-	combined := DCStackBarPlot new.
+	combined := DCClusterBarPlot new.
 	x := 1 to: 100.
 	y := ( x raisedTo: 2).
-	"Put here a common initialization logic for tests"
 ]
 
-{ #category : #tests }
-DCStackBarPlotTest >> testAddingAnotherPlot [
+{ #category : #running }
+DCClusterBarPlotTest >> testAddingAnotherPlot [
 	
 	| linePlot |
 	linePlot := DCLinePlot new x: x; y: y.	
 	self should: [ combined add: linePlot ] raise:  Error.
-	
 ]
 
-{ #category : #tests }
-DCStackBarPlotTest >> testAddingOneByOnePlot [
+{ #category : #running }
+DCClusterBarPlotTest >> testAddingOneByOnePlot [
 	
 	plot y: y.	
 	combined add: plot.
@@ -41,22 +39,15 @@ DCStackBarPlotTest >> testAddingOneByOnePlot [
 	plot y: (y raisedTo:2).
 	combined add: plot.
 	self assert: combined plots size equals:2.
-	self assert: combined plots first kind bottom equals: combined plots last kind xValues.
 	
 ]
 
-{ #category : #tests }
-DCStackBarPlotTest >> testAddingPlots [
-	
-	plot y: y.	
-	combined add: plot.
-]
-
-{ #category : #tests }
-DCStackBarPlotTest >> testBasic [
+{ #category : #running }
+DCClusterBarPlotTest >> testBasic [
 
 	self assert: plot settings class equals: DCPlotSettings.
 	self assert: plot x isNil.
 	self assert: plot y isNil.
 	self assert: plot chart class equals: RSChart.
+	
 ]

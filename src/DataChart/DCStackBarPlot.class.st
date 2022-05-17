@@ -55,10 +55,11 @@ DCStackBarPlot >> initialize [
 
 { #category : #accessing }
 DCStackBarPlot >> sommeAll: aCollectionOfPlot to: index [
-	| yAxix indexCollection size  |
+	| yAxix indexCollection size clsz |
 	size := (aCollectionOfPlot at:1) y size.
 	yAxix := Array new: size.
-	(1 to: size) do: [ :i| yAxix at:i put: 0].
+	clsz := (1 to: size).
+	clsz do: [ :i| yAxix at:i put: 0].
 	indexCollection := 1 to: index.
 	indexCollection do:[ :i| yAxix := yAxix + (aCollectionOfPlot at:i) y].
 	^ yAxix
