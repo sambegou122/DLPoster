@@ -7,25 +7,19 @@ Class {
 { #category : #examples }
 DCExamples >> exampleDCClusterBarPlot [
 	<script: 'self new exampleDCClusterBarPlot'>
-	| x y y2 plot1  plot2 y3 plot3 y4 plot4 |
-
-	x := 0.0 to: 2 count: 10.
-	y := x raisedTo: 2.
-	y2 := x raisedTo: 3.
-	y3 := x raisedTo: 4.
-	y4 := (x raisedTo: 5) +3.
+	| x y plots perlin |
+	perlin := NSPerlinNoise3 new octaves: 7.
 	
-	plot1 := DCBarPlot new.
-	plot1 y: y.
-	plot2 := DCBarPlot new.
-	plot2 y: y2.
-	plot3 := DCBarPlot new y: y3.
-	plot4 := DCBarPlot new y: y4.
-
-	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
-		add: plot3;
-		add: plot4;
-		title: 'Hello world';
+	x := 0.0 to: 2 count: 10.
+	plots := (1 to: 4) collect: [ :index | 
+		y := x collect: [ :n | (perlin noise: n and: index) ].
+		DCBarPlot new
+			x: x;
+			y: y;
+			yourself ].
+	
+	^ (DCClusterBarPlot withAll: plots)
+		title: 'Cluster Bar Plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		build;
@@ -43,21 +37,19 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 	y3 := x raisedTo: 4.
 	y4 := (x raisedTo: 5) +3.
 	decoration := (DCLabelDecoration new
-		text: 'Foo bar';
-		x: 5;
-		y: (5 + 3);
+		text: 'Maximum value: ', ((2 raisedTo: 5) +3) asString;
+		color: Color black;
+		x: 2;
+		y: (2 raisedTo: 5) +3;
     yourself ).
-	plot1 := DCBarPlot new.
-	plot1 y: y.
-	plot2 := DCBarPlot new.
-	plot2 y: y2.
-	plot3 := DCBarPlot new y: y3.
-	plot4 := DCBarPlot new y: y4.
-
+	plot1 := DCBarPlot new x: x; y: y.
+	plot2 := DCBarPlot new x: x; y: y2.
+	plot3 := DCBarPlot new x: x; y: y3.
+	plot4 := DCBarPlot new x: x; y: y4.
 	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
 		add: plot3;
 		add: plot4;
-		title: 'Hello world';
+		title: 'Cluster bar plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		add: decoration;
@@ -90,7 +82,7 @@ DCExamples >> exampleDCCombinePlot [
 		yourself.
 	combined add: line3.
 	^ combined 
-		title: 'Hello world';
+		title: 'Combined plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		build; 
@@ -103,7 +95,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 	| x line1 line2 line3 combined decoration |
 
 	x := 0 to: 100.
-	decoration := DCVerticalLineDecoration new.
+	decoration := DCVerticalLineDecoration new color: Color blue.
 	decoration x: 70.
 
 	line1 := DCLinePlot new
@@ -123,7 +115,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 	
 	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
 	^ combined 
-		title: 'Hello world';
+		title: 'Line decoration';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		add: decoration;
@@ -138,6 +130,7 @@ DCExamples >> exampleDCHistogram [
 	x :=  self randomValues.
 	^ DCHistogramPlot new
 		x: x;
+		title: 'Histogram';
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
 		build;
@@ -148,12 +141,12 @@ DCExamples >> exampleDCHistogram [
 DCExamples >> exampleDCHistogramWithDecoration [
 	<script: 'self new exampleDCHistogramWithDecoration'>
 	| x decoration |
-	x :=  self randomValues.
+	x := self randomValues.
 	
 	decoration := (DCLabelDecoration new
-		text: 'Foo bar';
-		x: (x at:3);
-		y: 1;
+		text: 'Middle area';
+		x: 175;
+		y: 80;
     yourself ).
 	^ DCHistogramPlot new
 		x: x;
@@ -172,8 +165,6 @@ DCExamples >> exampleDCLine [
 	^ DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
-		xlabel: 'Axis X';
-		ylabel: 'Axis y';
 		build;
 		show
 ]
@@ -236,24 +227,19 @@ DCExamples >> exampleDCScatter [
 { #category : #examples }
 DCExamples >> exampleDCStackBarPlot [
 	<script: 'self new exampleDCStackBarPlot'>
-	| x y y2 plot1  plot2 y3 plot3 decoration |
-
+	| x y plots perlin |
+	perlin := NSPerlinNoise3 new octaves: 7.
+	
 	x := 0.0 to: 2 count: 10.
-	y := x raisedTo: 2.
-	y2 := x raisedTo: 3.
-	y3 := x raisedTo: 4.
-	
-	plot1 := DCBarPlot new.
-	plot1 y: y.
-	plot2 := DCBarPlot new.
-	plot2 y: y2.
-	plot3 := DCBarPlot new y:y3.
-	
-"combined := DCCombinePlot new."
+	plots := (1 to: 4) collect: [ :index | 
+		y := x collect: [ :n | (perlin noise: n and: index) ].
+		DCBarPlot new
+			x: x;
+			y: y;
+			yourself ].
 
-	 ^ DCStackBarPlot new withAll: { plot1. plot2 };
-		add: plot3;
-		title: 'Hello world';
+	 ^ (DCStackBarPlot withAll: plots)
+		title: 'Stack Bar Plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		build;
