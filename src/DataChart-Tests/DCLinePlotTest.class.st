@@ -34,8 +34,6 @@ DCLinePlotTest >> testBasic [
 
 { #category : #tests }
 DCLinePlotTest >> testBuild [
-
-	plot := DCLinePlot new.
 	self assert: plot kind class equals: RSLinePlot.
 	plot 
 		x: x;

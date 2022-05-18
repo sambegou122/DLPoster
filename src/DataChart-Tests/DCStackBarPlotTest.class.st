@@ -41,7 +41,7 @@ DCStackBarPlotTest >> testAddingOneByOnePlot [
 	plot y: (y raisedTo:2).
 	combined add: plot.
 	self assert: combined plots size equals:2.
-	self assert: combined plots first kind bottom equals: combined plots last kind xValues.
+	self assert: combined plots last kind bottom equals: combined plots first kind yValues.
 	
 ]
 
@@ -54,7 +54,6 @@ DCStackBarPlotTest >> testAddingPlots [
 
 { #category : #tests }
 DCStackBarPlotTest >> testBasic [
-
 	self assert: plot settings class equals: DCPlotSettings.
 	self assert: plot x isNil.
 	self assert: plot y isNil.

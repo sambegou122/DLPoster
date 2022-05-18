@@ -7,26 +7,60 @@ Class {
 { #category : #examples }
 DCExamples >> exampleDCClusterBarPlot [
 	<script: 'self new exampleDCClusterBarPlot'>
-	| x y y2 plot1  plot2 y3 plot3 |
+	| x y y2 plot1  plot2 y3 plot3 y4 plot4 |
 
 	x := 0.0 to: 2 count: 10.
 	y := x raisedTo: 2.
 	y2 := x raisedTo: 3.
 	y3 := x raisedTo: 4.
+	y4 := (x raisedTo: 5) +3.
 	
 	plot1 := DCBarPlot new.
 	plot1 y: y.
 	plot2 := DCBarPlot new.
 	plot2 y: y2.
-	plot3 := DCBarPlot new y:y3.
-	
-"combined := DCCombinePlot new."
+	plot3 := DCBarPlot new y: y3.
+	plot4 := DCBarPlot new y: y4.
 
 	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
 		add: plot3;
+		add: plot4;
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
+		build;
+		show.
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCClusterBarPlotWithDecoration [
+	<script: 'self new exampleDCClusterBarPlotWithDecoration'>
+	| x y y2 plot1  plot2 y3 plot3 y4 plot4 decoration |
+
+	x := 0.0 to: 2 count: 10.
+	y := x raisedTo: 2.
+	y2 := x raisedTo: 3.
+	y3 := x raisedTo: 4.
+	y4 := (x raisedTo: 5) +3.
+	decoration := (DCLabelDecoration new
+		text: 'Foo bar';
+		x: 5;
+		y: (5 + 3);
+    yourself ).
+	plot1 := DCBarPlot new.
+	plot1 y: y.
+	plot2 := DCBarPlot new.
+	plot2 y: y2.
+	plot3 := DCBarPlot new y: y3.
+	plot4 := DCBarPlot new y: y4.
+
+	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
+		add: plot3;
+		add: plot4;
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		add: decoration;
 		build;
 		show.
 ]
@@ -95,6 +129,39 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 		add: decoration;
 		build;
 		show.
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCHistogram [
+	<script: 'self new exampleDCHistogram'>
+	| x |
+	x :=  self randomValues.
+	^ DCHistogramPlot new
+		x: x;
+		xlabel: 'Axis X';
+		ylabel: 'Axis y';
+		build;
+		show
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCHistogramWithDecoration [
+	<script: 'self new exampleDCHistogramWithDecoration'>
+	| x decoration |
+	x :=  self randomValues.
+	
+	decoration := (DCLabelDecoration new
+		text: 'Foo bar';
+		x: (x at:3);
+		y: 1;
+    yourself ).
+	^ DCHistogramPlot new
+		x: x;
+		xlabel: 'Axis X';
+		ylabel: 'Axis y';
+		add: decoration;
+		build;
+		show
 ]
 
 { #category : #examples }
@@ -169,7 +236,7 @@ DCExamples >> exampleDCScatter [
 { #category : #examples }
 DCExamples >> exampleDCStackBarPlot [
 	<script: 'self new exampleDCStackBarPlot'>
-	| x y y2 plot1  plot2 y3 plot3 |
+	| x y y2 plot1  plot2 y3 plot3 decoration |
 
 	x := 0.0 to: 2 count: 10.
 	y := x raisedTo: 2.
@@ -191,4 +258,68 @@ DCExamples >> exampleDCStackBarPlot [
 		ylabel: 'Y Axis';
 		build;
 		show.
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCStackBarPlotWithDecoration [
+	<script: 'self new exampleDCStackBarPlotWithDecoration'>
+	| x y y2 plot1  plot2 y3 plot3 decoration |
+
+	x := 0.0 to: 2 count: 10.
+	y := x raisedTo: 2.
+	y2 := x raisedTo: 3.
+	y3 := x raisedTo: 4.
+	decoration := (DCLabelDecoration new
+		text: 'Foo bar';
+		x: 5;
+		y: (5 + 3);
+    yourself ).
+	
+	plot1 := DCBarPlot new.
+	plot1 y: y.
+	plot2 := DCBarPlot new.
+	plot2 y: y2.
+	plot3 := DCBarPlot new y:y3.
+	
+"combined := DCCombinePlot new."
+
+	 ^ DCStackBarPlot new withAll: { plot1. plot2. decoration };
+		add: plot3;
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		build;
+		show.
+]
+
+{ #category : #examples }
+DCExamples >> normal: x mean: mean stdDev: std [
+	^ (-0.5 * Float twoPi log - std log -
+		 ( ((x - mean) raisedTo: 2) / (2 * std * std))) exp
+]
+
+{ #category : #examples }
+DCExamples >> randomValues [
+	<script: 'self new randomValues inspect'>
+	^ self randomValues: 170 scale: 10 size: 250.
+]
+
+{ #category : #examples }
+DCExamples >> randomValues: loc scale: scale size: size [
+	| low upp mean stdDev r |
+	"TODO generate a new method to creatte random values with normal distribution"
+	low := 0.
+	upp := 100.
+	mean := (low + upp) / 2.
+	stdDev := (upp - low)/4.
+	r := Random new.
+	
+	^ ((1 to: size ) collectWithIndex: [ :i :index | 
+		| val sign rval |
+		rval := r rsNext:0-mean and: upp + mean.
+		val := self normal: rval mean: mean stdDev: stdDev.
+		sign := index < (size / 2) ifTrue: [ -1 ] ifFalse: [ 1 ].
+		
+		loc +(size * val * sign)
+		 ]) shuffled.
 ]
