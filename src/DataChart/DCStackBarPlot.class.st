@@ -6,8 +6,10 @@ Class {
 
 { #category : #adding }
 DCStackBarPlot >> addPlot: aDCPlot [ 
-	aDCPlot class = DCBarPlot ifTrue: [ plots add: aDCPlot ]
-						ifFalse:[ self error: ' you must add a DCBarPlot ']
+	aDCPlot class = DCBarPlot
+	"aDCPlot isBarPlot"
+		ifTrue: [ plots add: aDCPlot ]
+		ifFalse:[ self error: ' you must add a DCBarPlot ']
 ]
 
 { #category : #initialization }
@@ -37,13 +39,15 @@ DCStackBarPlot >> build [
 DCStackBarPlot >> changeTicks [
 	| plot |
 	plot := self plots at:1.
-	self settings xtick doNotUseNiceLabel; 
-					integer;
-					 numberOfTicks: plot y size - 1.
+	self settings xtick
+		doNotUseNiceLabel; 
+		integer;
+		numberOfTicks: plot y size - 1.
 					
-	self settings ytick doNotUseNiceLabel; 
-					integer;
-					 numberOfTicks: plot y size - 1.
+	self settings ytick
+		doNotUseNiceLabel; 
+		integer;
+		numberOfTicks: plot y size - 1.
 
 	
 ]
