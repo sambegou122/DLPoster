@@ -2,7 +2,8 @@ Class {
 	#name : #DCCombinePlot,
 	#superclass : #DCPlot,
 	#instVars : [
-		'plots'
+		'plots',
+		'dataType'
 	],
 	#category : #'DataChart-Core'
 }
@@ -24,16 +25,32 @@ DCCombinePlot >> addPlot: aDCPlot [
 	self plots add: aDCPlot.
 ]
 
+{ #category : #default }
+DCCombinePlot >> applyColor [
+	self plots do: [ :each| each kind color: each color ]
+]
+
 { #category : #building }
 DCCombinePlot >> build [
 	self plots ifEmpty: [ self error: 'You should to provide at least one plot' ].
 	self plots do:[ :plot| plot addAxis ].
+	self applyColor.
 	self plots do: [ :plot| self chart addPlot: plot kind].
-	self plots do: [  :plot| plot kind chart: self chart].
 	self addDecorations.
-	self applyProperties.
 	self chart build.
 
+	
+]
+
+{ #category : #adding }
+DCCombinePlot >> dataType [
+	dataType ifNil: [ dataType := self generateDataType ].
+	 ^ dataType
+]
+
+{ #category : #adding }
+DCCombinePlot >> dataType: integerOrFloat [
+	dataType := integerOrFloat
 	
 ]
 
@@ -42,11 +59,21 @@ DCCombinePlot >> defaultKind [
 	^ nil
 ]
 
+{ #category : #default }
+DCCombinePlot >> generateDataType [
+	
+	| num |
+	num := self plots first x first.
+	num class = 0.0 class
+		ifTrue: [  dataType := 'float' ]
+		ifFalse: [ dataType := 'integer' ].
+	^dataType.
+]
+
 { #category : #initialization }
 DCCombinePlot >> initialize [ 
 	super initialize.
 	plots := OrderedCollection new.
-	
 ]
 
 { #category : #accessing }

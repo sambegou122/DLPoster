@@ -79,6 +79,7 @@ DCExamples >> exampleDCCombinePlot [
 	line3 := DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 4);
+		color: Color green;
 		yourself.
 	combined add: line3.
 	^ combined 
@@ -111,6 +112,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 	line3 := DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 4);
+		color: Color green;
 		yourself.
 	
 	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
@@ -119,6 +121,7 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		add: decoration;
+		extent: 400@400;
 		build;
 		show.
 ]
@@ -165,6 +168,7 @@ DCExamples >> exampleDCLine [
 	^ DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
+		color: Color green;
 		build;
 		show
 ]

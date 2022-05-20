@@ -25,9 +25,7 @@ DCClusterBarPlot >> build [
 	self applyBarSizeAndScale.
 	self plots do: [ :plot| self chart addPlot: plot kind].
 	self plots do: [ :plot| plot kind chart: self chart].
-	self changeTicks.
 	self addDecorations.
-	self applyProperties.
 	self chart build.
 ]
 
@@ -37,13 +35,16 @@ DCClusterBarPlot >> changeTicks [
 	plot := self plots at:1.
 	self settings xtick
 		doNotUseNiceLabel; 
-		integer;
 		numberOfTicks: plot y size - 1.
+	self dataType = 'integer' 
+		ifTrue: [ self settings xtick labelConversion: [ :val | val asInteger ] ].
 					
 	self settings ytick
 		doNotUseNiceLabel; 
-		integer;
 		numberOfTicks: plot y size - 1.
+		
+	self dataType = 'integer' 
+		ifTrue: [ self settings ytick labelConversion: [ :val | val asInteger ] ] 
 ]
 
 { #category : #adding }

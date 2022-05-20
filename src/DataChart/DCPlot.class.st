@@ -30,12 +30,14 @@ DCPlot >> addDecoration: aDCDecoration [
 { #category : #building }
 DCPlot >> addDecorations [
 	self chart decorations removeAll.
+	self changeTicks.
 	self chart
 		addDecoration: self settings background;
 		addDecoration: self settings xtick;
 		addDecoration:	self settings ytick.
 	self settings decorations do: [ :decoration | 
-		self chart addDecoration: decoration ]
+		self chart addDecoration: decoration ].
+	self applyProperties.
 ]
 
 { #category : #adding }
@@ -51,6 +53,7 @@ DCPlot >> applyProperties [
 		title: self settings title;
 		padding: self settings padding;
 		extent: self settings extent.
+	self settings color ifNotNil: [ self kind color: self settings color ]
 ]
 
 { #category : #building }
@@ -59,8 +62,17 @@ DCPlot >> build [
 	self chart
 		addPlot: self kind.
 	self addDecorations.
-	self applyProperties.
 	self chart build.
+]
+
+{ #category : #adding }
+DCPlot >> changeTicks [ 
+	self settings xtick
+		doNotUseNiceLabel;
+		numberOfTicks: (self generateNumberOfTicks at:'x') -1.
+	self settings ytick 
+		doNotUseNiceLabel;
+		numberOfTicks: (self generateNumberOfTicks at:'y' ) -1.
 ]
 
 { #category : #accessing }
@@ -68,9 +80,35 @@ DCPlot >> chart [
 	^ chart
 ]
 
+{ #category : #accessing }
+DCPlot >> color [
+	^ self settings color.
+]
+
+{ #category : #accessing }
+DCPlot >> color: aColor [
+	self settings color: aColor.
+]
+
 { #category : #default }
 DCPlot >> defaultKind [
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+DCPlot >> extent: aPoint [
+	self settings extent: aPoint
+]
+
+{ #category : #adding }
+DCPlot >> generateNumberOfTicks [
+	| xExtends yExtends result |
+	xExtends := self chart extent x.
+	yExtends := self chart extent y.
+	result := Dictionary new.
+	self putValue: xExtends in: result at: 'x'.
+	self putValue: yExtends in: result  at: 'y'.
+	^ result
 ]
 
 { #category : #initialization }
@@ -89,6 +127,24 @@ DCPlot >> kind [
 { #category : #'accessing - shapes' }
 DCPlot >> mainShapes [
 	^ kind createdShapes
+]
+
+{ #category : #accessing }
+DCPlot >> putValue: aValue in: aDictionnary [
+	
+	aValue <= 200 ifTrue: [ aDictionnary at:'x' put:5. ].
+	(aValue > 200 and: [ aValue < 600 ] )ifTrue: [ aDictionnary at:'x' put: 10 ].
+	aValue>= 600 ifTrue: [ aDictionnary at:'x' put: 15 ].
+
+]
+
+{ #category : #accessing }
+DCPlot >> putValue: aValue in: aDictionnary at: aString [
+	
+	aValue <= 200 ifTrue: [ aDictionnary at:aString put:5. ].
+	(aValue > 200 and: [ aValue < 600 ] )ifTrue: [ aDictionnary at:aString put: 10 ].
+	aValue>= 600 ifTrue: [ aDictionnary at:aString put: 15 ].
+
 ]
 
 { #category : #accessing }

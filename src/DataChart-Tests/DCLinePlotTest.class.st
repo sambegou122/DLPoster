@@ -22,6 +22,17 @@ DCLinePlotTest >> setUp [
 ]
 
 { #category : #tests }
+DCLinePlotTest >> testAddingColor [ 
+	plot color: Color green.
+	plot x: x; y: y.
+	plot build.
+	self assert: plot chart shapes last color equals: plot color.
+
+		
+	
+]
+
+{ #category : #tests }
 DCLinePlotTest >> testBasic [
 
 	self assert: plot settings class equals: DCPlotSettings.

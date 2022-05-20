@@ -49,6 +49,15 @@ DCCombinePlotTest >> testAddOneByOnePlot [
 ]
 
 { #category : #tests }
+DCCombinePlotTest >> testAddingColor [
+	line3  color: Color green.
+	combined addAll: { line1. line2. line3 }.
+	combined build.
+	self assert: combined chart shapes last color equals: line3 color.
+	
+]
+
+{ #category : #tests }
 DCCombinePlotTest >> testAddingDecoration [
 	| decoration line box bbbox |
 	decoration := DCVerticalLineDecoration new.
@@ -93,6 +102,23 @@ DCCombinePlotTest >> testBasic [
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis'.
+	se := combined settings.
+	self assert: se title equals: 'Hello world'.
+	self assert: se xlabel equals: 'X Axis'.
+	self assert: se ylabel equals: 'Y Axis'.
+]
+
+{ #category : #tests }
+DCCombinePlotTest >> testBasicAfterBuilding [
+	| plot se |
+	plot := DCCombinePlot new.
+	self assert: plot settings class equals: DCPlotSettings.
+	self assert: plot plots isEmpty.
+	combined 
+		title: 'Hello world';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		build.
 	se := combined settings.
 	self assert: se title equals: 'Hello world'.
 	self assert: se xlabel equals: 'X Axis'.
