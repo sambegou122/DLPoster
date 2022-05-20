@@ -30,13 +30,14 @@ DCPlot >> addDecoration: aDCDecoration [
 { #category : #building }
 DCPlot >> addDecorations [
 	self chart decorations removeAll.
-	self changeTicks.
 	self chart
 		addDecoration: self settings background;
 		addDecoration: self settings xtick;
-		addDecoration:	self settings ytick.
+		addDecoration:	self settings ytick;
+		extent: self settings extent.
 	self settings decorations do: [ :decoration | 
 		self chart addDecoration: decoration ].
+	self changeTicks.
 	self applyProperties.
 ]
 
@@ -51,8 +52,7 @@ DCPlot >> applyProperties [
 		xlabel: self settings xlabel;
 		ylabel: self settings ylabel;
 		title: self settings title;
-		padding: self settings padding;
-		extent: self settings extent.
+		padding: self settings padding.
 	self settings color ifNotNil: [ self kind color: self settings color ]
 ]
 

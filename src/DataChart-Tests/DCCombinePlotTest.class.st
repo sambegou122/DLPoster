@@ -114,15 +114,17 @@ DCCombinePlotTest >> testBasicAfterBuilding [
 	plot := DCCombinePlot new.
 	self assert: plot settings class equals: DCPlotSettings.
 	self assert: plot plots isEmpty.
-	combined 
+	
+	combined withAll: { line1 . line2. line3 };
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
+		extent: 200 @ 300;
 		build.
 	se := combined settings.
-	self assert: se title equals: 'Hello world'.
-	self assert: se xlabel equals: 'X Axis'.
-	self assert: se ylabel equals: 'Y Axis'.
+	self assert: se extent equals: 200@300.
+	self assert: se xtick ticks size equals: (combined generateNumberOfTicks at: 'x').
+	self assert: se ytick ticks size equals: (combined generateNumberOfTicks at: 'y').
 ]
 
 { #category : #tests }
