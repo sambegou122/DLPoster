@@ -36,5 +36,5 @@ DCHistogramPlot >> initialize [
 
 { #category : #accessing }
 DCHistogramPlot >> y: aCollection [
-	self error: ' this class do not implemente this methode, just use x: aCollection'
+	self error: 'this class do not implemente this methode, just use x: aCollection'
 ]

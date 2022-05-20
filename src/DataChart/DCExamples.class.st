@@ -169,6 +169,7 @@ DCExamples >> exampleDCLine [
 		x: x;
 		y: (x raisedTo: 3);
 		color: Color green;
+		dataType: 'integer';
 		build;
 		show
 ]
