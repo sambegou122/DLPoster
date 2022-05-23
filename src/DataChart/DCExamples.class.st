@@ -5,6 +5,29 @@ Class {
 }
 
 { #category : #examples }
+DCExamples >> exampleDCBarPlotCustomX [
+	<script: 'self new exampleDCBarPlotCustomX'>
+	| x plot bars window |
+	x := #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8) sorted.
+	plot := DCBarPlot new
+			x: x;
+			y: (1 to: 10);
+			yourself.
+	plot build.
+	window := plot show.
+	bars := plot kind bars.
+	bars do: #remove.
+	plot chart canvas signalUpdate.
+	bars doWithIndex: [ :each :index |
+		each draggable.
+		each popupText: (x at: index) @ each model.
+		each color: each color translucent.
+		plot chart canvas add: each ].
+	plot chart canvas signalUpdate.
+	^ window
+]
+
+{ #category : #examples }
 DCExamples >> exampleDCClusterBarPlot [
 	<script: 'self new exampleDCClusterBarPlot'>
 	| x y plots perlin |
@@ -14,7 +37,6 @@ DCExamples >> exampleDCClusterBarPlot [
 	plots := (1 to: 4) collect: [ :index | 
 		y := x collect: [ :n | (perlin noise: n and: index) ].
 		DCBarPlot new
-			x: x;
 			y: y;
 			yourself ].
 	
@@ -42,10 +64,10 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 		x: 2;
 		y: (2 raisedTo: 5) +3;
     yourself ).
-	plot1 := DCBarPlot new x: x; y: y.
-	plot2 := DCBarPlot new x: x; y: y2.
-	plot3 := DCBarPlot new x: x; y: y3.
-	plot4 := DCBarPlot new x: x; y: y4.
+	plot1 := DCBarPlot new y: y.
+	plot2 := DCBarPlot new y: y2.
+	plot3 := DCBarPlot new y: y3.
+	plot4 := DCBarPlot new y: y4.
 	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
 		add: plot3;
 		add: plot4;
@@ -238,7 +260,6 @@ DCExamples >> exampleDCStackBarPlot [
 	plots := (1 to: 4) collect: [ :index | 
 		y := x collect: [ :n | (perlin noise: n and: index) ].
 		DCBarPlot new
-			x: x;
 			y: y;
 			yourself ].
 
