@@ -14,8 +14,8 @@ DCClusterBarPlot >> addPlot: aDCPlot [
 { #category : #adding }
 DCClusterBarPlot >> applyBarSizeAndScale [
 	self plots doWithIndex: [ :plot :index |
-		plot kind barSize: self defaultBarScale rangeBand.
-		plot kind barOffset: (self defaultBarScale scale: index)-(self defaultBarSize / 2).]
+		plot kind barSize: self computeBarScale rangeBand.
+		plot kind barOffset: (self computeBarScale scale: index)-(self computeBarSize / 2).]
 ]
 
 { #category : #building }
@@ -48,17 +48,17 @@ DCClusterBarPlot >> changeTicks [
 ]
 
 { #category : #adding }
-DCClusterBarPlot >> defaultBarScale [
+DCClusterBarPlot >> computeBarScale [
 
 	| barScale |
 	barScale := NSOrdinalScale new
         domain: (1 to: self numberOfPlots);
-        rangeBands: { 0. self defaultBarSize } padding: 0.07.
+        rangeBands: { 0. self computeBarSize } padding: 0.07.
 	^ barScale.
 ]
 
 { #category : #adding }
-DCClusterBarPlot >> defaultBarSize [
+DCClusterBarPlot >> computeBarSize [
 
 	| scale |
 	scale := NSOrdinalScale new

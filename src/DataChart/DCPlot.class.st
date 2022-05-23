@@ -68,10 +68,10 @@ DCPlot >> build [
 { #category : #adding }
 DCPlot >> changeTicks [ 
 	self settings xtick
-		doNotUseNiceLabel;
+		doNotUseNiceLabel
 		numberOfTicks: (self generateNumberOfTicks at:'x') -1.
 	self settings ytick 
-		doNotUseNiceLabel;
+		doNotUseNiceLabel
 		numberOfTicks: (self generateNumberOfTicks at:'y' ) -1.
 ]
 
