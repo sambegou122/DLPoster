@@ -44,6 +44,18 @@ DCLinePlotTest >> testBasic [
 ]
 
 { #category : #tests }
+DCLinePlotTest >> testBasicLabel [
+
+	plot 
+		x: x;
+		y: y;
+		build.
+	self assert: plot legend class equals: RSLegend.
+	
+	
+]
+
+{ #category : #tests }
 DCLinePlotTest >> testBuild [
 	self assert: plot kind class equals: RSLinePlot.
 	plot 

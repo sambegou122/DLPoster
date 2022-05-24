@@ -124,7 +124,7 @@ DCCombinePlotTest >> testBasicAfterBuilding [
 	se := combined settings.
 	self assert: se extent equals: 200@300.
 	self assert: se xtick ticks size equals: (combined generateNumberOfTicks at: 'x').
-	self assert: se ytick ticks size equals: (combined generateNumberOfTicks at: 'y').
+	self assert: se ytick ticks size equals: (combined generateNumberOfTicks at: 'y') -1 .
 ]
 
 { #category : #tests }

@@ -1,3 +1,6 @@
+"
+This class is a kind of Combined plots, but just for clusterBarPlots, so we can just add a BarPlot
+"
 Class {
 	#name : #DCClusterBarPlot,
 	#superclass : #DCCombinePlot,
@@ -37,14 +40,13 @@ DCClusterBarPlot >> changeTicks [
 		doNotUseNiceLabel; 
 		numberOfTicks: plot y size - 1.
 	self dataType = 'integer' 
-		ifTrue: [ self settings xtick labelConversion: [ :val | val asInteger ] ].
+		ifTrue: [ self settings xtick labelConversion: [ :val | val asInteger ] ]. 
 					
 	self settings ytick
-		doNotUseNiceLabel; 
 		numberOfTicks: plot y size - 1.
 		
 	self dataType = 'integer' 
-		ifTrue: [ self settings ytick labelConversion: [ :val | val asInteger ] ] 
+		ifTrue: [ self settings ytick labelConversion: [ :val | val asInteger ] ]. 
 ]
 
 { #category : #adding }

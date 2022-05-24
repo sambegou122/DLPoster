@@ -1,16 +1,11 @@
+"
+This class represent the objet who manage the RSBar objet of Roassal-chart
+"
 Class {
 	#name : #DCBarPlot,
 	#superclass : #DCPlot,
 	#category : #'DataChart-Core'
 }
-
-{ #category : #default }
-DCBarPlot >> applyBarSizeAndScale [
-	"
-	self kind
-		barSize: self computeBarScale rangeBand;
-		barOffset: (self computeBarScale scale: 1)-(self computeBarSize / 2)"
-]
 
 { #category : #adding }
 DCBarPlot >> changeTicks [ 

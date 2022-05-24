@@ -1,3 +1,39 @@
+"
+this class represents all types of plot combinations that can be found in a chart.
+
+Instance Variables
+	dataType:		<Object> Type of our data
+	plots:		<Object> the collection of plots
+EXEMPLE:
+```Smalltalk
+ x := 0.0 to: 2 count: 100.
+
+	line1 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		yourself.
+
+	line2 := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 3);
+		yourself.
+	
+	combined := DCCombinePlot new withAll: { line1. line2.}.
+	
+	line3 := DCScatterPlot new
+		x: x;
+		y: (x raisedTo: 4);
+		color: Color green;
+		yourself.
+	combined add: line3.
+	^ combined 
+		title: 'Combined plot';
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		build; 
+		show. 
+```
+"
 Class {
 	#name : #DCCombinePlot,
 	#superclass : #DCPlot,
@@ -42,9 +78,13 @@ DCCombinePlot >> build [
 	
 ]
 
+{ #category : #'adding-plots' }
+DCCombinePlot >> computeLegend [
+	
+]
+
 { #category : #adding }
 DCCombinePlot >> dataType [
-	dataType ifNil: [ dataType := self generateDataType ].
 	 ^ dataType
 ]
 
@@ -61,13 +101,13 @@ DCCombinePlot >> defaultKind [
 
 { #category : #default }
 DCCombinePlot >> generateDataType [
-	
+
 	| num |
-	num := self plots first x first.
-	num class = 0.0 class
-		ifTrue: [  dataType := 'float' ]
-		ifFalse: [ dataType := 'integer' ].
-	^dataType.
+	num := self plots first y first.
+	dataType := num className = 0.0 className
+		            ifTrue: [ 'float' ]
+		            ifFalse: [ 'integer' ].
+	^ dataType
 ]
 
 { #category : #initialization }

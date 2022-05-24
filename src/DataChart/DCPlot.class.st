@@ -1,3 +1,18 @@
+"
+this class is object representing in our case here a Plot in general
+The goal is to be able to refactor the Roassal Chart library
+
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	chart:		<Object> represent a chart
+	kind:		<Object> represent a kind of plot ( RSLine, RSBox, RSHistogramm etc...)
+	settings:		<Object> class represent all the settings of our class
+	x:		<Object> X axix data
+	y:		<Object>y axix data
+
+"
 Class {
 	#name : #DCPlot,
 	#superclass : #Object,
@@ -6,7 +21,8 @@ Class {
 		'x',
 		'y',
 		'chart',
-		'kind'
+		'kind',
+		'legend'
 	],
 	#category : #'DataChart-Core'
 }
@@ -63,6 +79,7 @@ DCPlot >> build [
 		addPlot: self kind.
 	self addDecorations.
 	self chart build.
+	self computeLegend.
 ]
 
 { #category : #adding }
@@ -71,7 +88,6 @@ DCPlot >> changeTicks [
 		doNotUseNiceLabel
 		numberOfTicks: (self generateNumberOfTicks at:'x') -1.
 	self settings ytick 
-		doNotUseNiceLabel
 		numberOfTicks: (self generateNumberOfTicks at:'y' ) -1.
 ]
 
@@ -88,6 +104,14 @@ DCPlot >> color [
 { #category : #accessing }
 DCPlot >> color: aColor [
 	self settings color: aColor.
+]
+
+{ #category : #adding }
+DCPlot >> computeLegend [
+	self legend container: self chart canvas.
+	self legend text: self className withBoxColor: self kind computeColor.
+	self legend location middle; right; offset: 10.
+	self legend build
 ]
 
 { #category : #default }
@@ -117,11 +141,26 @@ DCPlot >> initialize [
 	settings := DCPlotSettings new.
 	chart := RSChart new.
 	kind := self defaultKind.
+	legend := RSLegend new.
+]
+
+{ #category : #inspector }
+DCPlot >> inspectorCanvas [
+	<inspectorPresentationOrder: 90 title: 'Canvas'>
+	self build. 
+	^ SpRoassal3InspectorPresenter new
+		canvas: self chart canvas;
+		yourself
 ]
 
 { #category : #accessing }
 DCPlot >> kind [
 	^ kind
+]
+
+{ #category : #adding }
+DCPlot >> legend [
+	^legend
 ]
 
 { #category : #'accessing - shapes' }

@@ -1,3 +1,6 @@
+"
+This class is a kind of Combined plots, but just for StackBarPlots, so we can just add a BarPlot
+"
 Class {
 	#name : #DCStackBarPlot,
 	#superclass : #DCCombinePlot,
@@ -33,7 +36,7 @@ DCStackBarPlot >> build [
 
 ]
 
-{ #category : #building }
+{ #category : #adding }
 DCStackBarPlot >> changeTicks [
 	| plot |
 	plot := self plots at:1.
@@ -44,7 +47,6 @@ DCStackBarPlot >> changeTicks [
 		ifTrue: [ self settings xtick labelConversion: [ :val | val asInteger ] ]. 
 					
 	self settings ytick
-		doNotUseNiceLabel; 
 		numberOfTicks: plot y size - 1.
 		
 	self dataType = 'integer' 

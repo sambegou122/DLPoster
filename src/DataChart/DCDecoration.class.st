@@ -1,3 +1,6 @@
+"
+This represent the decoration of our DCPlot
+"
 Class {
 	#name : #DCDecoration,
 	#superclass : #RSAbstractChartDecoration,

@@ -1,3 +1,8 @@
+"
+This class represent the settings of our DCPlot object
+we have separated the two to better manage the parameters independently of the object
+For more Details refere you to the test class
+"
 Class {
 	#name : #DCPlotSettings,
 	#superclass : #Object,

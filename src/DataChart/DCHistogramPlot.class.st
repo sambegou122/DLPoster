@@ -1,3 +1,6 @@
+"
+This class represent the objet who manage the RSHistogram objet of Roassal-chart
+"
 Class {
 	#name : #DCHistogramPlot,
 	#superclass : #DCPlot,
