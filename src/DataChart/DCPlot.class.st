@@ -178,8 +178,9 @@ DCPlot >> mainShapes [
 { #category : #accessing }
 DCPlot >> manageLabelDecoration [
 	| labels |
+	self flag: 'TODO please review this check beforeRenderingIn: '.
 	labels := self settings decorations select:[:deco| deco class = DCLabelDecoration].
-	labels ifNotEmpty: [ :label| label do:[:l| l changeYourPosition: self] ].
+	"labels ifNotEmpty: [ :label| label do:[:l| l changeYourPosition: self] ]."
 	
 	
 ]
