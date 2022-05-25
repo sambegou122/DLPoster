@@ -74,12 +74,19 @@ DCCombinePlot >> build [
 	self plots do: [ :plot| self chart addPlot: plot kind].
 	self addDecorations.
 	self chart build.
+	"self halt."
+	self computeLegend.
 
 	
 ]
 
-{ #category : #'adding-plots' }
+{ #category : #adding }
 DCCombinePlot >> computeLegend [
+	self legend container: self chart canvas.
+	self plots do:[:plot | self legend text: plot computeName  withBoxColor: plot kind computeColor].
+	self legend legendDo: [ :shape | shape withBorder; padding: 10; scaleBy: 0.5 ].
+	self legend location middle; right; offset: 10.
+	self legend build.
 	
 ]
 

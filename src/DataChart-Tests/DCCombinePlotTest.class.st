@@ -128,6 +128,24 @@ DCCombinePlotTest >> testBasicAfterBuilding [
 ]
 
 { #category : #tests }
+DCCombinePlotTest >> testBasicForLegend [
+	combined := DCCombinePlot new.
+	self assert: combined plots isEmpty.
+	combined add: line1.
+	combined add: line2.
+	"combined build.
+	self assert: combined legend shapes size equals: 2."
+	combined add: line3.
+	combined build.
+	self assert: combined legend shapes size equals: 3.
+	self assert: combined legend shapes first class equals:RSComposite.
+	combined plots doWithIndex: [ :p :index |  self assert: (combined legend shapes at: index ) color equals: p color]
+	
+	 
+
+]
+
+{ #category : #tests }
 DCCombinePlotTest >> testBuildWithEmptyPlots [
 	combined := DCCombinePlot withAll: {  }.
 	self should: [ combined build ] raise: Error

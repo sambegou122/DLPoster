@@ -64,10 +64,10 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 		x: 2;
 		y: (2 raisedTo: 5) +3;
     yourself ).
-	plot1 := DCBarPlot new y: y.
-	plot2 := DCBarPlot new y: y2.
-	plot3 := DCBarPlot new y: y3.
-	plot4 := DCBarPlot new y: y4.
+	plot1 := DCBarPlot new x:x ;y: y.
+	plot2 := DCBarPlot new x:x;y: y2.
+	plot3 := DCBarPlot new x:x; y: y3.
+	plot4 := DCBarPlot new x:x; y: y4.
 	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
 		add: plot3;
 		add: plot4;
@@ -94,6 +94,7 @@ DCExamples >> exampleDCCombinePlot [
 	line2 := DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);
+		name: 'covid evolution';
 		yourself.
 	
 	combined := DCCombinePlot new withAll: { line1. line2.}.

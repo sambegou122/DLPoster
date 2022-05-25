@@ -2,10 +2,25 @@ Class {
 	#name : #DCLabelDecoration,
 	#superclass : #DCDecoration,
 	#instVars : [
-		'label'
+		'label',
+		'posi'
 	],
 	#category : #'DataChart-Decoration'
 }
+
+{ #category : #accessing }
+DCLabelDecoration >> changeYourPosition: aDCPlot [
+
+	| position xchart plot dif |
+	xchart := aDCPlot chart extent x.
+	label := self shape copy.
+	plot := self chart plots first.
+	position := (plot xScale scale: self x) + label extent x.
+	dif := position - xchart.
+	position > xchart ifTrue: [ posi := dif @ label extent y.].
+	
+	
+]
 
 { #category : #accessing }
 DCLabelDecoration >> createdShapes [
@@ -27,8 +42,10 @@ DCLabelDecoration >> renderIn: canvas [
 	self y ifNil: [ self error: ' yous need put a y abxis' ].
 	padding := self chart padding.
 	point := plot scalePoint: x @ y.
-	label position: point + ( label extent /2).
+	posi ifNil: [ posi := point + ( label extent /2)].
+	label position: posi.
 	canvas add: label.
+	
 ]
 
 { #category : #accessing }

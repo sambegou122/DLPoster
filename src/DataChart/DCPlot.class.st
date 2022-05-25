@@ -22,7 +22,8 @@ Class {
 		'y',
 		'chart',
 		'kind',
-		'legend'
+		'legend',
+		'name'
 	],
 	#category : #'DataChart-Core'
 }
@@ -80,6 +81,7 @@ DCPlot >> build [
 	self addDecorations.
 	self chart build.
 	self computeLegend.
+	self manageLabelDecoration.
 ]
 
 { #category : #adding }
@@ -109,9 +111,14 @@ DCPlot >> color: aColor [
 { #category : #adding }
 DCPlot >> computeLegend [
 	self legend container: self chart canvas.
-	self legend text: self className withBoxColor: self kind computeColor.
+	self legend text: self computeName withBoxColor: self kind computeColor.
 	self legend location middle; right; offset: 10.
 	self legend build
+]
+
+{ #category : #accessing }
+DCPlot >> computeName [
+	^ name ifNil: [ self className ] ifNotNil:[ name ]
 ]
 
 { #category : #default }
@@ -166,6 +173,25 @@ DCPlot >> legend [
 { #category : #'accessing - shapes' }
 DCPlot >> mainShapes [
 	^ kind createdShapes
+]
+
+{ #category : #accessing }
+DCPlot >> manageLabelDecoration [
+	| labels |
+	labels := self settings decorations select:[:deco| deco class = DCLabelDecoration].
+	labels ifNotEmpty: [ :label| label do:[:l| l changeYourPosition: self] ].
+	
+	
+]
+
+{ #category : #accessing }
+DCPlot >> name [
+	^name
+]
+
+{ #category : #accessing }
+DCPlot >> name: aString [
+	name:= aString
 ]
 
 { #category : #accessing }
