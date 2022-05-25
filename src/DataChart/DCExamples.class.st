@@ -168,7 +168,6 @@ DCExamples >> exampleDCHistogramWithDecoration [
 	<script: 'self new exampleDCHistogramWithDecoration'>
 	| x decoration |
 	x := self randomValues.
-	
 	decoration := (DCLabelDecoration new
 		text: 'Middle area';
 		x: 175;
@@ -325,6 +324,7 @@ DCExamples >> randomValues: loc scale: scale size: size [
 	mean := (low + upp) / 2.
 	stdDev := (upp - low)/4.
 	r := Random new.
+	r seed: 44.
 	
 	^ ((1 to: size ) collectWithIndex: [ :i :index | 
 		| val sign rval |
