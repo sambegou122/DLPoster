@@ -11,12 +11,6 @@ Class {
 }
 
 { #category : #building }
-DCHistogramPlot >> addAxis [ 
-	self kind x: self x.
-	self bins isNotEmpty ifTrue: [  self kind bins: self bins ]  
-]
-
-{ #category : #building }
 DCHistogramPlot >> bins [
 	^ bins 
 ]
@@ -35,6 +29,12 @@ DCHistogramPlot >> defaultKind [
 DCHistogramPlot >> initialize [ 
 	super initialize.
 	bins := OrderedCollection new.
+]
+
+{ #category : #building }
+DCHistogramPlot >> propagateData [ 
+	self kind x: self x.
+	self bins isNotEmpty ifTrue: [  self kind bins: self bins ]  
 ]
 
 { #category : #accessing }

@@ -34,11 +34,6 @@ DCPlot >> add: aDCObject [
 	aDCObject addIn: self
 ]
 
-{ #category : #building }
-DCPlot >> addAxis [
-	self kind x: self x y: self y
-]
-
 { #category : #adding }
 DCPlot >> addDecoration: aDCDecoration [
 	self settings addDecoration: aDCDecoration
@@ -75,16 +70,32 @@ DCPlot >> applyProperties [
 
 { #category : #building }
 DCPlot >> build [
-	self addAxis.
-	self chart
-		addPlot: self kind.
+	self propagateData.
+	self chart addPlot: self kind.
 	self addDecorations.
 	self chart build.
-	"self computeLegend."
-	self manageLabelDecoration.
+	self buildLegendIfNecessary.
 ]
 
-{ #category : #adding }
+{ #category : #building }
+DCPlot >> buildLegend [
+	self buildLegendData.
+	self legend container: self chart canvas.
+	self legend build
+]
+
+{ #category : #building }
+DCPlot >> buildLegendData [
+	self legend text: self computeName withBoxColor: self kind computeColor.
+]
+
+{ #category : #building }
+DCPlot >> buildLegendIfNecessary [
+	self settings shouldUseLegend ifFalse: [ ^ self ].
+	self buildLegend.
+]
+
+{ #category : #building }
 DCPlot >> changeTicks [ 
 	self settings xtick
 		doNotUseNiceLabel
@@ -108,14 +119,6 @@ DCPlot >> color: aColor [
 	self settings color: aColor.
 ]
 
-{ #category : #adding }
-DCPlot >> computeLegend [
-	self legend container: self chart canvas.
-	self legend text: self computeName withBoxColor: self kind computeColor.
-	self legend location middle; right; offset: 10.
-	self legend build
-]
-
 { #category : #accessing }
 DCPlot >> computeName [
 	^ name ifNil: [ 'serie' ] ifNotNil:[ name ]
@@ -131,7 +134,7 @@ DCPlot >> extent: aPoint [
 	self settings extent: aPoint
 ]
 
-{ #category : #adding }
+{ #category : #building }
 DCPlot >> generateNumberOfTicks [
 	| xExtends yExtends result |
 	xExtends := self chart extent x.
@@ -148,7 +151,7 @@ DCPlot >> initialize [
 	settings := DCPlotSettings new.
 	chart := RSChart new.
 	kind := self defaultKind.
-	legend := RSLegend new.
+	legend := DCLegend new.
 ]
 
 { #category : #inspector }
@@ -165,24 +168,20 @@ DCPlot >> kind [
 	^ kind
 ]
 
-{ #category : #adding }
+{ #category : #accessing }
 DCPlot >> legend [
-	^legend
+	^ legend
+]
+
+{ #category : #legend }
+DCPlot >> legendDo: aBlock [
+	self settings withLegend.
+	aBlock value: self legend
 ]
 
 { #category : #'accessing - shapes' }
 DCPlot >> mainShapes [
 	^ kind createdShapes
-]
-
-{ #category : #accessing }
-DCPlot >> manageLabelDecoration [
-	| labels |
-	self flag: 'TODO please review this check beforeRenderingIn: '.
-	labels := self settings decorations select:[:deco| deco class = DCLabelDecoration].
-	"labels ifNotEmpty: [ :label| label do:[:l| l changeYourPosition: self] ]."
-	
-	
 ]
 
 { #category : #accessing }
@@ -195,21 +194,17 @@ DCPlot >> name: aString [
 	name:= aString
 ]
 
-{ #category : #accessing }
-DCPlot >> putValue: aValue in: aDictionnary [
-	
-	aValue <= 200 ifTrue: [ aDictionnary at:'x' put:5. ].
-	(aValue > 200 and: [ aValue < 600 ] )ifTrue: [ aDictionnary at:'x' put: 10 ].
-	aValue>= 600 ifTrue: [ aDictionnary at:'x' put: 15 ].
-
+{ #category : #building }
+DCPlot >> propagateData [
+	self kind x: self x y: self y
 ]
 
 { #category : #accessing }
-DCPlot >> putValue: aValue in: aDictionnary at: aString [
+DCPlot >> putValue: aValue in: aDictionary at: aString [
 	
-	aValue <= 200 ifTrue: [ aDictionnary at:aString put:5. ].
-	(aValue > 200 and: [ aValue < 600 ] )ifTrue: [ aDictionnary at:aString put: 10 ].
-	aValue>= 600 ifTrue: [ aDictionnary at:aString put: 15 ].
+	aValue <= 200 ifTrue: [ aDictionary at:aString put: 5 ].
+	(aValue > 200 and: [ aValue < 600 ] )ifTrue: [ aDictionary at:aString put: 10 ].
+	aValue>= 600 ifTrue: [ aDictionary at:aString put: 15 ].
 
 ]
 
@@ -235,7 +230,7 @@ DCPlot >> title: aString [
 
 { #category : #building }
 DCPlot >> withLegend [
-	self computeLegend.
+	self legendDo: [ :aRSLegend | aRSLegend location middle; right; offset: 10 ].
 	
 ]
 

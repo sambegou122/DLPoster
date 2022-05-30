@@ -50,7 +50,7 @@ DCLinePlotTest >> testBasicLabel [
 		x: x;
 		y: y;
 		build.
-	self assert: plot legend class equals: RSLegend.
+	self assert: plot legend class equals: DCLegend.
 	
 	
 ]

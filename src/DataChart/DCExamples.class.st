@@ -82,7 +82,7 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 { #category : #examples }
 DCExamples >> exampleDCCombinePlot [
 	<script: 'self new exampleDCCombinePlot'>
-	| x line1 line2 line3 combined  |
+	| x line1 line2 line3 combined |
 
 	x := 0.0 to: 2 count: 100.
 
@@ -109,8 +109,8 @@ DCExamples >> exampleDCCombinePlot [
 		title: 'Combined plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-		build; 
 		withLegend;
+		build;
 		show.
 ]
 
@@ -192,6 +192,7 @@ DCExamples >> exampleDCLine [
 		x: x;
 		y: (x raisedTo: 3);
 		color: Color green;
+		withLegend;
 		build;
 		show
 ]
