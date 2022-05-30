@@ -75,7 +75,7 @@ DCCombinePlot >> build [
 	self addDecorations.
 	self chart build.
 	"self halt."
-	self computeLegend.
+	"self computeLegend."
 
 	
 ]

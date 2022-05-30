@@ -30,7 +30,7 @@ DCClusterBarPlot >> build [
 	self plots do: [ :plot| plot kind chart: self chart].
 	self addDecorations.
 	self chart build.
-	self computeLegend.
+	"self computeLegend."
 ]
 
 { #category : #adding }

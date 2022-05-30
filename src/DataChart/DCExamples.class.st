@@ -110,6 +110,7 @@ DCExamples >> exampleDCCombinePlot [
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		build; 
+		withLegend;
 		show.
 ]
 

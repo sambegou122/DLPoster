@@ -80,7 +80,7 @@ DCPlot >> build [
 		addPlot: self kind.
 	self addDecorations.
 	self chart build.
-	self computeLegend.
+	"self computeLegend."
 	self manageLabelDecoration.
 ]
 
@@ -118,7 +118,7 @@ DCPlot >> computeLegend [
 
 { #category : #accessing }
 DCPlot >> computeName [
-	^ name ifNil: [ self className ] ifNotNil:[ name ]
+	^ name ifNil: [ 'serie' ] ifNotNil:[ name ]
 ]
 
 { #category : #default }
@@ -231,6 +231,12 @@ DCPlot >> show [
 { #category : #accessing }
 DCPlot >> title: aString [
 	self settings title: aString.
+]
+
+{ #category : #building }
+DCPlot >> withLegend [
+	self computeLegend.
+	
 ]
 
 { #category : #accessing }
