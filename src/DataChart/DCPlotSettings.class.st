@@ -64,17 +64,17 @@ DCPlotSettings >> defaultPadding [
 	^ 10 @ 10
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 DCPlotSettings >> defaultTitle [
 	^ ' Title '
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 DCPlotSettings >> defaultXlabel [
 	^ ' xAxis '
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 DCPlotSettings >> defaultYlabel [
 	^ ' yAxis '
 ]
@@ -87,6 +87,11 @@ DCPlotSettings >> extent [
 { #category : #accessing }
 DCPlotSettings >> extent: aPoint [
 	self propertyAt: #extent put: aPoint
+]
+
+{ #category : #public }
+DCPlotSettings >> noLegend [
+	self propertyAt: #shouldUseLegend put: false
 ]
 
 { #category : #accessing }
@@ -124,6 +129,11 @@ DCPlotSettings >> propertyAt: aString put: aPoint [
 	self properties at: aString put: aPoint
 ]
 
+{ #category : #testing }
+DCPlotSettings >> shouldUseLegend [
+	^ self propertyAt: #shouldUseLegend ifAbsent: [ false ]
+]
+
 { #category : #accessing }
 DCPlotSettings >> title [
 	^ self propertyAt: #title ifAbsent: [ self defaultTitle ]
@@ -132,6 +142,11 @@ DCPlotSettings >> title [
 { #category : #accessing }
 DCPlotSettings >> title: aString [
 	self propertyAt: #title put: aString
+]
+
+{ #category : #public }
+DCPlotSettings >> withLegend [
+	self propertyAt: #shouldUseLegend put: true
 ]
 
 { #category : #accessing }

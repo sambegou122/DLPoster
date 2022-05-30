@@ -22,15 +22,9 @@ DCClusterBarPlot >> applyBarSizeAndScale [
 ]
 
 { #category : #building }
-DCClusterBarPlot >> build [
-	self plots ifEmpty: [ self error: 'You should to provide at least one plot' ].
-	self plots do:[ :plot| plot addAxis ].
+DCClusterBarPlot >> buildPlots [
+	super buildPlots.
 	self applyBarSizeAndScale.
-	self plots do: [ :plot| self chart addPlot: plot kind].
-	self plots do: [ :plot| plot kind chart: self chart].
-	self addDecorations.
-	self chart build.
-	"self computeLegend."
 ]
 
 { #category : #adding }

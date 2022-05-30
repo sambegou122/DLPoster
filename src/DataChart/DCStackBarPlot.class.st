@@ -25,16 +25,9 @@ DCStackBarPlot >> applyBottom [
 ]
 
 { #category : #building }
-DCStackBarPlot >> build [
-	self plots ifEmpty: [ self error: 'You should to provide at least one plot' ].
-	self plots do:[ :plot| plot addAxis ].
+DCStackBarPlot >> buildPlots [
+	super buildPlots.
 	self applyBottom.
-	self plots do: [ :plot| self chart addPlot: plot kind].
-	self plots do: [  :plot| plot kind chart: self chart].
-	self addDecorations.
-	self chart build.
-	"self computeLegend."
-
 ]
 
 { #category : #adding }

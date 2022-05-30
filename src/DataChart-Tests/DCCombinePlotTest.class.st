@@ -133,14 +133,15 @@ DCCombinePlotTest >> testBasicForLegend [
 	self assert: combined plots isEmpty.
 	combined add: line1.
 	combined add: line2.
-	"combined build.
-	self assert: combined legend shapes size equals: 2."
 	combined add: line3.
-	combined build.
 	combined withLegend.
+	combined build.
+	
+	self assert: combined legend class equals: DCLegend.
 	self assert: combined legend shapes size equals: 3.
-	self assert: combined legend shapes first class equals:RSComposite.
-	combined plots doWithIndex: [ :p :index |  self assert: (combined legend shapes at: index ) color equals: p color]
+	self assert: combined legend shapes first class equals: RSComposite.
+	combined plots doWithIndex: [ :p :index |
+		self assert: (combined legend shapes at: index ) color equals: p color]
 	
 	 
 

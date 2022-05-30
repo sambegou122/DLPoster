@@ -61,33 +61,33 @@ DCCombinePlot >> addPlot: aDCPlot [
 	self plots add: aDCPlot.
 ]
 
-{ #category : #default }
-DCCombinePlot >> applyColor [
-	self plots do: [ :each| each kind color: each color ]
-]
-
 { #category : #building }
 DCCombinePlot >> build [
 	self plots ifEmpty: [ self error: 'You should to provide at least one plot' ].
-	self plots do:[ :plot| plot addAxis ].
-	self applyColor.
-	self plots do: [ :plot| self chart addPlot: plot kind].
-	self addDecorations.
+	self buildPlots.
 	self chart build.
-	"self halt."
-	"self computeLegend."
-
+	self buildLegendIfNecessary.
 	
 ]
 
-{ #category : #adding }
-DCCombinePlot >> computeLegend [
-	self legend container: self chart canvas.
+{ #category : #building }
+DCCombinePlot >> buildLegendData [
 	self plots do:[:plot | self legend text: plot computeName  withBoxColor: plot kind computeColor].
 	self legend legendDo: [ :shape | shape withBorder; padding: 10; scaleBy: 0.5 ].
-	self legend location middle; right; offset: 10.
-	self legend build.
-	
+]
+
+{ #category : #building }
+DCCombinePlot >> buildPlot: aPlot [
+	aPlot kind color: aPlot color.
+	aPlot propagateData.
+	self chart addPlot: aPlot kind.
+	aPlot kind chart: self chart 
+]
+
+{ #category : #building }
+DCCombinePlot >> buildPlots [
+	self plots do: [ :each | self buildPlot: each ].
+	self addDecorations.
 ]
 
 { #category : #adding }
