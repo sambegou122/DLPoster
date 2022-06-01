@@ -63,7 +63,6 @@ DCBarPlotTest >> testCustomX [
 		x: (0 to: 2 count: 10);
 		y: (1 to: 10);
 		build.
-	
 	self skip.
 	self should: [ DCBarPlot new
 		x: #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8);
