@@ -32,10 +32,14 @@ DCLegendTest >> testInnerLegend [
 		y: (x raisedTo: 3);
 		color: Color green;
 		legendDo: [:legend |
-			legend targetAllShapes.
-			legend targetOnlyBox.
-			legend location inner; left; top; offset: 10@10 ];
+			self assert: legend location class equals: DCLocation.
+			legend location
+				inner;
+				top;
+				center;
+				offset: 0@ 10 ];
 		build;
+		show;
 		yourself.
 	box := plot settings background box.
 	legendShape := plot legend legend.
