@@ -109,7 +109,8 @@ DCExamples >> exampleDCCombinePlot [
 		title: 'Combined plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-		withLegend;
+		legendDo: [ : legend|
+			legend location inner top offset: 10];
 		build;
 		show.
 ]

@@ -39,7 +39,6 @@ DCLegendTest >> testInnerLegend [
 				center;
 				offset: 0@ 10 ];
 		build;
-		show;
 		yourself.
 	box := plot settings background box.
 	legendShape := plot legend legend.
