@@ -7,6 +7,14 @@ Class {
 	#category : #'DataChart-Decoration'
 }
 
+{ #category : #initialization }
+DCLocation >> initialize [ 
+	super initialize.
+	self
+		offset: 0;
+		outer.
+]
+
 { #category : #'public - modifiers' }
 DCLocation >> inner [
 	super inner.
