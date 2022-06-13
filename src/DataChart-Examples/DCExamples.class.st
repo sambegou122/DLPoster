@@ -21,16 +21,22 @@ DCExamples >> exampleDCBarPlotCustomStringDataX [
 { #category : #examples }
 DCExamples >> exampleDCBarPlotCustomX [
 	<script: 'self new exampleDCBarPlotCustomX'>
-		| x plot bars window |
-	x := #(1.33 1.35 0.93 4 6 6).
+	| x plot bars window |
+	x := #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8) sorted.
 	plot := DCBarPlot new
-			x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
-			y: x;
+			x: x;
+			y: (1 to: 10);
 			yourself.
 	plot build.
 	window := plot show.
-	^ window.
-	
+	bars := plot kind bars.
+	plot chart canvas signalUpdate.
+	bars doWithIndex: [ :each :index |
+		each draggable.
+		each popupText: (x at: index) @ each model.
+		each color: each color translucent ].
+	plot chart canvas signalUpdate.
+	^ window
 ]
 
 { #category : #examples }
@@ -108,7 +114,7 @@ DCExamples >> exampleDCCombinePlot [
 	line3 := DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 4);
-		color: Color green;
+		color: Color blue;
 		yourself.
 	combined add: line3.
 	^ combined 
@@ -244,7 +250,7 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 { #category : #examples }
 DCExamples >> exampleDCScatter [
 	<script: 'self new exampleDCScatter'>
-		| x |
+	| x |
 
 	x := 0.0 to: 2 count: 100.
 
@@ -275,6 +281,7 @@ DCExamples >> exampleDCStackBarPlot [
 		title: 'Stack Bar Plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
+		padding: 0.3;
 		build;
 		show.
 ]

@@ -163,6 +163,11 @@ DCPlot >> inspectorCanvas [
 		yourself
 ]
 
+{ #category : #inspector }
+DCPlot >> inspectorCanvasContext: aContext [
+	aContext withoutEvaluator
+]
+
 { #category : #accessing }
 DCPlot >> kind [
 	^ kind

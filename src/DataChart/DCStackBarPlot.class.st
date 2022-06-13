@@ -53,13 +53,16 @@ DCStackBarPlot >> initialize [
 ]
 
 { #category : #accessing }
+DCStackBarPlot >> padding: aNumber [
+	"aNumber between 0 and 1"
+	self plots do: [ :plot | plot kind gapRatio: aNumber ].
+]
+
+{ #category : #accessing }
 DCStackBarPlot >> sommeAll: aCollectionOfPlot to: index [
-	| yAxix indexCollection size clsz |
-	size := (aCollectionOfPlot at:1) y size.
-	yAxix := Array new: size.
-	clsz := (1 to: size).
-	clsz do: [ :i| yAxix at:i put: 0].
-	indexCollection := 1 to: index.
-	indexCollection do:[ :i| yAxix := yAxix + (aCollectionOfPlot at:i) y].
+	| yAxix size |
+	size := aCollectionOfPlot first y size.
+	yAxix := Array new: size withAll: 0.
+	1 to: index do:[ :i| yAxix := yAxix + (aCollectionOfPlot at: i) y].
 	^ yAxix
 ]

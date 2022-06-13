@@ -124,6 +124,11 @@ DCCombinePlot >> initialize [
 ]
 
 { #category : #accessing }
+DCCombinePlot >> numberOfPlots [
+	^ self plots size.
+]
+
+{ #category : #accessing }
 DCCombinePlot >> plots [
 	^ plots
 	
