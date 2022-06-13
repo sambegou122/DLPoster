@@ -4,6 +4,10 @@ This class is a kind of Combined plots, but just for clusterBarPlots, so we can 
 Class {
 	#name : #DCClusterBarPlot,
 	#superclass : #DCCombinePlot,
+	#instVars : [
+		'outerPadding',
+		'innerPadding'
+	],
 	#category : #'DataChart-Core'
 }
 
@@ -14,11 +18,14 @@ DCClusterBarPlot >> addPlot: aDCPlot [
 		ifFalse:[ self error: ' you must add a DCBarPlot ']
 ]
 
-{ #category : #adding }
+{ #category : #private }
 DCClusterBarPlot >> applyBarSizeAndScale [
+	| barScale barSize |
+	barScale := self computeBarScale.
+	barSize := self computeBarSize.
 	self plots doWithIndex: [ :plot :index |
-		plot kind barSize: self computeBarScale rangeBand.
-		plot kind barOffset: (self computeBarScale scale: index)-(self computeBarSize / 2).]
+		plot kind barSize: barScale rangeBand.
+		plot kind barOffset: (barScale scale: index)-(barSize / 2).]
 ]
 
 { #category : #building }
@@ -27,7 +34,7 @@ DCClusterBarPlot >> buildPlots [
 	self applyBarSizeAndScale.
 ]
 
-{ #category : #adding }
+{ #category : #building }
 DCClusterBarPlot >> changeTicks [
 	| plot |
 	plot := self plots at:1.
@@ -44,27 +51,45 @@ DCClusterBarPlot >> changeTicks [
 		ifTrue: [ self settings ytick labelConversion: [ :val | val asInteger ] ]. 
 ]
 
-{ #category : #adding }
+{ #category : #private }
 DCClusterBarPlot >> computeBarScale [
 
 	| barScale |
 	barScale := NSOrdinalScale new
         domain: (1 to: self numberOfPlots);
-        rangeBands: { 0. self computeBarSize } padding: 0.07.
+        rangeBands: { 0. self computeBarSize } padding: self innerPadding.
 	^ barScale.
 ]
 
-{ #category : #adding }
+{ #category : #private }
 DCClusterBarPlot >> computeBarSize [
 
 	| scale |
 	scale := NSOrdinalScale new
     domain: (1 to: self numberOfPlots);
-    rangeBands: { 0. self chart extent x * self numberOfPlots / self plots first y size } padding: 0.1.
+    rangeBands: { 0. self chart extent x * self numberOfPlots / self plots first y size }
+		padding: self outerPadding.
 	^ scale rangeBand.
 ]
 
-{ #category : #adding }
-DCClusterBarPlot >> numberOfPlots [
-	^ self plots size.
+{ #category : #private }
+DCClusterBarPlot >> innerPadding [
+	^ innerPadding ifNil: [ innerPadding := 0.07 ]
+]
+
+{ #category : #private }
+DCClusterBarPlot >> innerPadding: aNumber [
+	"aNumber between 0 and 1"
+	innerPadding := aNumber
+]
+
+{ #category : #accessing }
+DCClusterBarPlot >> outerPadding [
+	^ outerPadding ifNil: [ outerPadding := 0.2 ]
+]
+
+{ #category : #accessing }
+DCClusterBarPlot >> outerPadding: aNumber [
+	"aNumber should be between 0 and 1"
+	outerPadding := aNumber
 ]
