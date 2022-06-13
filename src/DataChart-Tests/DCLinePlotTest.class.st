@@ -26,7 +26,7 @@ DCLinePlotTest >> testAddingColor [
 	plot color: Color green.
 	plot x: x; y: y.
 	plot build.
-	self assert: plot chart shapes last color equals: plot color.
+	self assert: plot chart plots last line color equals: plot color.
 
 		
 	
