@@ -5,26 +5,32 @@ Class {
 }
 
 { #category : #examples }
-DCExamples >> exampleDCBarPlotCustomX [
-	<script: 'self new exampleDCBarPlotCustomX'>
-	| x plot bars window |
-	x := #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8) sorted.
+DCExamples >> exampleDCBarPlotCustomStringDataX [
+	<script: 'self new exampleDCBarPlotCustomStringDataX'>
+	| x plot  window |
+	x := #(1.33 1.35 0.93 4 6 6).
 	plot := DCBarPlot new
-			x: x;
-			y: (1 to: 10);
+			x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
+			y: x;
 			yourself.
 	plot build.
 	window := plot show.
-	bars := plot kind bars.
-	bars do: #remove.
-	plot chart canvas signalUpdate.
-	bars doWithIndex: [ :each :index |
-		each draggable.
-		each popupText: (x at: index) @ each model.
-		each color: each color translucent.
-		plot chart canvas add: each ].
-	plot chart canvas signalUpdate.
 	^ window
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCBarPlotCustomX [
+	<script: 'self new exampleDCBarPlotCustomX'>
+		| x plot bars window |
+	x := #(1.33 1.35 0.93 4 6 6).
+	plot := DCBarPlot new
+			x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
+			y: x;
+			yourself.
+	plot build.
+	window := plot show.
+	^ window.
+	
 ]
 
 { #category : #examples }

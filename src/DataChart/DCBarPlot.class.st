@@ -15,7 +15,7 @@ Class {
 DCBarPlot >> changeTicks [ 
 	isStringData ifNotNil:[
 		self settings xtick
-			fromNames: self x.
+			fromNames: self stringData.
 		self settings ytick
 			numberOfTicks: self x size  -1].
 	isStringData ifNil: [   
