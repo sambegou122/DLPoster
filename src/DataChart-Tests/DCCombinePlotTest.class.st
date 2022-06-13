@@ -53,7 +53,7 @@ DCCombinePlotTest >> testAddingColor [
 	line3  color: Color green.
 	combined addAll: { line1. line2. line3 }.
 	combined build.
-	self assert: combined chart shapes last color equals: line3 color.
+	self assert: combined chart plots last line color equals: line3 color.
 	
 ]
 

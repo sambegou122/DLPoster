@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'legend'
 	],
-	#category : #'DataChart-Decoration'
+	#category : #'DataChart-Legend'
 }
 
 { #category : #initialization }
