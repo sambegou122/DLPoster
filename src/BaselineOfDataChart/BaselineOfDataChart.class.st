@@ -19,6 +19,7 @@ BaselineOfDataChart >> baseline: spec [
 		spec
 			package: 'DataChart';
 			package: 'DataChart-DataFrame' with: [ spec requires: #('DataChart' 'DataFrame')]; 
+			package: 'DataChart-Examples' with: [ spec requires: #('DataChart') ];
 			package: 'DataChart-DataFrame-Tests'  with: [ spec requires: #('DataChart-DataFrame')];
 			package: 'DataChart-Tests'  with: [ spec requires: #('DataChart')].
 			
@@ -27,7 +28,7 @@ BaselineOfDataChart >> baseline: spec [
 			group: 'Core' with: #('DataChart');
 			group: 'DF' with: #('Core' 'DataChart-DataFrame');
 			group: 'Tests' with: #('DataChart-Tests' 'DataChart-DataFrame-Tests');
-			group: 'default' with: #('Tests') ]
+			group: 'default' with: #('Tests', 'DataChart-Examples') ]
 		
 	
 ]

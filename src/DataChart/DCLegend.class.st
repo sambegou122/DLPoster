@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'shouldTargetAllShapes'
 	],
-	#category : #'DataChart-Decoration'
+	#category : #'DataChart-Legend'
 }
 
 { #category : #hooks }
