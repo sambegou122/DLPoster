@@ -26,7 +26,6 @@ DCLegendTest >> testBasic [
 DCLegendTest >> testInnerLegend [
 	| x plot box legendShape |
 	x := 1 to: 100.
-	self skip.
 	plot := DCLinePlot new
 		x: x;
 		y: (x raisedTo: 3);

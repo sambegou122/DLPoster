@@ -59,14 +59,29 @@ DCBarPlotTest >> testBasicY [
 
 { #category : #tests }
 DCBarPlotTest >> testCustomX [
-	DCBarPlot new
-		x: (0 to: 2 count: 10);
-		y: (1 to: 10);
-		build.
-	self skip.
 	self should: [ DCBarPlot new
 		x: #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8);
 		y: (1 to: 10);
 		build ] raise: Error.
-	
+	plot 
+		x: #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8) sorted;
+		y: (1 to: 10);
+		build.
+	self  assert: plot x equals: #(1.33 1.35 0.93 1.08 1.28 1 1.5 1.93 8 2.8) sorted.
+
+]
+
+{ #category : #tests }
+DCBarPlotTest >> testStringDatatX [
+	self should: [ DCBarPlot new
+		x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
+		y: (1 to: 10);
+		build ] raise: Error.
+	plot 
+		x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
+		y: (1 to: 6);
+		build.
+	self  assert: plot x size equals: plot stringData size.
+	self assert: plot y size equals: plot settings xtick ticks size.
+
 ]

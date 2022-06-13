@@ -191,11 +191,10 @@ DCExamples >> exampleDCLine [
 	x := 1 to: 100.
 	^ DCLinePlot new
 		x: x;
-		y: (x raisedTo: 3);
+		y: (x raisedTo: 2); 
 		color: Color green;
-		withLegend;
 		build;
-		show
+		show.
 ]
 
 { #category : #examples }
