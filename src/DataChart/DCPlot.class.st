@@ -43,7 +43,7 @@ DCPlot >> addDecoration: aDCDecoration [
 DCPlot >> addDecorations [
 	self chart decorations removeAll.
 	self chart
-		addDecoration: self settings background;
+		spineDecoration: self settings background;
 		addDecoration: self settings xtick;
 		addDecoration:	self settings ytick;
 		extent: self settings extent.

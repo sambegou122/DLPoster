@@ -1,53 +1,74 @@
 Class {
-	#name : #DCLabelDecorationForbarPlot,
+	#name : #DCLabelDecorationForBarPlot,
 	#superclass : #RSAbstractChartDecoration,
 	#instVars : [
-		'labels'
+		'labels',
+		'location'
 	],
 	#category : #'DataChart-Decoration'
 }
 
 { #category : #accessing }
-DCLabelDecorationForbarPlot >> addIn: aDCBarPlot [ 
+DCLabelDecorationForBarPlot >> addIn: aDCBarPlot [
 	aDCBarPlot addDecoration: self
 ]
 
-{ #category : #add }
-DCLabelDecorationForbarPlot >> addLabels: aRSBarPlot [ 
-	 | myLabels bars location|
-	self genarateLabels: aRSBarPlot.
-	bars := aRSBarPlot bars.
-	location := RSLocation new.
-	myLabels := self labels.
-	myLabels doWithIndex: [:index :label | | bar |
-		bar := bars at: index.
-		location outer; top; move: label on: bar.]
+{ #category : #building }
+DCLabelDecorationForBarPlot >> createLabels: values [
+	^ values collect: [ :value | self newLabelFor: value ]
 ]
 
 { #category : #accessing }
-DCLabelDecorationForbarPlot >> createdShapes [
+DCLabelDecorationForBarPlot >> createdShapes [
 	^ labels.
 ]
 
 { #category : #initialization }
-DCLabelDecorationForbarPlot >> defaultShape [ 
-	^ RSLabel new.
-]
-
-{ #category : #building }
-DCLabelDecorationForbarPlot >> genarateLabels: aRSBarPlot [ 
-	| values |
-	values := aRSBarPlot yValues.
-	values do: [ :value| self labels add: (self defaultShape text: (value asString)) ]
+DCLabelDecorationForBarPlot >> defaultLocation [
+	^ RSLocation new
+		outer;
+		center;
+		top;
+		yourself
 ]
 
 { #category : #initialization }
-DCLabelDecorationForbarPlot >> initialize [ 
+DCLabelDecorationForBarPlot >> defaultShape [ 
+	^ RSLabel new 
+		fontSize: 5;
+		yourself
+]
+
+{ #category : #initialization }
+DCLabelDecorationForBarPlot >> initialize [
 	super initialize.
-	labels := OrderedCollection new.
+	location := self defaultLocation
 ]
 
 { #category : #accessing }
-DCLabelDecorationForbarPlot >> labels [
+DCLabelDecorationForBarPlot >> labels [
 	^ labels
+]
+
+{ #category : #accessing }
+DCLabelDecorationForBarPlot >> location [
+	^ location
+]
+
+{ #category : #hooks }
+DCLabelDecorationForBarPlot >> newLabelFor: aNumber [
+	^ self defaultShape copy 
+		text: aNumber asString;
+		yourself
+]
+
+{ #category : #rendering }
+DCLabelDecorationForBarPlot >> renderIn: canvas [
+	| plot bars |
+	plot := self chart plots first.
+	labels := self createLabels: plot yValues.
+	bars := plot bars.
+	labels with: bars do: [ :label :bar | location move: label on: bar ].
+	canvas addAll: labels
+	
 ]
