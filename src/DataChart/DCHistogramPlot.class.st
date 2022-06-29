@@ -16,8 +16,8 @@ DCHistogramPlot >> bins [
 ]
 
 { #category : #accessing }
-DCHistogramPlot >> bins: aCollection [
-	bins := aCollection.
+DCHistogramPlot >> bins:aNumber [
+	bins := aNumber.
 ]
 
 { #category : #default }
@@ -34,7 +34,7 @@ DCHistogramPlot >> initialize [
 { #category : #building }
 DCHistogramPlot >> propagateData [ 
 	self kind x: self x.
-	self bins isNotEmpty ifTrue: [  self kind bins: self bins ]  
+	self bins isNotNil ifTrue: [  self kind bins: self bins ]  
 ]
 
 { #category : #accessing }
