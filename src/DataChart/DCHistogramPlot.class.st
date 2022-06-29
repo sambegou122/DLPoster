@@ -5,10 +5,21 @@ Class {
 	#name : #DCHistogramPlot,
 	#superclass : #DCPlot,
 	#instVars : [
-		'bins'
+		'bins',
+		'bin'
 	],
 	#category : #'DataChart-Core'
 }
+
+{ #category : #building }
+DCHistogramPlot >> bin [
+	^ bin
+]
+
+{ #category : #accessing }
+DCHistogramPlot >> bin:aNumber [
+	bin := aNumber.
+]
 
 { #category : #building }
 DCHistogramPlot >> bins [
@@ -34,7 +45,7 @@ DCHistogramPlot >> initialize [
 { #category : #building }
 DCHistogramPlot >> propagateData [ 
 	self kind x: self x.
-	self bins isNotNil ifTrue: [  self kind bins: self bins ]  
+	self bin isNotNil ifTrue: [  self kind bins: self bin ]  
 ]
 
 { #category : #accessing }

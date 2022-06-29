@@ -193,7 +193,7 @@ DCExamples >> exampleDCHistogram [
 		title: 'Histogram';
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
-		bins: 18;
+		bin: 80;
 		build;
 		show
 ]
