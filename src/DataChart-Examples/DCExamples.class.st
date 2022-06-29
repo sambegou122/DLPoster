@@ -40,6 +40,26 @@ DCExamples >> exampleDCBarPlotCustomX [
 ]
 
 { #category : #examples }
+DCExamples >> exampleDCBoxPlot [
+	<script: 'self new exampleDCBoxPlot'>
+	
+	| y plot |
+	y := { { 1. 2. 3. 4. 5. } . 
+			 { 5. 6. 7. 5. 10. }  .
+			 { 12. 12. 13. 14. 15. 24. }  }. 
+
+	plot := DCBoxPlot new
+		y: y;
+		xlabel: 'X Axis';
+		ylabel: 'Y Axis';
+		title: 'Box Plot';
+		name: ' Box Plot';
+		withLegend;
+		build;
+		show.
+]
+
+{ #category : #examples }
 DCExamples >> exampleDCClusterBarPlot [
 	<script: 'self new exampleDCClusterBarPlot'>
 	| x y plots perlin |
