@@ -28,7 +28,7 @@ BaselineOfDataChart >> baseline: spec [
 			group: 'Core' with: #('DataChart');
 			group: 'DF' with: #('Core' 'DataChart-DataFrame');
 			group: 'Tests' with: #('DataChart-Tests' 'DataChart-DataFrame-Tests');
-			group: 'default' with: #('Tests', 'DataChart-Examples') ]
+			group: 'default' with: #('Tests' 'DataChart-Examples') ]
 		
 	
 ]
