@@ -5,54 +5,24 @@ Class {
 	#name : #DCHistogramPlot,
 	#superclass : #DCPlot,
 	#instVars : [
-		'bins',
-		'bin'
+		'numberOfBins'
 	],
 	#category : #'DataChart-Core'
 }
-
-{ #category : #building }
-DCHistogramPlot >> bin [
-	^ bin
-]
-
-{ #category : #accessing }
-DCHistogramPlot >> bin:aNumber [
-	bin := aNumber.
-]
-
-{ #category : #building }
-DCHistogramPlot >> bins [
-	^ bins 
-]
-
-{ #category : #accessing }
-DCHistogramPlot >> bins: aColloection [
-	bins := aColloection.
-]
 
 { #category : #default }
 DCHistogramPlot >> defaultKind [ 
 	^ RSHistogramPlot  new.
 ]
 
-{ #category : #initialization }
-DCHistogramPlot >> initialize [
-	super initialize.
-	bins := #().
+{ #category : #accessing }
+DCHistogramPlot >> numberOfBins [
+	^ numberOfBins
 ]
 
-{ #category : #building }
-DCHistogramPlot >> propagateBins [
-	| canvas |
-	canvas := self chart canvas.
-		self bins ifNotEmpty: [ : b| |plot|
-		plot := self.
-		plot propagateData.
-		plot addDecorations.
-		plot bin: b.
-		canvas add: plot.
-	]
+{ #category : #accessing }
+DCHistogramPlot >> numberOfBins: anInteger [ 
+	numberOfBins := anInteger
 ]
 
 { #category : #building }
