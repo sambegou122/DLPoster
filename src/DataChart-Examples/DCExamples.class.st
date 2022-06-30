@@ -186,14 +186,15 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 { #category : #examples }
 DCExamples >> exampleDCHistogram [
 	<script: 'self new exampleDCHistogram'>
-	| x |
+	| x bins |
+	bins := #(12 34 54 80).
 	x :=  self randomValues.
 	^ DCHistogramPlot new
 		x: x;
 		title: 'Histogram';
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
-		bin: 80;
+		bin: 17;
 		build;
 		show
 ]

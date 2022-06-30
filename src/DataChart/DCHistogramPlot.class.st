@@ -27,8 +27,8 @@ DCHistogramPlot >> bins [
 ]
 
 { #category : #accessing }
-DCHistogramPlot >> bins:aNumber [
-	bins := aNumber.
+DCHistogramPlot >> bins: aColloection [
+	bins := aColloection.
 ]
 
 { #category : #default }
@@ -36,16 +36,29 @@ DCHistogramPlot >> defaultKind [
 	^ RSHistogramPlot  new.
 ]
 
-{ #category : #accessing }
-DCHistogramPlot >> initialize [ 
+{ #category : #initialization }
+DCHistogramPlot >> initialize [
 	super initialize.
-	bins := OrderedCollection new.
+	bins := #().
+]
+
+{ #category : #building }
+DCHistogramPlot >> propagateBins [
+	| canvas |
+	canvas := self chart canvas.
+		self bins ifNotEmpty: [ : b| |plot|
+		plot := self.
+		plot propagateData.
+		plot addDecorations.
+		plot bin: b.
+		canvas add: plot.
+	]
 ]
 
 { #category : #building }
 DCHistogramPlot >> propagateData [ 
 	self kind x: self x.
-	self bin isNotNil ifTrue: [  self kind bins: self bin ]  
+	self bin isNotNil ifTrue: [  self kind bins: self bin ].
 ]
 
 { #category : #accessing }
