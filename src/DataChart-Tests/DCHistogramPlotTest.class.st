@@ -57,6 +57,17 @@ DCHistogramPlotTest >> testBuild [
 ]
 
 { #category : #initialization }
+DCHistogramPlotTest >> testNumberOfBins [
+	plot x: x.
+	self assert: plot numberOfBins equals: 10.
+	plot numberOfBins: 5.
+	plot build.
+	plot show.
+	self assert: plot numberOfBins equals: 5.
+	self assert: plot kind bars size equals: 5.
+]
+
+{ #category : #initialization }
 DCHistogramPlotTest >> testWithNumberOfBins [
 	| numberOfBins |
 	numberOfBins := 12.

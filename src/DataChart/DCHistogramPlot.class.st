@@ -5,8 +5,7 @@ Class {
 	#name : #DCHistogramPlot,
 	#superclass : #DCPlot,
 	#instVars : [
-		'bins',
-		'bin'
+		'numberOfBins'
 	],
 	#category : #'DataChart-Core'
 }

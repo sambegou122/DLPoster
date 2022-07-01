@@ -7,15 +7,15 @@ Class {
 { #category : #examples }
 DCExamples >> exampleDCBarPlotCustomStringDataX [
 	<script: 'self new exampleDCBarPlotCustomStringDataX'>
-	| x plot  window |
+	| x plot |
 	x := #(1.33 1.35 0.93 4 6 6).
 	plot := DCBarPlot new
 			x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
 			y: x;
 			yourself.
 	plot build.
-	window := plot show.
-	^ window
+	^ plot show.
+	
 ]
 
 { #category : #examples }
@@ -48,7 +48,7 @@ DCExamples >> exampleDCBoxPlot [
 			 { 5. 6. 7. 5. 10. }  .
 			 { 12. 12. 13. 14. 15. 24. }  }. 
 
-	plot := DCBoxPlot new
+	^ plot := DCBoxPlot new
 		y: y;
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
@@ -195,6 +195,45 @@ DCExamples >> exampleDCHistogram [
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
 		numberOfBins: 19;
+		build;
+		show
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCHistogramBin [
+	<script: 'self new exampleDCHistogramBin'>
+	| x |
+	x :=  self randomValues.
+	^ DCHistogramPlot new
+		x: x;
+		title: 'Histogram';
+		numberOfBins: 20;
+		build;
+		show
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCHistogramBinSize [
+	<script: 'self new exampleDCHistogramBin'>
+	| x |
+	x :=  self randomValues.
+	^ DCHistogramPlot new
+		x: x;
+		title: 'Histogram';
+		binsSize: 10;
+		build;
+		show
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCHistogramCustomBins [
+	<script: 'self new exampleDCHistogramBin'>
+	| x |
+	x :=  self randomValues.
+	^ DCHistogramPlot new
+		x: x;
+		title: 'Histogram';
+		bins: #(100 140 150 200);
 		build;
 		show
 ]
