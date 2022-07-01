@@ -194,7 +194,7 @@ DCExamples >> exampleDCHistogram [
 		title: 'Histogram';
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
-		bin: 17;
+		numberOfBins: 19;
 		build;
 		show
 ]

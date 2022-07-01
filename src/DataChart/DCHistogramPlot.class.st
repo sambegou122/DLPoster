@@ -11,24 +11,14 @@ Class {
 	#category : #'DataChart-Core'
 }
 
-{ #category : #building }
-DCHistogramPlot >> bin [
-	^ bin
-]
-
 { #category : #accessing }
-DCHistogramPlot >> bin:aNumber [
-	bin := aNumber.
-]
-
-{ #category : #building }
 DCHistogramPlot >> bins [
-	^ bins 
+	^ self kind bins
 ]
 
 { #category : #accessing }
 DCHistogramPlot >> bins: aColloection [
-	bins := aColloection.
+	self kind bins: aColloection
 ]
 
 { #category : #default }
@@ -36,29 +26,14 @@ DCHistogramPlot >> defaultKind [
 	^ RSHistogramPlot  new.
 ]
 
-{ #category : #initialization }
-DCHistogramPlot >> initialize [
-	super initialize.
-	bins := #().
+{ #category : #accessing }
+DCHistogramPlot >> numberOfBins [
+	^ self kind numberOfBins
 ]
 
-{ #category : #building }
-DCHistogramPlot >> propagateBins [
-	| canvas |
-	canvas := self chart canvas.
-		self bins ifNotEmpty: [ : b| |plot|
-		plot := self.
-		plot propagateData.
-		plot addDecorations.
-		plot bin: b.
-		canvas add: plot.
-	]
-]
-
-{ #category : #building }
-DCHistogramPlot >> propagateData [ 
-	self kind x: self x.
-	self bin isNotNil ifTrue: [  self kind bins: self bin ].
+{ #category : #accessing }
+DCHistogramPlot >> numberOfBins: aNumber [
+	self kind numberOfBins: aNumber
 ]
 
 { #category : #accessing }

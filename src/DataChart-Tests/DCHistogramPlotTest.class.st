@@ -55,3 +55,13 @@ DCHistogramPlotTest >> testBuild [
 		build.
 	self assert: plot mainShapes first class equals: RSBox.
 ]
+
+{ #category : #initialization }
+DCHistogramPlotTest >> testWithNumberOfBins [
+	| numberOfBins |
+	numberOfBins := 12.
+	plot x: x;
+		numberOfBins: numberOfBins;
+		build.
+	self assert: plot bars size equals: numberOfBins.
+]
