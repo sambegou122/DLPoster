@@ -8,6 +8,17 @@ Class {
 }
 
 { #category : #tests }
+DCPlotSettingsTest >> testAddingDecoration [
+	| settings |
+	settings := DCPlotSettings new.
+	self assert: settings decorations isEmpty.
+	settings addDecoration: DCVerticalLineDecoration new.
+	self assert: settings decorations size equals: 1.
+	settings addDecoration: DCLabelDecoration new.
+	self assert: settings decorations size equals: 2.
+]
+
+{ #category : #tests }
 DCPlotSettingsTest >> testBasic [
 	| settings |
 	settings := DCPlotSettings new.
@@ -24,9 +35,7 @@ DCPlotSettingsTest >> testBasic [
 DCPlotSettingsTest >> testBasicDecorations [
 	| settings |
 	settings := DCPlotSettings new.
-	self assert: settings decorations class equals: Dictionary.
-	self assert: settings decorations isEmpty.
-	self assert: settings background equals: nil.
+	self assert: settings background class equals: RSChartSpineDecoration.
 	self assert: settings xtick class equals: RSHorizontalTick.
 	self assert: settings ytick class equals: RSVerticalTick.
 	

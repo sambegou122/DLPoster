@@ -12,19 +12,52 @@ DCVerticalLineDecorationTest >> testBasic [
 	| line |
 	line := DCVerticalLineDecoration new.
 	self assert: line shape class equals: RSLine.
-	self assert: line shape startPoint equals: 0@0.
-	self assert: line shape endPoint equals: 0@100.
+]
+
+{ #category : #tests }
+DCVerticalLineDecorationTest >> testError [
+	| x plot decoration |
+	decoration := DCVerticalLineDecoration new.
+	x := 1 to: 100.
+	plot := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		title: 'DCLinePlot';
+		xlabel: 'line x';
+		ylabel: 'line y';
+		yourself.
+	self should: [plot add: decoration; build ] raise:  Error.
+	
+]
+
+{ #category : #tests }
+DCVerticalLineDecorationTest >> testRenderIn [
+	| line x plot decoration |
+	decoration := DCVerticalLineDecoration new.
+	decoration x: 100.
+	x := 1 to: 100.
+	plot := DCLinePlot new
+		x: x;
+		y: (x raisedTo: 2);
+		title: 'DCLinePlot';
+		xlabel: 'line x';
+		ylabel: 'line y';
+		add: decoration;
+		build;
+		yourself.
+	self assert: plot settings decorations size equals: 1.
+	self assert: decoration createdShapes size equals: 1.
+	line := decoration createdShapes first.
+	self assert: line class equals: RSLine.
+	self assert: line startPoint x equals: (plot kind scalePoint: decoration x @ 0) x.
+	
 ]
 
 { #category : #tests }
 DCVerticalLineDecorationTest >> testSetter [
-	| line point xPoint yPoint |
+	| line |
 
 	line := DCVerticalLineDecoration new.
 	line x: 100.
-	point := 100 * 3.
-	xPoint := point @ 0.
-	yPoint := point @ (-200).
-	self assert: line shape startPoint equals: yPoint.
-	self assert: line shape endPoint equals: xPoint.
+	self assert: line x equals: 100.
 ]

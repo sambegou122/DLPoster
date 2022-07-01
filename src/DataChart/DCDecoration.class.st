@@ -1,28 +1,19 @@
+"
+This represent the decoration of our DCPlot
+"
 Class {
 	#name : #DCDecoration,
-	#superclass : #Object,
+	#superclass : #RSAbstractChartDecoration,
 	#instVars : [
-		'shape',
 		'x',
 		'y'
 	],
 	#category : #'DataChart-Decoration'
 }
 
-{ #category : #initialization }
-DCDecoration >> defaulShape [
- self subclassResponsibility
-]
-
-{ #category : #initialization }
-DCDecoration >> initialize [ 
-	super initialize.
-	shape := self defaulShape
-]
-
-{ #category : #accessing }
-DCDecoration >> shape [
-	^ shape
+{ #category : #adding }
+DCDecoration >> addIn: aDCCombinePlot [ 
+	aDCCombinePlot addDecoration: self
 ]
 
 { #category : #accessing }
@@ -30,7 +21,17 @@ DCDecoration >> x [
 	^ x
 ]
 
+{ #category : #initialization }
+DCDecoration >> x: anInteger [
+	x:= anInteger
+]
+
 { #category : #accessing }
 DCDecoration >> y [
 	^ y
+]
+
+{ #category : #accessing }
+DCDecoration >> y: anInteger [
+	y:= anInteger.
 ]

@@ -4,26 +4,59 @@ A DCLinePlotTest is a test class for testing the behavior of DCLinePlot
 Class {
 	#name : #DCLinePlotTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'plot',
+		'x',
+		'y'
+	],
 	#category : #'DataChart-Tests-Core'
 }
 
+{ #category : #running }
+DCLinePlotTest >> setUp [
+	super setUp.
+	
+	plot := DCLinePlot new.
+	x := 0 to: 100.
+	y := (x raisedTo: 3).
+]
+
+{ #category : #tests }
+DCLinePlotTest >> testAddingColor [ 
+	plot color: Color green.
+	plot x: x; y: y.
+	plot build.
+	self assert: plot chart plots last line color equals: plot color.
+
+		
+	
+]
+
 { #category : #tests }
 DCLinePlotTest >> testBasic [
-	| plot |
-	plot := DCLinePlot new.
+
 	self assert: plot settings class equals: DCPlotSettings.
 	self assert: plot x isNil.
 	self assert: plot y isNil.
 	self assert: plot chart class equals: RSChart.
+	self assert: plot kind class equals: RSLinePlot.
+	
+]
+
+{ #category : #tests }
+DCLinePlotTest >> testBasicLabel [
+
+	plot 
+		x: x;
+		y: y;
+		build.
+	self assert: plot legend class equals: DCLegend.
+	
 	
 ]
 
 { #category : #tests }
 DCLinePlotTest >> testBuild [
-	| plot x y |
-	x := 1 to: 100.
-	y := x raisedTo: 2.
-	plot := DCLinePlot new.
 	self assert: plot kind class equals: RSLinePlot.
 	plot 
 		x: x;
@@ -37,12 +70,9 @@ DCLinePlotTest >> testBuild [
 
 { #category : #tests }
 DCLinePlotTest >> testDCLineWithLabelDecoration [
-	| x y plot |
-	x := 1 to: 100.
-	y := x raisedTo: 3.
-	plot := DCLinePlot new.
-	plot x: x; y: y.
-
+	| deco |
+	
+	plot x: x ; y: y.
 	plot add: (DCLabelDecoration new
 		text: 'Foo bar';
 		x: 55.5;
@@ -50,6 +80,11 @@ DCLinePlotTest >> testDCLineWithLabelDecoration [
     yourself ).
 
 	plot build.
+	deco := plot settings decorations first.
+	self assert: deco class equals: DCLabelDecoration.
+	self assert: deco chart equals: plot chart.
+	self assert: deco x equals: 55.5.
+	self assert: deco y equals:(100 raisedTo: 2).
 
 		
 	
@@ -57,13 +92,12 @@ DCLinePlotTest >> testDCLineWithLabelDecoration [
 
 { #category : #tests }
 DCLinePlotTest >> testDCLineWithVerticalLineDecoration [
-	| x decoration line |
+	| decoration line |
 	decoration := DCVerticalLineDecoration new.
 	decoration x: 50.
-	x := 1 to: 100.
 	line:= DCLinePlot new
 		x: x;
-		y: (x raisedTo: 3);
+		y: y;
 		title: 'DCLinePlot';
 		xlabel: ' line x';
 		ylabel: 'line y';
@@ -76,10 +110,8 @@ DCLinePlotTest >> testDCLineWithVerticalLineDecoration [
 
 { #category : #tests }
 DCLinePlotTest >> testSetSetting [
-	| plot x y settings se |
-	x := 1 to: 100.
-	y := x raisedTo: 2.
-	plot := DCLinePlot new.
+	| settings se |
+	
 	self assert: plot kind class equals: RSLinePlot.
 	plot 
 		x: x;
@@ -107,13 +139,10 @@ DCLinePlotTest >> testSetSetting [
 
 { #category : #tests }
 DCLinePlotTest >> testSetter [
-	| plot x y title  ylabel xlabel settings |
+	| title  ylabel xlabel settings |
 	title := 'DCLinePlot'.
 	xlabel := 'line x'.
 	ylabel := 'line y'.
-	x := 1 to: 100.
-	y := x raisedTo: 2.
-	plot := DCLinePlot new.
 	plot 
 		x: x;
 		y: y;
