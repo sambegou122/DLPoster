@@ -13,7 +13,6 @@ DCExamples >> exampleDCBarPlotCustomStringDataX [
 			x: #('mama' 'papa' 'oncle' 'pipoune' 'tata' 'toto');
 			y: x;
 			yourself.
-	plot build.
 	^ plot show.
 	
 ]
@@ -27,7 +26,6 @@ DCExamples >> exampleDCBarPlotCustomX [
 			x: x;
 			y: (1 to: 10);
 			yourself.
-	plot build.
 	window := plot show.
 	bars := plot kind bars.
 	plot chart canvas signalUpdate.
@@ -55,28 +53,26 @@ DCExamples >> exampleDCBoxPlot [
 		title: 'Box Plot';
 		name: ' Box Plot';
 		withLegend;
-		build;
 		show.
 ]
 
 { #category : #examples }
 DCExamples >> exampleDCClusterBarPlot [
 	<script: 'self new exampleDCClusterBarPlot'>
-	| x y plots perlin |
+	| x y plots perlin palette |
 	perlin := NSPerlinNoise3 new octaves: 7.
 	
-	x := 0.0 to: 2 count: 10.
+	x := 0.0 to: 2 count: 6.
+	palette := RSColorPalette sequential ylgnbu6.
 	plots := (1 to: 4) collect: [ :index | 
 		y := x collect: [ :n | (perlin noise: n and: index) ].
 		DCBarPlot new
 			y: y;
+			color: (palette scale: y);
 			yourself ].
 	
 	^ (DCClusterBarPlot withAll: plots)
 		title: 'Cluster Bar Plot';
-		xlabel: 'X Axis';
-		ylabel: 'Y Axis';
-		build;
 		show.
 ]
 
@@ -85,7 +81,7 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 	<script: 'self new exampleDCClusterBarPlotWithDecoration'>
 	| x y y2 plot1  plot2 y3 plot3 y4 plot4 decoration |
 
-	x := 0.0 to: 2 count: 10.
+	x := 0.0 to: 2 count: 6.
 	y := x raisedTo: 2.
 	y2 := x raisedTo: 3.
 	y3 := x raisedTo: 4.
@@ -107,7 +103,6 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
 		add: decoration;
-		build;
 		show.
 ]
 
@@ -143,7 +138,6 @@ DCExamples >> exampleDCCombinePlot [
 		ylabel: 'Y Axis';
 		legendDo: [ : legend|
 			legend location inner top offset: 10];
-		build;
 		show.
 ]
 
@@ -175,11 +169,8 @@ DCExamples >> exampleDCCombinePlotWithVerticalLineDecoration [
 	combined := DCCombinePlot new withAll: { line1. line2. line3 }.
 	^ combined 
 		title: 'Line decoration';
-		xlabel: 'X Axis';
-		ylabel: 'Y Axis';
 		add: decoration;
-		extent: 400@400;
-		build;
+		extent: 600@400;
 		show.
 ]
 
@@ -195,7 +186,6 @@ DCExamples >> exampleDCHistogram [
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
 		numberOfBins: 19;
-		build;
 		show
 ]
 
@@ -208,7 +198,6 @@ DCExamples >> exampleDCHistogramBin [
 		x: x;
 		title: 'Histogram';
 		numberOfBins: 20;
-		build;
 		show
 ]
 
@@ -220,21 +209,19 @@ DCExamples >> exampleDCHistogramBinSize [
 	^ DCHistogramPlot new
 		x: x;
 		title: 'Histogram';
-		binsSize: 10;
-		build;
+		binSize: 10;
 		show
 ]
 
 { #category : #examples }
 DCExamples >> exampleDCHistogramCustomBins [
-	<script: 'self new exampleDCHistogramBin'>
+	<script: 'self new exampleDCHistogramCustomBins'>
 	| x |
 	x :=  self randomValues.
 	^ DCHistogramPlot new
 		x: x;
 		title: 'Histogram';
 		bins: #(100 140 150 200);
-		build;
 		show
 ]
 
@@ -253,7 +240,6 @@ DCExamples >> exampleDCHistogramWithDecoration [
 		xlabel: 'Axis X';
 		ylabel: 'Axis y';
 		add: decoration;
-		build;
 		show
 ]
 
@@ -266,7 +252,6 @@ DCExamples >> exampleDCLine [
 		x: x;
 		y: (x raisedTo: 2); 
 		color: Color green;
-		build;
 		show.
 ]
 
@@ -277,7 +262,7 @@ DCExamples >> exampleDCLineWithLabelDecoration [
 	x := 1 to: 100.
 	y := x raisedTo: 3.
 	decoration := (DCLabelDecoration new
-		text: 'Foo bar';
+		text: 'Middle';
 		x: 50;
 		y: (50 raisedTo: 3);
     yourself ).
@@ -286,7 +271,6 @@ DCExamples >> exampleDCLineWithLabelDecoration [
 		x: x;
 		y: y;
 		add: decoration;
-		build;
 		show.
 ]
 
@@ -304,7 +288,6 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 		xlabel: 'line x';
 		ylabel: 'line y';
 		add: decoration;
-		build;
 		show
 ]
 
@@ -318,10 +301,7 @@ DCExamples >> exampleDCScatter [
 	^ DCScatterPlot new
 		x: x;
 		y: (x raisedTo: 2); 
-		title: 'Hello world';
-		xlabel: 'X Axis';
-		ylabel: 'Y Axis';
-		build;
+		title: 'Scatter plot';
 		show.
 ]
 
@@ -340,10 +320,7 @@ DCExamples >> exampleDCStackBarPlot [
 
 	 ^ (DCStackBarPlot withAll: plots)
 		title: 'Stack Bar Plot';
-		xlabel: 'X Axis';
-		ylabel: 'Y Axis';
 		padding: 0.3;
-		build;
 		show.
 ]
 
@@ -357,9 +334,9 @@ DCExamples >> exampleDCStackBarPlotWithDecoration [
 	y2 := x raisedTo: 3.
 	y3 := x raisedTo: 4.
 	decoration := (DCLabelDecoration new
-		text: 'Foo bar';
-		x: 5;
-		y: (5 + 3);
+		text: 'Maximum';
+		x: 10;
+		y: 5;
     yourself ).
 	
 	plot1 := DCBarPlot new.
@@ -375,7 +352,6 @@ DCExamples >> exampleDCStackBarPlotWithDecoration [
 		title: 'Hello world';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';
-		build;
 		show.
 ]
 

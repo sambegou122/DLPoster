@@ -225,6 +225,7 @@ DCPlot >> settings: aDCPlotSettings [
 
 { #category : #building }
 DCPlot >> show [
+	self build.
 	^ self chart canvas open.
 ]
 
