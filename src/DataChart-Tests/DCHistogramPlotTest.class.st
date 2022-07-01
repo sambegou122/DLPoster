@@ -22,18 +22,14 @@ DCHistogramPlotTest >> setUp [
 ]
 
 { #category : #initialization }
-DCHistogramPlotTest >> testAddAxis [ 
-	
-	plot x: x.
-	self assert: plot bins isEmpty.
+DCHistogramPlotTest >> testAddValues [
+	plot x: y.
+	plot build.
 	self assert: plot x size equals: x size.
-	plot bins: y.
-	self assert: plot bins isNotEmpty.
-	self assert: plot bins equals: y.
 ]
 
 { #category : #initialization }
-DCHistogramPlotTest >> testAddAxisError [
+DCHistogramPlotTest >> testAddValuesError [
 	self should: [ plot y: y ] raise:  Error.
 ]
 
@@ -47,6 +43,13 @@ DCHistogramPlotTest >> testBasic [
 ]
 
 { #category : #initialization }
+DCHistogramPlotTest >> testBinSize [
+	plot x: y.
+	plot binSize: 100.
+	plot build.
+]
+
+{ #category : #initialization }
 DCHistogramPlotTest >> testBuild [
 
 	self assert: plot kind class equals: RSHistogramPlot.
@@ -57,22 +60,19 @@ DCHistogramPlotTest >> testBuild [
 ]
 
 { #category : #initialization }
-DCHistogramPlotTest >> testNumberOfBins [
-	plot x: x.
-	self assert: plot numberOfBins equals: 10.
-	plot numberOfBins: 5.
-	plot build.
-	plot show.
-	self assert: plot numberOfBins equals: 5.
-	self assert: plot kind bars size equals: 5.
+DCHistogramPlotTest >> testNoValues [
+	self should: [ plot build ] raise:  Error.
 ]
 
 { #category : #initialization }
-DCHistogramPlotTest >> testWithNumberOfBins [
-	| numberOfBins |
-	numberOfBins := 12.
-	plot x: x;
-		numberOfBins: numberOfBins;
-		build.
-	self assert: plot bars size equals: numberOfBins.
+DCHistogramPlotTest >> testNumberOfBins [
+	self assert: plot numberOfBins equals: 10.
+	self assert: plot bins isNil.
+	
+	plot x: y.
+	plot numberOfBins: 5.
+	plot build.
+	self assert: plot numberOfBins equals: 5.
+	self assert: plot bins size equals: 6.
+	self assert: plot kind bars size equals: 5.
 ]

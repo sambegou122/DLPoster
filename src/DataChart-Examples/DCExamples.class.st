@@ -220,7 +220,7 @@ DCExamples >> exampleDCHistogramBinSize [
 	^ DCHistogramPlot new
 		x: x;
 		title: 'Histogram';
-		binsSize: 10;
+		binSize: 10;
 		build;
 		show
 ]

@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : #accessing }
+DCHistogramPlot >> binSize: anInteger [ 
+	self kind binSize: anInteger
+]
+
+{ #category : #accessing }
 DCHistogramPlot >> bins [
 	^ self kind bins
 ]
@@ -33,6 +38,17 @@ DCHistogramPlot >> numberOfBins [
 { #category : #accessing }
 DCHistogramPlot >> numberOfBins: aNumber [
 	self kind numberOfBins: aNumber
+]
+
+{ #category : #building }
+DCHistogramPlot >> propagateData [
+	
+]
+
+{ #category : #accessing }
+DCHistogramPlot >> x: aCollection [
+	super x: aCollection.
+	self kind x: aCollection
 ]
 
 { #category : #accessing }
