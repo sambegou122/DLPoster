@@ -20,5 +20,5 @@ DCBoxPlot >> defaultKind [
 { #category : #accessing }
 DCBoxPlot >> y: aCollection [
 	self x ifNil: [ self x: (1 to: aCollection size) ].
-	super y: aCollection.
+	super y: aCollection
 ]
