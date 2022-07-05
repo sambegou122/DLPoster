@@ -123,7 +123,7 @@ DCPieChart >> propagateData [
 { #category : #building }
 DCPieChart >> propagateExplodes [
 	self explodes ifNil: [ ^self ].
-	self mainShapes with: self explodes do:[ :shp :ex | shp emphasizeWith:ex ]
+	self mainShapes with: self explodes do:[ :shp :ex | shp emphasizeWith: ex ]
 ]
 
 { #category : #building }
@@ -132,7 +132,6 @@ DCPieChart >> propagateLabels [
 	self labels ifNil: [ ^self ].
 	pieLabel:= RSPieLabeledInteraction new.
 	pieLabel labelShape fontSize: 13.
-	pieLabel offset: 150.
 	self mainShapes with: self labels do:[ :shp :lb | shp @ (pieLabel labelText: lb) ].
 	
 ]

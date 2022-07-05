@@ -61,7 +61,7 @@ DCPieChartTest >> testChangeColors [
 { #category : #running }
 DCPieChartTest >> testExplodes [
 	| shapes 	explodes |
-	explodes:= { 0. 34. 0. 0.2. 2.5. 50 }.
+	explodes:= { 0. 3.5. 0. 0.2. 2.5. 6 }.
 
 	plot 
 		data: data;
