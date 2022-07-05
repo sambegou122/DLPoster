@@ -4,10 +4,11 @@ Class {
 	#instVars : [
 		'colors',
 		'explodes',
-		'label',
 		'legend',
 		'data',
-		'kind'
+		'kind',
+		'labels',
+		'size'
 	],
 	#category : #'DataChart-Core'
 }
@@ -15,10 +16,18 @@ Class {
 { #category : #building }
 DCPieChart >> build [
 	self propagateData.
+	self kind sliceShape externalRadius: self size.
 	self kind sliceColor: self defaultColors.
-	
 	self kind build.
+	self changesAfterBuilding
+
+]
+
+{ #category : #accessing }
+DCPieChart >> changesAfterBuilding [
 	self propagateColors.
+	self propagateLabels.
+	self propagateExplodes
 ]
 
 { #category : #accessing }
@@ -46,6 +55,13 @@ DCPieChart >> defaultColors [
 	^ NSScale category10 
 ]
 
+{ #category : #building }
+DCPieChart >> defaultExternalRadius [
+	^ 200
+
+
+]
+
 { #category : #accessing }
 DCPieChart >> defaultKind [
 	^ RSPie new.
@@ -56,10 +72,14 @@ DCPieChart >> explodes [
 	^ explodes 
 ]
 
+{ #category : #accessing }
+DCPieChart >> explodes: aCollection [ 
+	explodes := aCollection
+]
+
 { #category : #initialization }
 DCPieChart >> initialize [ 
 	super initialize.
-	label:= RSLabel new.
 	legend:= DCLegend new.
 	kind := self defaultKind.
 ]
@@ -70,8 +90,13 @@ DCPieChart >> kind [
 ]
 
 { #category : #accessing }
-DCPieChart >> label [
-	^ label
+DCPieChart >> labels [
+	^ labels
+]
+
+{ #category : #accessing }
+DCPieChart >> labels: aCollection [
+	labels := aCollection
 ]
 
 { #category : #accessing }
@@ -95,7 +120,35 @@ DCPieChart >> propagateData [
 	self kind objects: self data yourself.
 ]
 
+{ #category : #building }
+DCPieChart >> propagateExplodes [
+	self explodes ifNil: [ ^self ].
+	self mainShapes with: self explodes do:[ :shp :ex | shp emphasizeWith:ex ]
+]
+
+{ #category : #building }
+DCPieChart >> propagateLabels [
+	| pieLabel |
+	self labels ifNil: [ ^self ].
+	pieLabel:= RSPieLabeledInteraction new.
+	pieLabel labelShape fontSize: 13.
+	pieLabel offset: 150.
+	self mainShapes with: self labels do:[ :shp :lb | shp @ (pieLabel labelText: lb) ].
+	
+]
+
 { #category : #showing }
 DCPieChart >> show [
 	^ self kind canvas open.
+]
+
+{ #category : #accessing }
+DCPieChart >> size [
+	size ifNil:[^ self defaultExternalRadius].
+	^ size.
+]
+
+{ #category : #accessing }
+DCPieChart >> size: aNumber [
+	size:= aNumber
 ]
