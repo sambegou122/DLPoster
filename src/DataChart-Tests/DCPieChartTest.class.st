@@ -39,21 +39,21 @@ DCPieChartTest >> testBuild [
 	shapes:= plot mainShapes.
 	self assert: plot defaultColors class equals: NSOrdinalScale.
 	self assert: shapes size equals: data size.
-	shapes  with: data do:  [ :shape :aNumber|  self assert: shape model equals:aNumber] 
+	shapes with: data do: [ :shape :aNumber| self assert: shape model equals: aNumber ] 
 ]
 
 { #category : #running }
 DCPieChartTest >> testChangeColors [
 	| shapes 	colors |
-		colors:= { 'red'. 'blue'. 'black'. 'yellow'. 'green'. 'orange' }.
-
+	colors:= { 'red'. 'blue'. 'black'. 'yellow'. 'green'. 'orange' }.
 	plot 
 		data: data;
 		colors: colors;
 		build.
 	shapes:= plot mainShapes.
 	self assert: plot colors equals: colors.
-	shapes with: colors do: [:shape :color| self assert: shape  color equals: (Color colorFrom:color)]
+	shapes with: colors do: [:shape :color|
+		self assert: shape  color equals: (Color colorFrom:color) ]
 	
 
 ]
@@ -61,7 +61,7 @@ DCPieChartTest >> testChangeColors [
 { #category : #running }
 DCPieChartTest >> testExplodes [
 	| shapes 	explodes |
-		explodes:= { 0. 1.5. 0. 0. 2.5. 0.25 }.
+	explodes:= { 0. 34. 0. 0.2. 2.5. 50 }.
 
 	plot 
 		data: data;
@@ -85,6 +85,7 @@ DCPieChartTest >> testLabels [
 		data: data;
 		labels: labels;
 		build.
+	plot show.
 	shapes:= plot mainShapes.
 	self assert: plot labels equals:labels.
 ]
