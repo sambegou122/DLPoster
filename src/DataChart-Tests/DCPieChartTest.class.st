@@ -67,7 +67,6 @@ DCPieChartTest >> testExplodes [
 		data: data;
 		explodes: explodes;
 		build.
-	plot show.
 	shapes:= plot mainShapes.
 	self assert: plot explodes equals: explodes.
 	
@@ -84,8 +83,7 @@ DCPieChartTest >> testLabels [
 	plot 
 		data: data;
 		labels: labels;
-		build;
-		show.
+		build.
 	shapes:= plot mainShapes.
 	self assert: plot labels equals:labels.
 ]
@@ -99,9 +97,8 @@ DCPieChartTest >> testLabelsOut [
 	plot 
 		data: data;
 		labels: labels;
-		labelOut;
-		build;
-		show.
+		useLabelOut;
+		build.
 	shapes:= plot mainShapes.
 	self assert: plot labels equals:labels.
 ]

@@ -11,5 +11,5 @@ DCPieDecorationTest >> testBasic [
 	self assert: decoration class equals: DCPieLabelDecoration.
 	self assert: decoration fontSize equals: decoration defaultfontSize.
 	self assert: decoration totalSum equals: 0.
-	self assert: decoration lbout equals: false.
+	self assert: decoration shouldUseLabelOut equals: false.
 ]

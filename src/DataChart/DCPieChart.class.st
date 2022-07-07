@@ -9,7 +9,7 @@ Class {
 		'kind',
 		'labels',
 		'size',
-		'lb'
+		'label'
 	],
 	#category : #'DataChart-Core'
 }
@@ -36,7 +36,7 @@ DCPieChart >> buildLegendData [
 			scaleBy: 0.5 ]
 ]
 
-{ #category : #accessing }
+{ #category : #building }
 DCPieChart >> changesAfterBuilding [
 	self propagateColors.
 	self propagateLabels.
@@ -63,19 +63,19 @@ DCPieChart >> data: aCollection [
 	data := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #defaults }
 DCPieChart >> defaultColors [
 	^ NSScale category10 
 ]
 
-{ #category : #building }
+{ #category : #defaults }
 DCPieChart >> defaultExternalRadius [
 	^ 200
 
 
 ]
 
-{ #category : #accessing }
+{ #category : #defaults }
 DCPieChart >> defaultKind [
 	^ RSPie new.
 ]
@@ -93,34 +93,31 @@ DCPieChart >> explodes: aCollection [
 { #category : #initialization }
 DCPieChart >> initialize [ 
 	super initialize.
+	self size: self defaultExternalRadius.
 	legend:= DCLegend new.
 	kind := self defaultKind.
-	lb :=  DCPieLabelDecoration new.
+	label :=  DCPieLabelDecoration new.
 	legend := DCLegend new.
 ]
 
 { #category : #accessing }
 DCPieChart >> kind [
-	^ kind.
+	^ kind
 ]
 
 { #category : #accessing }
 DCPieChart >> label [
-	^ lb
+	^ label
 ]
 
 { #category : #accessing }
-DCPieChart >> label: aLabelDecoration [
-	lb := aLabelDecoration
-]
-
-{ #category : #accessing }
-DCPieChart >> labelOut [
-	self label out.
+DCPieChart >> label: aDCLabelDecoration [
+	label := aDCLabelDecoration
 ]
 
 { #category : #accessing }
 DCPieChart >> labels [
+	self flag: #TODO.
 	^ labels
 ]
 
@@ -131,17 +128,13 @@ DCPieChart >> labels: aCollection [
 
 { #category : #accessing }
 DCPieChart >> legend [
+	self flag: #TODO.
 	^ legend
 ]
 
 { #category : #accessing }
 DCPieChart >> mainShapes [
 	^ self kind shapes. 
-]
-
-{ #category : #accessing }
-DCPieChart >> parcentagesBeforeLabels [
-	self label parcentagesBeforeLabels.
 ]
 
 { #category : #building }
@@ -176,7 +169,6 @@ DCPieChart >> show [
 
 { #category : #accessing }
 DCPieChart >> size [
-	size ifNil:[^ self defaultExternalRadius].
 	^ size.
 ]
 
@@ -185,7 +177,7 @@ DCPieChart >> size: aNumber [
 	size:= aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 DCPieChart >> useLabelOut [
-	self label out.
+	self label useLabelOut
 ]

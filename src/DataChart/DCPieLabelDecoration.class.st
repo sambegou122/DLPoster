@@ -44,9 +44,9 @@ DCPieLabelDecoration >> initialize [
 	fontSize := self defaultfontSize.
 ]
 
-{ #category : #accessing }
-DCPieLabelDecoration >> out [
-	shouldUseLabelOut :=true.
+{ #category : #public }
+DCPieLabelDecoration >> noLabelOut [
+	shouldUseLabelOut := false
 ]
 
 { #category : #initialization }
@@ -69,7 +69,7 @@ DCPieLabelDecoration >> put: labels in: shapes [
 		do: [ :shp :lb | shp @ (self labelText: (self put: lb before: shp)) ]
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 DCPieLabelDecoration >> shouldUseLabelOut [
 	^ shouldUseLabelOut
 ]
@@ -77,4 +77,9 @@ DCPieLabelDecoration >> shouldUseLabelOut [
 { #category : #initialization }
 DCPieLabelDecoration >> totalSum [
 	^ totalSum
+]
+
+{ #category : #public }
+DCPieLabelDecoration >> useLabelOut [
+	shouldUseLabelOut := true
 ]

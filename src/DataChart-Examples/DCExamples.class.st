@@ -86,19 +86,20 @@ DCExamples >> exampleDCClusterBarPlotWithDecoration [
 	y2 := x raisedTo: 3.
 	y3 := x raisedTo: 4.
 	y4 := (x raisedTo: 5) +3.
+	
 	decoration := (DCLabelDecoration new
 		text: 'Maximum value: ', ((2 raisedTo: 5) +3) asString;
 		color: Color black;
 		x: 2;
 		y: (2 raisedTo: 5) +3;
     yourself ).
+
 	plot1 := DCBarPlot new x:x ;y: y.
 	plot2 := DCBarPlot new x:x;y: y2.
 	plot3 := DCBarPlot new x:x; y: y3.
 	plot4 := DCBarPlot new x:x; y: y4.
-	 ^ DCClusterBarPlot new withAll: { plot1. plot2 };
-		add: plot3;
-		add: plot4;
+	
+	 ^ DCClusterBarPlot new withAll: { plot1. plot2. plot3. plot4 };
 		title: 'Cluster bar plot';
 		xlabel: 'X Axis';
 		ylabel: 'Y Axis';

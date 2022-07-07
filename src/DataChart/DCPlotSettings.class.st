@@ -39,17 +39,6 @@ DCPlotSettings >> color: aColor [
 ]
 
 { #category : #accessing }
-DCPlotSettings >> dataFrame [
-	^ self propertyAt: #dataFrame ifAbsent: [ nil ]
-]
-
-{ #category : #accessing }
-DCPlotSettings >> dataFrame: aDataFrame [
-	self propertyAt: #dataFrame put: aDataFrame
-	
-]
-
-{ #category : #accessing }
 DCPlotSettings >> decorations [
 	^ decorations ifNil: [ decorations := OrderedCollection new ]
 ]
