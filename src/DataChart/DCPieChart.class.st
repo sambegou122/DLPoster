@@ -8,7 +8,8 @@ Class {
 		'data',
 		'kind',
 		'labels',
-		'size'
+		'size',
+		'lb'
 	],
 	#category : #'DataChart-Core'
 }
@@ -21,6 +22,18 @@ DCPieChart >> build [
 	self kind build.
 	self changesAfterBuilding
 
+]
+
+{ #category : #building }
+DCPieChart >> buildLegendData [
+
+	self mainShapes with: self labels do: [ :shp :label | 
+		self legend text: label withBoxColor: shp computeColor ].
+	self legend legendDo: [ :shape | 
+		shape
+			withBorder;
+			padding: 10;
+			scaleBy: 0.5 ]
 ]
 
 { #category : #accessing }
@@ -82,11 +95,28 @@ DCPieChart >> initialize [
 	super initialize.
 	legend:= DCLegend new.
 	kind := self defaultKind.
+	lb :=  DCPieLabelDecoration new.
+	legend := DCLegend new.
 ]
 
 { #category : #accessing }
 DCPieChart >> kind [
 	^ kind.
+]
+
+{ #category : #accessing }
+DCPieChart >> label [
+	^ lb
+]
+
+{ #category : #accessing }
+DCPieChart >> label: aLabelDecoration [
+	lb := aLabelDecoration
+]
+
+{ #category : #accessing }
+DCPieChart >> labelOut [
+	self label out.
 ]
 
 { #category : #accessing }
@@ -109,6 +139,11 @@ DCPieChart >> mainShapes [
 	^ self kind shapes. 
 ]
 
+{ #category : #accessing }
+DCPieChart >> parcentagesBeforeLabels [
+	self label parcentagesBeforeLabels.
+]
+
 { #category : #building }
 DCPieChart >> propagateColors [
 	self colors ifNil:[ ^ self].
@@ -128,11 +163,9 @@ DCPieChart >> propagateExplodes [
 
 { #category : #building }
 DCPieChart >> propagateLabels [
-	| pieLabel |
+
 	self labels ifNil: [ ^self ].
-	pieLabel:= RSPieLabeledInteraction new.
-	pieLabel labelShape fontSize: 13.
-	self mainShapes with: self labels do:[ :shp :lb | shp @ (pieLabel labelText: lb) ].
+	self label generateLablesFor: self.
 	
 ]
 
@@ -150,4 +183,9 @@ DCPieChart >> size [
 { #category : #accessing }
 DCPieChart >> size: aNumber [
 	size:= aNumber
+]
+
+{ #category : #accessing }
+DCPieChart >> useLabelOut [
+	self label out.
 ]

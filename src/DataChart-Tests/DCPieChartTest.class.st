@@ -61,7 +61,7 @@ DCPieChartTest >> testChangeColors [
 { #category : #running }
 DCPieChartTest >> testExplodes [
 	| shapes 	explodes |
-	explodes:= { 0. 3.5. 0. 0.2. 2.5. 6 }.
+	explodes:= { 0. 5. 0. 0. 10. 0 }.
 
 	plot 
 		data: data;
@@ -84,8 +84,24 @@ DCPieChartTest >> testLabels [
 	plot 
 		data: data;
 		labels: labels;
-		build.
-	plot show.
+		build;
+		show.
+	shapes:= plot mainShapes.
+	self assert: plot labels equals:labels.
+]
+
+{ #category : #running }
+DCPieChartTest >> testLabelsOut [
+	| shapes 	 labels |
+	self assert: plot labels isNil. 
+	labels:= { 'papa'. 'mama'. 'tanta'. 'oncle'. 'frere'. 'soeur' }.
+
+	plot 
+		data: data;
+		labels: labels;
+		labelOut;
+		build;
+		show.
 	shapes:= plot mainShapes.
 	self assert: plot labels equals:labels.
 ]
