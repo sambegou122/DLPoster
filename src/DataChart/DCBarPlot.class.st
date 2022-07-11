@@ -3,7 +3,7 @@ This class represent the objet who manage the RSBar objet of Roassal-chart
 "
 Class {
 	#name : #DCBarPlot,
-	#superclass : #DCPlot,
+	#superclass : #DCChartPlot,
 	#instVars : [
 		'isStringData',
 		'stringData'

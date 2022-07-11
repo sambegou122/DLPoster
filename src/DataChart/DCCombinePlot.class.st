@@ -36,7 +36,7 @@ EXEMPLE:
 "
 Class {
 	#name : #DCCombinePlot,
-	#superclass : #DCPlot,
+	#superclass : #DCChartPlot,
 	#instVars : [
 		'plots',
 		'dataType'

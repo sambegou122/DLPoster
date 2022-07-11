@@ -3,7 +3,7 @@ This class represent the objet who manage the RSScatter objet of Roassal-chart
 "
 Class {
 	#name : #DCScatterPlot,
-	#superclass : #DCPlot,
+	#superclass : #DCChartPlot,
 	#category : #'DataChart-Core'
 }
 

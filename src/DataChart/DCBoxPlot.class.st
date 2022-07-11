@@ -1,6 +1,6 @@
 Class {
 	#name : #DCBoxPlot,
-	#superclass : #DCPlot,
+	#superclass : #DCChartPlot,
 	#category : #'DataChart-Core'
 }
 

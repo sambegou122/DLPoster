@@ -3,7 +3,7 @@ This class represent the objet who manage the RSLine objet of Roassal-chart
 "
 Class {
 	#name : #DCLinePlot,
-	#superclass : #DCPlot,
+	#superclass : #DCChartPlot,
 	#category : #'DataChart-Core'
 }
 

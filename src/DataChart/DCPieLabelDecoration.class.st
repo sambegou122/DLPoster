@@ -25,7 +25,7 @@ DCPieLabelDecoration >> fontSize [
 DCPieLabelDecoration >> generateLablesFor: aDCPiePlot [
 
 	| labels shapes |
-	aDCPiePlot class = DCPieChart ifFalse: [ 
+	aDCPiePlot class = DCPiePlot ifFalse: [ 
 		^ self error: ' object must be a DCPieChart' ].
 	totalSum := aDCPiePlot kind totalSum.
 	shapes := aDCPiePlot mainShapes.
