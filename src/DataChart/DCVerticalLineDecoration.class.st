@@ -1,3 +1,9 @@
+"
+as indicated by his name, thos class is the vertical Line decoration for our plot
+
+    Instance Variables
+	line:		<Object>
+"
 Class {
 	#name : #DCVerticalLineDecoration,
 	#superclass : #DCDecoration,

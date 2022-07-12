@@ -1,5 +1,7 @@
 "
 This class is a kind of Combined plots, but just for clusterBarPlots, so we can just add a BarPlot
+
+For more information check the example Package.
 "
 Class {
 	#name : #DCClusterBarPlot,
@@ -13,6 +15,7 @@ Class {
 
 { #category : #adding }
 DCClusterBarPlot >> addPlot: aDCPlot [ 
+	"we can just add a barplot"
 	aDCPlot class = DCBarPlot 
 		ifTrue: [ plots add: aDCPlot ]
 		ifFalse:[ self error: ' you must add a DCBarPlot ']
@@ -53,7 +56,7 @@ DCClusterBarPlot >> changeTicks [
 
 { #category : #private }
 DCClusterBarPlot >> computeBarScale [
-
+	" computing the bar scale because we need to provide it"
 	| barScale |
 	barScale := NSOrdinalScale new
         domain: (1 to: self numberOfPlots);
@@ -63,7 +66,7 @@ DCClusterBarPlot >> computeBarScale [
 
 { #category : #private }
 DCClusterBarPlot >> computeBarSize [
-
+	" computing the bar scale because we need to provide it"
 	| scale |
 	scale := NSOrdinalScale new
     domain: (1 to: self numberOfPlots);
@@ -74,6 +77,7 @@ DCClusterBarPlot >> computeBarSize [
 
 { #category : #private }
 DCClusterBarPlot >> innerPadding [
+	"the padding between the bar "
 	^ innerPadding ifNil: [ innerPadding := 0.07 ]
 ]
 

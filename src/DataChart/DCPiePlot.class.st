@@ -1,3 +1,13 @@
+"
+This class represent de PiePlot. The pieplot is the kind of circular plot.
+
+    Instance Variables
+	colors:		<Object> the collection of the colors that we can use for each shape.
+	explodes:		<Object> the colloction  of the explodes betwen each shape
+	label:		<Object> it manage the labels collection
+	labels:		<Object> the collection of the labels for each shape.
+
+"
 Class {
 	#name : #DCPiePlot,
 	#superclass : #DCCircularPlot,
@@ -61,12 +71,12 @@ DCPiePlot >> defaultExternalRadius [
 
 ]
 
-{ #category : #defaults }
+{ #category : #default }
 DCPiePlot >> defaultKind [
 	^ RSPie new.
 ]
 
-{ #category : #defaults }
+{ #category : #default }
 DCPiePlot >> defaultSize [
 	^ 200
 
@@ -135,7 +145,7 @@ DCPiePlot >> propagateLabels [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #showing }
 DCPiePlot >> show [
 	^ self kind canvas open.
 ]

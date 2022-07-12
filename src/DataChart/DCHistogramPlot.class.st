@@ -1,5 +1,7 @@
 "
 This class represent the objet who manage the RSHistogram objet of Roassal-chart
+
+For more information check the example Package.
 "
 Class {
 	#name : #DCHistogramPlot,

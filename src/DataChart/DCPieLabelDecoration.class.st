@@ -1,3 +1,12 @@
+"
+this class is label decoration for pie plot.
+
+    Instance Variables
+	fontSize:		<Object>
+	shouldUseLabelOut:		<Object>
+	totalSum:		<Object>
+
+"
 Class {
 	#name : #DCPieLabelDecoration,
 	#superclass : #RSPieLabeledInteraction,

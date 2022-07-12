@@ -1,3 +1,11 @@
+"
+this class is a labal decoration for each plot we can have
+    Instance Variables
+	dot:		<Object>
+	dotShape:		<Object>
+	label:		<Object>
+	posi:		<Object>
+"
 Class {
 	#name : #DCLabelDecoration,
 	#superclass : #DCDecoration,

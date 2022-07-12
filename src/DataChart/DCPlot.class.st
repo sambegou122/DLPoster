@@ -1,3 +1,6 @@
+"
+Main class of my DataChart objects
+"
 Class {
 	#name : #DCPlot,
 	#superclass : #Object,
@@ -10,8 +13,9 @@ Class {
 	#category : #'DataChart-Core'
 }
 
-{ #category : #accessing }
+{ #category : #building }
 DCPlot >> build [
+	" this methode build the plot"
 	self subclassResponsibility
 ]
 
@@ -79,8 +83,9 @@ DCPlot >> settings: aDCPlotSettings [
 	settings := aDCPlotSettings
 ]
 
-{ #category : #accessing }
+{ #category : #showing }
 DCPlot >> show [
+	"this methode allow to show the plot in the canvas"
 	self subclassResponsibility
 ]
 

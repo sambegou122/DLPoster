@@ -1,3 +1,8 @@
+"
+This class represent the objet who manage the RSBox objet of Roassal-chart
+
+For more information check the example Package.
+"
 Class {
 	#name : #DCBoxPlot,
 	#superclass : #DCChartPlot,

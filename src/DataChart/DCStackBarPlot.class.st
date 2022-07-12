@@ -1,5 +1,7 @@
 "
 This class is a kind of Combined plots, but just for StackBarPlots, so we can just add a BarPlot
+
+For more information check the example Package.
 "
 Class {
 	#name : #DCStackBarPlot,
@@ -30,7 +32,7 @@ DCStackBarPlot >> buildPlots [
 	self applyBottom.
 ]
 
-{ #category : #adding }
+{ #category : #building }
 DCStackBarPlot >> changeTicks [
 	| plot |
 	plot := self plots at:1.

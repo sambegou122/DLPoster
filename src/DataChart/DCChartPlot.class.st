@@ -32,11 +32,14 @@ DCChartPlot >> add: aDCObject [
 
 { #category : #adding }
 DCChartPlot >> addDecoration: aDCDecoration [
+	"adding decoration in plot"
 	self settings addDecoration: aDCDecoration
 ]
 
 { #category : #building }
 DCChartPlot >> addDecorations [
+	"adding all the decoration to the chart"
+	
 	self chart decorations removeAll.
 	self chart
 		spineDecoration: self settings background;
@@ -87,12 +90,14 @@ DCChartPlot >> buildLegendData [
 
 { #category : #building }
 DCChartPlot >> buildLegendIfNecessary [
+	" build legend if user put it"
 	self settings shouldUseLegend ifFalse: [ ^ self ].
 	self buildLegend.
 ]
 
 { #category : #building }
 DCChartPlot >> changeTicks [ 
+	"this method generates the correct number of ticks of  each plot"
 	self settings xtick
 		doNotUseNiceLabel
 		numberOfTicks: (self generateNumberOfTicks at:'x') -1.
@@ -117,6 +122,7 @@ DCChartPlot >> extent: aPoint [
 
 { #category : #building }
 DCChartPlot >> generateNumberOfTicks [
+	"this methode allow to generate the number of ticks"
 	| xExtends yExtends result |
 	xExtends := self chart extent x.
 	yExtends := self chart extent y.
@@ -155,6 +161,8 @@ DCChartPlot >> mainShapes [
 
 { #category : #building }
 DCChartPlot >> propagateData [
+	"this methode put a data in the plot"
+	
 	self kind x: self x y: self y
 ]
 
@@ -167,7 +175,7 @@ DCChartPlot >> putValue: aValue in: aDictionary at: aString [
 
 ]
 
-{ #category : #building }
+{ #category : #showing }
 DCChartPlot >> show [
 	self build.
 	^ self chart canvas open.

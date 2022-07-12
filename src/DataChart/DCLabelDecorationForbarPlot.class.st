@@ -1,3 +1,11 @@
+"
+this is a label decoration for barplot.
+
+    Instance Variables
+	labels:		<Object> collection of label
+	location:		<Object> the location for each bar
+
+"
 Class {
 	#name : #DCLabelDecorationForBarPlot,
 	#superclass : #RSAbstractChartDecoration,
