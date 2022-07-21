@@ -10,7 +10,7 @@ Run this script on your pharo9 playground
 ```st
 Metacello new
     baseline: 'DataChart';
-    repository: 'github://sambegou122/DLPoster:main';
+    repository: 'github://sambegou122/DLPoster;
     load.
 ```
 
