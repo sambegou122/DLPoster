@@ -36,6 +36,10 @@ DCKiviatPlotTest >> testaddData [
 	plot build.
 	plot show.
 	self assert: plot kind values asArray equals: rows.
+	self assert: plot data first equals: plot kind axisNames.
+	
+	
+
 	
 
 ]

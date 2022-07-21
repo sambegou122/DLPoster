@@ -18,6 +18,11 @@ Class {
 	#category : #'DataChart-Core'
 }
 
+{ #category : #building }
+DCCircularPlot >> build [
+	^ self subclassResponsibility.
+]
+
 { #category : #accessing }
 DCCircularPlot >> data [
 	^ data
@@ -30,18 +35,23 @@ DCCircularPlot >> data: aCollection [
 
 { #category : #default }
 DCCircularPlot >> defaultKind [ 
-	^ RSKiviat new.
+	^ self subclassResponsibility.
 ]
 
 { #category : #default }
 DCCircularPlot >> defaultSize [
-	^ nil.
+	^  self subclassResponsibility.
 ]
 
 { #category : #initialization }
 DCCircularPlot >> initialize [ 
 	super initialize.
 	self size: self defaultSize.
+]
+
+{ #category : #showing }
+DCCircularPlot >> show [
+	^ self subclassResponsibility.
 ]
 
 { #category : #accessing }

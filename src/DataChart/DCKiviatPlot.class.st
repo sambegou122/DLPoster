@@ -7,11 +7,21 @@ Class {
 { #category : #building }
 DCKiviatPlot >> build [
 	" this methode build the plot"
-	|rowNames rows result|
-	result := OrderedCollection new.
+	|rowNames rows |
 	rowNames := self data first.
 	rows := self data allButFirst.
 	self rowNames: rowNames rows: rows.
+	"self kind build."
+]
+
+{ #category : #default }
+DCKiviatPlot >> defaultKind [ 
+	^ RSKiviat new.
+]
+
+{ #category : #default }
+DCKiviatPlot >> defaultSize [
+	^  nil.
 ]
 
 { #category : #building }
@@ -25,5 +35,6 @@ DCKiviatPlot >> rowNames: rowNames rows: rows [
 { #category : #showing }
 DCKiviatPlot >> show [
 	"this methode allow to show the plot in the canvas"
-	^ self kind
+	self kind build.
+	^ self kind canvas
 ]
