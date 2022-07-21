@@ -115,11 +115,6 @@ DCPiePlot >> labels: aCollection [
 	labels := aCollection
 ]
 
-{ #category : #accessing }
-DCPiePlot >> mainShapes [
-	^ self kind shapes. 
-]
-
 { #category : #building }
 DCPiePlot >> propagateColors [
 	self colors ifNil:[ ^ self].

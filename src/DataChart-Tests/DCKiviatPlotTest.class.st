@@ -30,13 +30,15 @@ DCKiviatPlotTest >> testBasic [
 
 { #category : #running }
 DCKiviatPlotTest >> testaddData [
-	| rows|
+	| rows shapes |
 	rows := {#(4 4 5 4 3). #(5 5 4 5 2). #(3 4 5 3 5)}.
 	plot data: data.
 	plot build.
-	plot show.
+	shapes := plot mainShapes.
 	self assert: plot kind values asArray equals: rows.
 	self assert: plot data first equals: plot kind axisNames.
+	self assert: shapes size equals: 3.
+	
 	
 	
 

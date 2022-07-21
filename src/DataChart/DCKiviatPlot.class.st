@@ -35,6 +35,8 @@ DCKiviatPlot >> rowNames: rowNames rows: rows [
 { #category : #showing }
 DCKiviatPlot >> show [
 	"this methode allow to show the plot in the canvas"
+	| canvas |
 	self kind build.
-	^ self kind canvas
+	canvas := self kind canvas.
+	^ canvas open
 ]

@@ -49,6 +49,11 @@ DCCircularPlot >> initialize [
 	self size: self defaultSize.
 ]
 
+{ #category : #accessing }
+DCCircularPlot >> mainShapes [
+	^ self kind shapes. 
+]
+
 { #category : #showing }
 DCCircularPlot >> show [
 	^ self subclassResponsibility.
