@@ -30,12 +30,12 @@ DCCircularPlot >> data: aCollection [
 
 { #category : #default }
 DCCircularPlot >> defaultKind [ 
-	self subclassResponsibility
+	^ RSKiviat new.
 ]
 
 { #category : #default }
 DCCircularPlot >> defaultSize [
-	self subclassResponsibility
+	^ nil.
 ]
 
 { #category : #initialization }
