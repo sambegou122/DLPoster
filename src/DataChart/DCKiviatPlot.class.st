@@ -24,6 +24,11 @@ DCKiviatPlot >> defaultSize [
 	^  nil.
 ]
 
+{ #category : #accessing }
+DCKiviatPlot >> mainShapes [
+	^ self kind polygonShapes. 
+]
+
 { #category : #building }
 DCKiviatPlot >> rowNames: rowNames rows: rows [
 	
