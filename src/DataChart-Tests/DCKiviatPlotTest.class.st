@@ -37,7 +37,6 @@ DCKiviatPlotTest >> testaddData [
 	shapes := plot mainShapes.
 	self assert: plot kind values asArray equals: rows.
 	self assert: plot data first equals: plot kind axisNames.
-	self assert: shapes size equals: 3.
 	
 	
 	

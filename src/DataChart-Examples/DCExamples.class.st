@@ -245,6 +245,19 @@ DCExamples >> exampleDCHistogramWithDecoration [
 ]
 
 { #category : #examples }
+DCExamples >> exampleDCKiviatPlot [
+	<script: 'self new exampleDCKiviatPlot'>
+	
+	| data plot |
+	data :=  {#('Food Quality' 'Food Variety' 'Service Quality' 'Ambience' 'Affordability'). #(4 4 5 4 3). #(5 5 4 5 2). #(3 4 5 3 5)}.
+
+	^ plot := DCKiviatPlot new
+		data: data;
+		build;
+		show.
+]
+
+{ #category : #examples }
 DCExamples >> exampleDCLine [
 	<script: 'self new exampleDCLine'>
 	| x |
@@ -290,6 +303,21 @@ DCExamples >> exampleDCLineWithVerticalLineDecoration [
 		ylabel: 'line y';
 		add: decoration;
 		show
+]
+
+{ #category : #examples }
+DCExamples >> exampleDCPiePlot [
+	<script: 'self new exampleDCPiePlot'>
+	
+	| data plot labels|
+	data  := 0 to: 50 by:10.
+	labels:= { 'papa'. 'mama'. 'tanta'. 'oncle'. 'frere'. 'soeur' }.
+
+	^ plot := DCPiePlot new
+		data: data;
+		labels: labels;
+		build;
+		show.
 ]
 
 { #category : #examples }
