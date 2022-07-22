@@ -1,19 +1,10 @@
-"
-This class represent all kind of circular plot, like pieplot, kiviatpolot, Venn Diagram etc...
-
-    Instance Variables
-	data:		<Object> represent data 
-	size:		<Object> the size of our plot
-
-
-    Implementation Points
-"
 Class {
 	#name : #DCCircularPlot,
 	#superclass : #DCPlot,
 	#instVars : [
 		'size',
-		'data'
+		'data',
+		'extent'
 	],
 	#category : #'DataChart-Core'
 }
@@ -38,15 +29,19 @@ DCCircularPlot >> defaultKind [
 	^ self subclassResponsibility.
 ]
 
-{ #category : #default }
-DCCircularPlot >> defaultSize [
-	^  self subclassResponsibility.
+{ #category : #accessing }
+DCCircularPlot >> extent [
+	^extent
+]
+
+{ #category : #accessing }
+DCCircularPlot >> extent: aPoint [
+	extent := aPoint
 ]
 
 { #category : #initialization }
 DCCircularPlot >> initialize [ 
 	super initialize.
-	self size: self defaultSize.
 ]
 
 { #category : #accessing }
@@ -57,14 +52,4 @@ DCCircularPlot >> mainShapes [
 { #category : #showing }
 DCCircularPlot >> show [
 	^ self subclassResponsibility.
-]
-
-{ #category : #accessing }
-DCCircularPlot >> size [
-	^ size.
-]
-
-{ #category : #accessing }
-DCCircularPlot >> size: aNumber [
-	size:= aNumber
 ]

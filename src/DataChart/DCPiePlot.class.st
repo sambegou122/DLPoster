@@ -21,9 +21,17 @@ Class {
 }
 
 { #category : #building }
+DCPiePlot >> applyExtent [
+
+	self extent ifNil: [ ^ self ].
+	self extent x = self extent y ifFalse: [ 
+		self mainShapes do: [ :shape | shape scaleBy: extent / extent x ] ]
+]
+
+{ #category : #building }
 DCPiePlot >> build [
 	self propagateData.
-	self kind sliceShape externalRadius: self size.
+	self computeExtent.
 	self kind sliceColor: self defaultColors.
 	self kind build.
 	self changesAfterBuilding
@@ -46,7 +54,8 @@ DCPiePlot >> buildLegendData [
 DCPiePlot >> changesAfterBuilding [
 	self propagateColors.
 	self propagateLabels.
-	self propagateExplodes
+	self propagateExplodes.
+	self applyExtent.
 ]
 
 { #category : #accessing }
@@ -59,28 +68,26 @@ DCPiePlot >> colors: aCollectionOfColors [
 	colors := aCollectionOfColors
 ]
 
+{ #category : #building }
+DCPiePlot >> computeExtent [
+	self extent ifNotNil:[ : ex| self computeExtent: ex x/2]
+	
+]
+
+{ #category : #building }
+DCPiePlot >> computeExtent: aPoint [
+	self kind sliceShape externalRadius: aPoint.
+	
+]
+
 { #category : #defaults }
 DCPiePlot >> defaultColors [
 	^ NSScale category10 
 ]
 
-{ #category : #defaults }
-DCPiePlot >> defaultExternalRadius [
-	^ 200
-
-
-]
-
 { #category : #default }
 DCPiePlot >> defaultKind [
 	^ RSPie new.
-]
-
-{ #category : #default }
-DCPiePlot >> defaultSize [
-	^ 200
-
-
 ]
 
 { #category : #accessing }

@@ -19,11 +19,6 @@ DCKiviatPlot >> defaultKind [
 	^ RSKiviat new.
 ]
 
-{ #category : #default }
-DCKiviatPlot >> defaultSize [
-	^  nil.
-]
-
 { #category : #accessing }
 DCKiviatPlot >> mainShapes [
 	^ self kind polygonShapes. 

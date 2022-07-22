@@ -75,6 +75,20 @@ DCPiePlotTest >> testExplodes [
 ]
 
 { #category : #running }
+DCPiePlotTest >> testExtent [
+	
+	self assert: plot extent isNil.
+	plot 
+		data: data;
+		extent:200@100;
+		build.
+		
+	self assert: plot extent equals: 200@100.
+	plot mainShapes do:[ : shape| self assert: shape extent equals: 200@100]
+	
+]
+
+{ #category : #running }
 DCPiePlotTest >> testLabels [
 	| shapes 	 labels |
 	self assert: plot labels isNil. 
@@ -101,15 +115,4 @@ DCPiePlotTest >> testLabelsOut [
 		build.
 	shapes:= plot mainShapes.
 	self assert: plot labels equals:labels.
-]
-
-{ #category : #running }
-DCPiePlotTest >> testSize [
-	
-	self assert: plot size equals: plot defaultExternalRadius.
-	plot 
-		data: data;
-		size: 100;
-		build.
-	self assert: plot size equals: 100.
 ]
