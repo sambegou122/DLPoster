@@ -111,6 +111,7 @@ DCPiePlotTest >> testLabelsOut [
 	plot 
 		data: data;
 		labels: labels;
+		extent:400@400;
 		useLabelOut;
 		build.
 	shapes:= plot mainShapes.

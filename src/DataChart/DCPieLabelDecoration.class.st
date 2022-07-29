@@ -39,7 +39,7 @@ DCPieLabelDecoration >> generateLablesFor: aDCPiePlot [
 	totalSum := aDCPiePlot kind totalSum.
 	shapes := aDCPiePlot mainShapes.
 	labels := aDCPiePlot labels.
-	self shouldUseLabelOut ifTrue: [ self offset: aDCPiePlot size * 0.7 ].
+	self shouldUseLabelOut ifTrue: [ self offset: (aDCPiePlot kind shapes at:1) extent y * 0.4 ].
 	self labelShape fontSize: self fontSize.
 	self put: labels in: shapes
 ]
